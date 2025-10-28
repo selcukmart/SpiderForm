@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Validation\Rules;
+namespace SpiderForm\V2\Validation\Rules;
 
 /**
  * Digits Rule - Value must be numeric and have an exact length

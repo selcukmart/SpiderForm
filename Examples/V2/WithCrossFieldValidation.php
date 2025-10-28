@@ -1,7 +1,7 @@
 <?php
 
 /**
- * FormGenerator V2.7.0 - Cross-Field Validation & Validation Groups Example
+ * SpiderForm V2.7.0 - Cross-Field Validation & Validation Groups Example
  *
  * This example demonstrates:
  * 1. Cross-field validation using Callback constraint
@@ -14,11 +14,11 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Validation\Constraints\Callback;
-use FormGenerator\V2\Validation\ExecutionContext;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Validation\Constraints\Callback;
+use SpiderForm\V2\Validation\ExecutionContext;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 // ============================================================================
 // EXAMPLE 1: Password Confirmation (Basic Cross-Field Validation)
@@ -351,7 +351,7 @@ echo "Errors: " . json_encode($paymentErrors2, JSON_PRETTY_PRINT) . "\n\n";
 
 echo "\n";
 echo "════════════════════════════════════════════════════════════════\n";
-echo "✅ FormGenerator V2.7.0 - Cross-Field Validation & Groups\n";
+echo "✅ SpiderForm V2.7.0 - Cross-Field Validation & Groups\n";
 echo "════════════════════════════════════════════════════════════════\n";
 echo "\n";
 echo "New Features:\n";

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Validation\Rules;
+namespace SpiderForm\V2\Validation\Rules;
 
 /**
  * Between Rule - Value must be between two values (inclusive)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Generate code coverage report for FormGenerator V2
+# Generate code coverage report for SpiderForm V2
 
 echo "Generating code coverage report..."
 echo "===================================="

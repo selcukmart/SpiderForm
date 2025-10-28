@@ -1,4 +1,4 @@
-# FormGenerator
+# SpiderForm
 
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.1-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -13,7 +13,7 @@ A production-ready form builder library offering nested forms, type system, cros
 
 ## Version 3.0.0 - Production Ready
 
-FormGenerator V3.0.0 is a comprehensive form building library with an intuitive fluent API.
+SpiderForm V3.0.0 is a comprehensive form building library with an intuitive fluent API.
 
 ### Key Features
 
@@ -40,9 +40,9 @@ FormGenerator V3.0.0 is a comprehensive form building library with an intuitive 
 ### Quick Start - Simple Contact Form with i18n & CSRF
 
 ```php
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Translation\FormTranslator;
-use FormGenerator\V2\Translation\Loader\PhpLoader;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Translation\FormTranslator;
+use SpiderForm\V2\Translation\Loader\PhpLoader;
 
 // Setup translator (optional)
 $translator = new FormTranslator('en_US');
@@ -81,9 +81,9 @@ echo $form;
 ### Nested Forms with Cross-Field Validation
 
 ```php
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Form\Form;
-use FormGenerator\V2\Validation\Constraints\Callback;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Form\Form;
+use SpiderForm\V2\Validation\Constraints\Callback;
 
 // Create address sub-form
 $addressForm = new Form('address');
@@ -134,8 +134,8 @@ if ($form->isValid()) {
 ### Dynamic Form Modification with Events
 
 ```php
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Event\FormEvents;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Event\FormEvents;
 
 $form = FormBuilder::create('product_form')
     ->setCsrfTokenId('product')
@@ -217,7 +217,7 @@ $form->addEventListener(FormEvents::PRE_SET_DATA, function($event) {
 ## 📦 Installation
 
 ```bash
-composer require selcukmart/form-generator
+composer require selcukmart/spider-form
 ```
 
 ---
@@ -265,7 +265,7 @@ $form = $this->createFormBuilder()
     ->getForm();
 ```
 
-### After (FormGenerator)
+### After (SpiderForm)
 
 ```php
 $form = FormBuilder::create('user_form')

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * FormGenerator V2.4.0 - Nested Forms & Collections Example
+ * SpiderForm V2.4.0 - Nested Forms & Collections Example
  *
  * This example demonstrates:
  * 1. Nested forms (sub-forms for hierarchical data)
@@ -15,10 +15,10 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\DataMapper\FormDataMapper;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\DataMapper\FormDataMapper;
 
 // ============================================================================
 // EXAMPLE 1: Simple Nested Form
@@ -429,7 +429,7 @@ echo "\n";
 
 echo "\n";
 echo "════════════════════════════════════════════════════════════════\n";
-echo "✅ FormGenerator V2.4.0 - Nested Forms & Collections\n";
+echo "✅ SpiderForm V2.4.0 - Nested Forms & Collections\n";
 echo "════════════════════════════════════════════════════════════════\n";
 echo "\n";
 echo "New Features:\n";

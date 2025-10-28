@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Form;
+namespace SpiderForm\V2\Form;
 
-use FormGenerator\V2\Contracts\RendererInterface;
-use FormGenerator\V2\Contracts\ThemeInterface;
+use SpiderForm\V2\Contracts\RendererInterface;
+use SpiderForm\V2\Contracts\ThemeInterface;
 
 /**
  * Form Interface - Contract for Stateful Form Objects

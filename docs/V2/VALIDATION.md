@@ -1,6 +1,6 @@
 # Laravel-Style Validation System
 
-FormGenerator V2 includes a powerful Laravel-inspired validation system that provides comprehensive server-side validation with an intuitive, fluent API.
+SpiderForm V2 includes a powerful Laravel-inspired validation system that provides comprehensive server-side validation with an intuitive, fluent API.
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ FormGenerator V2 includes a powerful Laravel-inspired validation system that pro
 ### Basic Validation
 
 ```php
-use FormGenerator\V2\Validation\{Validator, ValidationException};
+use SpiderForm\V2\Validation\{Validator, ValidationException};
 
 $data = [
     'email' => 'user@example.com',
@@ -48,7 +48,7 @@ try {
 ### Using ValidatorFactory
 
 ```php
-use FormGenerator\V2\Validation\ValidatorFactory;
+use SpiderForm\V2\Validation\ValidatorFactory;
 
 // Quick validation with exception on failure
 $validated = ValidatorFactory::validate($data, $rules);
@@ -309,7 +309,7 @@ Value must exist in the database table.
 FormBuilder provides chainable validation methods for easy form creation:
 
 ```php
-use FormGenerator\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\FormBuilder;
 
 $form = FormBuilder::create('user_form')
     ->addText('username', 'Username')
@@ -774,14 +774,14 @@ $validator = Validator::make($request->all(), [
     'email' => 'required|email|unique:users',
 ]);
 
-// FormGenerator V2
+// SpiderForm V2
 $validator = ValidatorFactory::make($_POST, [
     'email' => 'required|email|unique:users',
 ]);
 ```
 
 The main differences:
-1. Import from `FormGenerator\V2\Validation` namespace
+1. Import from `SpiderForm\V2\Validation` namespace
 2. Database validation requires explicit PDO connection
 3. Some advanced Laravel features (like Rule objects, conditional validation) are not yet implemented
 

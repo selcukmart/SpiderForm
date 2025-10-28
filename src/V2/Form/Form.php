@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Form;
+namespace SpiderForm\V2\Form;
 
-use FormGenerator\V2\Contracts\{RendererInterface, ThemeInterface, ValidatorInterface};
-use FormGenerator\V2\Validation\ValidationManager;
-use FormGenerator\V2\Event\{EventDispatcher, FormEvent, FormEvents};
-use FormGenerator\V2\Error\{ErrorList, FormError, ErrorLevel, ErrorBubblingStrategy};
+use SpiderForm\V2\Contracts\{RendererInterface, ThemeInterface, ValidatorInterface};
+use SpiderForm\V2\Validation\ValidationManager;
+use SpiderForm\V2\Event\{EventDispatcher, FormEvent, FormEvents};
+use SpiderForm\V2\Error\{ErrorList, FormError, ErrorLevel, ErrorBubblingStrategy};
 
 /**
  * Form - Stateful Form Object with Nested Support

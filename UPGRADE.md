@@ -2,7 +2,7 @@
 
 ## Overview
 
-FormGenerator V2 is a complete rewrite with modern PHP 8.1+ features, chain pattern fluent interface, and better framework integration. This guide will help you migrate from V1 to V2.
+SpiderForm V2 is a complete rewrite with modern PHP 8.1+ features, chain pattern fluent interface, and better framework integration. This guide will help you migrate from V1 to V2.
 
 ## Breaking Changes
 
@@ -31,7 +31,7 @@ echo $form->getHtmlOutput();
 
 **V2 (Chain Pattern):**
 ```php
-use FormGenerator\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\FormBuilder;
 
 $form = FormBuilder::create('user_form')
     ->setRenderer($renderer)
@@ -49,14 +49,14 @@ echo $form;
 
 **V1:**
 ```php
-use FormGenerator\FormGeneratorDirector;
+use SpiderForm\FormGeneratorDirector;
 ```
 
 **V2:**
 ```php
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 ```
 
 ### 4. Data Provider Interface
@@ -71,7 +71,7 @@ use FormGenerator\V2\Theme\Bootstrap5Theme;
 
 **V2:**
 ```php
-use FormGenerator\V2\DataProvider\ArrayDataProvider;
+use SpiderForm\V2\DataProvider\ArrayDataProvider;
 
 $dataProvider = new ArrayDataProvider([$row]);
 $form->setDataProvider($dataProvider)->loadData(1);
@@ -89,7 +89,7 @@ $form->setDataProvider($dataProvider)->loadData(1);
 
 **V2:**
 ```php
-use FormGenerator\V2\Renderer\SmartyRenderer;
+use SpiderForm\V2\Renderer\SmartyRenderer;
 
 $renderer = new SmartyRenderer($smarty);
 $form->setRenderer($renderer);
@@ -102,7 +102,7 @@ $form->setRenderer($renderer);
 Update your `composer.json`:
 
 ```bash
-composer require selcukmart/form-generator:^2.0
+composer require selcukmart/spider-form:^2.0
 ```
 
 ### Step 2: Update PHP Version
@@ -155,7 +155,7 @@ Choose appropriate data provider:
 
 **Doctrine:**
 ```php
-use FormGenerator\V2\DataProvider\DoctrineDataProvider;
+use SpiderForm\V2\DataProvider\DoctrineDataProvider;
 
 $provider = new DoctrineDataProvider($entityManager, User::class);
 $form->setDataProvider($provider)->loadData($userId);
@@ -163,7 +163,7 @@ $form->setDataProvider($provider)->loadData($userId);
 
 **Laravel Eloquent:**
 ```php
-use FormGenerator\V2\DataProvider\EloquentDataProvider;
+use SpiderForm\V2\DataProvider\EloquentDataProvider;
 
 $provider = new EloquentDataProvider(User::class);
 $form->setDataProvider($provider)->loadData($userId);
@@ -171,7 +171,7 @@ $form->setDataProvider($provider)->loadData($userId);
 
 **PDO:**
 ```php
-use FormGenerator\V2\DataProvider\PDODataProvider;
+use SpiderForm\V2\DataProvider\PDODataProvider;
 
 $provider = new PDODataProvider($pdo, 'users', 'id');
 $form->setDataProvider($provider)->loadData($userId);
@@ -182,8 +182,8 @@ $form->setDataProvider($provider)->loadData($userId);
 V2 uses Twig by default with Bootstrap 5 theme:
 
 ```php
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 $renderer = new TwigRenderer(__DIR__ . '/templates');
 $theme = new Bootstrap5Theme();
@@ -196,7 +196,7 @@ $form->setRenderer($renderer)->setTheme($theme);
 V2 includes built-in CSRF protection:
 
 ```php
-use FormGenerator\V2\Security\SecurityManager;
+use SpiderForm\V2\Security\SecurityManager;
 
 $security = new SecurityManager();
 $form->setSecurity($security)->enableCsrf();
@@ -207,7 +207,7 @@ $form->setSecurity($security)->enableCsrf();
 **Symfony:**
 ```php
 // In bundles.php
-FormGenerator\V2\Integration\Symfony\FormGeneratorBundle::class => ['all' => true],
+SpiderForm\V2\Integration\Symfony\FormGeneratorBundle::class => ['all' => true],
 
 // In config/packages/form_generator.yaml
 form_generator:
@@ -218,19 +218,19 @@ form_generator:
 **Laravel:**
 ```php
 // In config/app.php 'providers'
-FormGenerator\V2\Integration\Laravel\FormGeneratorServiceProvider::class,
+SpiderForm\V2\Integration\Laravel\FormGeneratorServiceProvider::class,
 
 // Publish config
-php artisan vendor:publish --tag=form-generator-config
+php artisan vendor:publish --tag=spider-form-config
 ```
 
 ## Backward Compatibility
 
-V1 code is still available under `FormGenerator\V1` namespace:
+V1 code is still available under `SpiderForm\V1` namespace:
 
 ```php
 // V1 still works
-use FormGenerator\V1\FormGeneratorDirector;
+use SpiderForm\V1\FormGeneratorDirector;
 
 $form = new FormGeneratorDirector($array, 'edit');
 ```
@@ -276,7 +276,7 @@ However, we recommend migrating to V2 for better performance and features.
 
 - **Documentation**: Check `/docs` directory
 - **Examples**: See `/Examples/V2` directory
-- **Issues**: https://github.com/selcukmart/FormGenerator/issues
+- **Issues**: https://github.com/selcukmart/SpiderForm/issues
 
 ## Checklist
 

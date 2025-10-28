@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Builder;
+namespace SpiderForm\V2\Builder;
 
-use FormGenerator\V2\Contracts\InputType;
-use FormGenerator\V2\Contracts\DataProviderInterface;
-use FormGenerator\V2\Contracts\DataTransformerInterface;
+use SpiderForm\V2\Contracts\InputType;
+use SpiderForm\V2\Contracts\DataProviderInterface;
+use SpiderForm\V2\Contracts\DataTransformerInterface;
 
 /**
  * Input Builder - Chain Pattern for Individual Form Inputs

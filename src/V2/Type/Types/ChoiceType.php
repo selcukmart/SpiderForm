@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Type\Types;
+namespace SpiderForm\V2\Type\Types;
 
-use FormGenerator\V2\Type\AbstractType;
-use FormGenerator\V2\Type\OptionsResolver;
-use FormGenerator\V2\Builder\InputBuilder;
+use SpiderForm\V2\Type\AbstractType;
+use SpiderForm\V2\Type\OptionsResolver;
+use SpiderForm\V2\Builder\InputBuilder;
 
 /**
  * Choice Type - Base for Select/Radio/Checkbox Lists

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Builder;
+namespace SpiderForm\V2\Builder;
 
-use FormGenerator\V2\Contracts\{
+use SpiderForm\V2\Contracts\{
     BuilderInterface,
     DataProviderInterface,
     InputType,
@@ -16,23 +16,23 @@ use FormGenerator\V2\Contracts\{
     ThemeInterface,
     ValidatorInterface
 };
-use FormGenerator\V2\Validation\{ValidationManager, SymfonyValidator};
-use FormGenerator\V2\Event\{EventDispatcher, FormEvent, FormEvents, EventSubscriberInterface};
-use FormGenerator\V2\Form\{
+use SpiderForm\V2\Validation\{ValidationManager, SymfonyValidator};
+use SpiderForm\V2\Event\{EventDispatcher, FormEvent, FormEvents, EventSubscriberInterface};
+use SpiderForm\V2\Form\{
     FormTypeInterface,
     Form,
     FormInterface,
     FormConfig,
     FormCollection
 };
-use FormGenerator\V2\DataMapper\FormDataMapper;
-use FormGenerator\V2\Type\{
+use SpiderForm\V2\DataMapper\FormDataMapper;
+use SpiderForm\V2\Type\{
     TypeRegistry,
     TypeExtensionRegistry,
     OptionsResolver
 };
-use FormGenerator\V2\Translation\TranslatorInterface;
-use FormGenerator\V2\Security\{CsrfProtection, CsrfTokenManager};
+use SpiderForm\V2\Translation\TranslatorInterface;
+use SpiderForm\V2\Security\{CsrfProtection, CsrfTokenManager};
 
 /**
  * Form Builder - Main Entry Point with Chain Pattern
@@ -627,7 +627,7 @@ class FormBuilder implements BuilderInterface
      * @param array $customAttributes Custom attribute names (optional)
      * @param \PDO|null $dbConnection Database connection for unique/exists rules (optional)
      * @return array Validated data
-     * @throws \FormGenerator\V2\Validation\ValidationException
+     * @throws \SpiderForm\V2\Validation\ValidationException
      */
     public function validateData(
         array $data,
@@ -637,7 +637,7 @@ class FormBuilder implements BuilderInterface
     ): array {
         $rules = $this->extractValidationRules();
 
-        $validator = new \FormGenerator\V2\Validation\Validator(
+        $validator = new \SpiderForm\V2\Validation\Validator(
             $data,
             $rules,
             $customMessages,
@@ -665,7 +665,7 @@ class FormBuilder implements BuilderInterface
             $this->eventDispatcher->dispatch(FormEvents::POST_SUBMIT, $postSubmitEvent);
 
             return $validated;
-        } catch (\FormGenerator\V2\Validation\ValidationException $e) {
+        } catch (\SpiderForm\V2\Validation\ValidationException $e) {
             // Dispatch VALIDATION_ERROR event
             $validationErrorEvent = new FormEvent($this, $e->errors());
             $this->eventDispatcher->dispatch(FormEvents::VALIDATION_ERROR, $validationErrorEvent);
@@ -1650,7 +1650,7 @@ class FormBuilder implements BuilderInterface
             $section = $item['section'];
 
             // Dispatch FIELD_PRE_RENDER event
-            $preRenderEvent = $this->dispatchFieldEvent($input, \FormGenerator\V2\Event\FieldEvents::FIELD_PRE_RENDER, [
+            $preRenderEvent = $this->dispatchFieldEvent($input, \SpiderForm\V2\Event\FieldEvents::FIELD_PRE_RENDER, [
                 'form_data' => $this->data,
             ]);
 
@@ -1702,7 +1702,7 @@ class FormBuilder implements BuilderInterface
             }
 
             // Dispatch FIELD_POST_RENDER event (allows modifying rendered data)
-            $postRenderEvent = $this->dispatchFieldEvent($input, \FormGenerator\V2\Event\FieldEvents::FIELD_POST_RENDER, [
+            $postRenderEvent = $this->dispatchFieldEvent($input, \SpiderForm\V2\Event\FieldEvents::FIELD_POST_RENDER, [
                 'input_data' => $inputData,
             ]);
 
@@ -1769,11 +1769,11 @@ class FormBuilder implements BuilderInterface
      * @param InputBuilder $field The field to dispatch event for
      * @param string $eventName Event name (use FieldEvents constants)
      * @param array $context Additional context data
-     * @return \FormGenerator\V2\Event\FieldEvent The dispatched event
+     * @return \SpiderForm\V2\Event\FieldEvent The dispatched event
      */
-    public function dispatchFieldEvent(InputBuilder $field, string $eventName, array $context = []): \FormGenerator\V2\Event\FieldEvent
+    public function dispatchFieldEvent(InputBuilder $field, string $eventName, array $context = []): \SpiderForm\V2\Event\FieldEvent
     {
-        $event = new \FormGenerator\V2\Event\FieldEvent($field, $this, $context);
+        $event = new \SpiderForm\V2\Event\FieldEvent($field, $this, $context);
 
         // Get field-specific listeners
         $fieldListeners = $field->getFieldEventListeners();
@@ -1825,7 +1825,7 @@ class FormBuilder implements BuilderInterface
                 $isVisible = true;
 
                 // Dispatch FIELD_DEPENDENCY_MET event
-                $this->dispatchFieldEvent($field, \FormGenerator\V2\Event\FieldEvents::FIELD_DEPENDENCY_MET, [
+                $this->dispatchFieldEvent($field, \SpiderForm\V2\Event\FieldEvents::FIELD_DEPENDENCY_MET, [
                     'trigger_field' => $controllerFieldName,
                     'trigger_value' => $controllerValue,
                     'visible' => true,
@@ -1836,7 +1836,7 @@ class FormBuilder implements BuilderInterface
         }
 
         // Dispatch FIELD_DEPENDENCY_CHECK event (allows custom logic)
-        $checkEvent = $this->dispatchFieldEvent($field, \FormGenerator\V2\Event\FieldEvents::FIELD_DEPENDENCY_CHECK, [
+        $checkEvent = $this->dispatchFieldEvent($field, \SpiderForm\V2\Event\FieldEvents::FIELD_DEPENDENCY_CHECK, [
             'visible' => $isVisible,
         ]);
 
@@ -1845,16 +1845,16 @@ class FormBuilder implements BuilderInterface
 
         // Dispatch show/hide events
         if ($isVisible) {
-            $this->dispatchFieldEvent($field, \FormGenerator\V2\Event\FieldEvents::FIELD_SHOW, [
+            $this->dispatchFieldEvent($field, \SpiderForm\V2\Event\FieldEvents::FIELD_SHOW, [
                 'visible' => true,
             ]);
         } else {
-            $this->dispatchFieldEvent($field, \FormGenerator\V2\Event\FieldEvents::FIELD_HIDE, [
+            $this->dispatchFieldEvent($field, \SpiderForm\V2\Event\FieldEvents::FIELD_HIDE, [
                 'visible' => false,
             ]);
 
             // Dispatch FIELD_DEPENDENCY_NOT_MET event
-            $this->dispatchFieldEvent($field, \FormGenerator\V2\Event\FieldEvents::FIELD_DEPENDENCY_NOT_MET, [
+            $this->dispatchFieldEvent($field, \SpiderForm\V2\Event\FieldEvents::FIELD_DEPENDENCY_NOT_MET, [
                 'visible' => false,
             ]);
         }
@@ -1903,7 +1903,7 @@ class FormBuilder implements BuilderInterface
         $this->data[$fieldName] = $newValue;
 
         // Dispatch FIELD_VALUE_CHANGE event
-        $this->dispatchFieldEvent($field, \FormGenerator\V2\Event\FieldEvents::FIELD_VALUE_CHANGE, [
+        $this->dispatchFieldEvent($field, \SpiderForm\V2\Event\FieldEvents::FIELD_VALUE_CHANGE, [
             'old_value' => $oldValue,
             'new_value' => $newValue,
         ]);
@@ -2305,7 +2305,7 @@ class FormBuilder implements BuilderInterface
      *
      * Example:
      * ```php
-     * use FormGenerator\V2\Validation\Constraints\Callback;
+     * use SpiderForm\V2\Validation\Constraints\Callback;
      *
      * $form = FormBuilder::create('user')
      *     ->addPassword('password')->add()
@@ -2409,7 +2409,7 @@ class FormBuilder implements BuilderInterface
         }
 
         // Then, run form-level constraints
-        $context = new \FormGenerator\V2\Validation\ExecutionContext($data);
+        $context = new \SpiderForm\V2\Validation\ExecutionContext($data);
 
         foreach ($this->constraints as $constraint) {
             // Check if constraint applies to current groups

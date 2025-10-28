@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Builder\DatePickerManager;
-use FormGenerator\V2\Builder\TimePickerManager;
-use FormGenerator\V2\Builder\RangeSliderManager;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\DatePickerManager;
+use SpiderForm\V2\Builder\TimePickerManager;
+use SpiderForm\V2\Builder\RangeSliderManager;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 /**
- * FormGenerator V2 - Built-in Pickers Examples
+ * SpiderForm V2 - Built-in Pickers Examples
  *
  * Demonstrates date, time, datetime, and range pickers with:
  * - Multi-language support

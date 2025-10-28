@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Integration\Laravel;
+namespace SpiderForm\V2\Integration\Laravel;
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Event\{EventSubscriberInterface, FormEvent, FormEvents};
-use FormGenerator\V2\Form\FormTypeInterface;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Event\{EventSubscriberInterface, FormEvent, FormEvents};
+use SpiderForm\V2\Form\FormTypeInterface;
 
 /**
  * Base Form Request for Laravel
  *
- * Integrates FormGenerator with Laravel's form request validation.
- * Combines Laravel's authorization and validation with FormGenerator's
+ * Integrates SpiderForm with Laravel's form request validation.
+ * Combines Laravel's authorization and validation with SpiderForm's
  * class-based form building.
  *
  * Example:

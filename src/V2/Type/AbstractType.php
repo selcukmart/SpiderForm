@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Type;
+namespace SpiderForm\V2\Type;
 
-use FormGenerator\V2\Builder\InputBuilder;
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Contracts\InputType;
+use SpiderForm\V2\Builder\InputBuilder;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Contracts\InputType;
 
 /**
  * Abstract Type - Base Class for Field Types

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\Contracts\TextDirection;
-use FormGenerator\Examples\V2\Forms\UserRegistrationForm;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Contracts\TextDirection;
+use SpiderForm\Examples\V2\Forms\UserRegistrationForm;
 
 /**
- * FormGenerator V2 - Class-Based Form Types Examples
+ * SpiderForm V2 - Class-Based Form Types Examples
  *
  * Demonstrates how to use class-based, OOP approach for forms
  * similar to Symfony's FormType system.
@@ -73,7 +73,7 @@ echo "<div class='card mb-5'><div class='card-body'>";
 echo "<p>Create a form type on-the-fly using anonymous class:</p>";
 
 $inlineForm = FormBuilder::createFromType(
-    new class extends \FormGenerator\V2\Form\AbstractFormType {
+    new class extends \SpiderForm\V2\Form\AbstractFormType {
         public function buildForm(FormBuilder $builder, array $options): void
         {
             $builder
@@ -115,7 +115,7 @@ echo "<div class='card mb-5'><div class='card-body'>";
 echo "<p>Form type with Arabic/RTL support:</p>";
 
 $rtlForm = FormBuilder::createFromType(
-    new class extends \FormGenerator\V2\Form\AbstractFormType {
+    new class extends \SpiderForm\V2\Form\AbstractFormType {
         public function buildForm(FormBuilder $builder, array $options): void
         {
             $builder
@@ -141,7 +141,7 @@ $rtlForm = FormBuilder::createFromType(
     },
     [
         'direction' => TextDirection::RTL,
-        'locale' => \FormGenerator\V2\Builder\DatePickerManager::LOCALE_AR,
+        'locale' => \SpiderForm\V2\Builder\DatePickerManager::LOCALE_AR,
     ]
 )
     ->setRenderer($renderer)

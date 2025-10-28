@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Integration;
+namespace SpiderForm\Tests\Integration;
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Validation\{ValidationException};
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Validation\{ValidationException};
 use PHPUnit\Framework\TestCase;
 
 /**

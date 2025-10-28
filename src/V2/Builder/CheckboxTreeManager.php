@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Builder;
+namespace SpiderForm\V2\Builder;
 
 /**
  * Checkbox Tree Manager
@@ -77,7 +77,7 @@ class CheckboxTreeManager
     'use strict';
 
     /**
-     * FormGenerator V2 Checkbox Tree Manager
+     * SpiderForm V2 Checkbox Tree Manager
      * Tree ID: {$treeId}
      * Mode: {$mode}
      */

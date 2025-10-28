@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Integration\Laravel;
+namespace SpiderForm\V2\Integration\Laravel;
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Security\SecurityManager;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Security\SecurityManager;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -24,26 +24,26 @@ class FormGeneratorServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/config/form-generator.php',
-            'form-generator'
+            __DIR__ . '/config/spider-form.php',
+            'spider-form'
         );
 
         // Register security manager
         $this->app->singleton(SecurityManager::class, function ($app) {
             return new SecurityManager(
                 useSession: true,
-                hashAlgo: config('form-generator.security.hash_algo', 'sha256')
+                hashAlgo: config('spider-form.security.hash_algo', 'sha256')
             );
         });
 
         // Register default renderer
         $this->app->singleton(TwigRenderer::class, function ($app) {
-            $templatePaths = config('form-generator.template_paths', [
+            $templatePaths = config('spider-form.template_paths', [
                 __DIR__ . '/../../Theme/templates',
             ]);
 
-            $cacheDir = config('form-generator.cache.enabled', true)
-                ? storage_path('framework/cache/form-generator')
+            $cacheDir = config('spider-form.cache.enabled', true)
+                ? storage_path('framework/cache/spider-form')
                 : null;
 
             return new TwigRenderer(
@@ -56,7 +56,7 @@ class FormGeneratorServiceProvider extends ServiceProvider
         // Register default theme
         $this->app->singleton(Bootstrap5Theme::class, function ($app) {
             return new Bootstrap5Theme(
-                config('form-generator.theme.config', [])
+                config('spider-form.theme.config', [])
             );
         });
 
@@ -74,13 +74,13 @@ class FormGeneratorServiceProvider extends ServiceProvider
     {
         // Publish configuration
         $this->publishes([
-            __DIR__ . '/config/form-generator.php' => config_path('form-generator.php'),
-        ], 'form-generator-config');
+            __DIR__ . '/config/spider-form.php' => config_path('spider-form.php'),
+        ], 'spider-form-config');
 
         // Publish templates
         $this->publishes([
-            __DIR__ . '/../../Theme/templates' => resource_path('views/vendor/form-generator'),
-        ], 'form-generator-templates');
+            __DIR__ . '/../../Theme/templates' => resource_path('views/vendor/spider-form'),
+        ], 'spider-form-templates');
 
         // Register Blade directive
         $this->registerBladeDirectives();

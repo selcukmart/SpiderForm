@@ -1,7 +1,7 @@
 <?php
 
 /**
- * FormGenerator V2.5.0 - Type System & Extensions Example
+ * SpiderForm V2.5.0 - Type System & Extensions Example
  *
  * This example demonstrates:
  * 1. Using built-in types with addField()
@@ -15,18 +15,18 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Type\{
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Type\{
     AbstractType,
     AbstractTypeExtension,
     OptionsResolver,
     TypeRegistry,
     TypeExtensionRegistry
 };
-use FormGenerator\V2\Builder\InputBuilder;
-use FormGenerator\V2\Contracts\InputType;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\InputBuilder;
+use SpiderForm\V2\Contracts\InputType;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 // ============================================================================
 // EXAMPLE 1: Built-in Types with addField()
@@ -470,7 +470,7 @@ try {
 
 echo "\n";
 echo "════════════════════════════════════════════════════════════════\n";
-echo "✅ FormGenerator V2.5.0 - Type System & Extensions\n";
+echo "✅ SpiderForm V2.5.0 - Type System & Extensions\n";
 echo "════════════════════════════════════════════════════════════════\n";
 echo "\n";
 echo "New Features:\n";
@@ -489,5 +489,5 @@ echo "Extensions Created:\n";
 echo "  • IconExtension (adds icon support)\n";
 echo "  • TooltipExtension (adds tooltip support)\n";
 echo "\n";
-echo "This brings FormGenerator to Symfony Form Component parity!\n";
+echo "This brings SpiderForm to Symfony Form Component parity!\n";
 echo "\n";

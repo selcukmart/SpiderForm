@@ -1,18 +1,18 @@
 <?php
 
 /**
- * FormGenerator V2 - Symfony DTO Example
+ * SpiderForm V2 - Symfony DTO Example
  *
  * Demonstrates DTO support with automatic validation from Symfony constraints
  */
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\Validation\SymfonyValidator;
-use FormGenerator\V2\Validation\NativeValidator;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Validation\SymfonyValidator;
+use SpiderForm\V2\Validation\NativeValidator;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Validation;
 

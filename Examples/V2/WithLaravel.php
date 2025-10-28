@@ -1,18 +1,18 @@
 <?php
 
 /**
- * FormGenerator V2 - Laravel Integration Example
+ * SpiderForm V2 - Laravel Integration Example
  *
  * This file shows example usage within Laravel
  */
 
 namespace App\Http\Controllers;
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\DataProvider\EloquentDataProvider;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\Security\SecurityManager;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\DataProvider\EloquentDataProvider;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Security\SecurityManager;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Country;

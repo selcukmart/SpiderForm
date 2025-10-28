@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Security;
+namespace SpiderForm\V2\Security;
 
 /**
  * CSRF Token Manager - Token Generation and Validation

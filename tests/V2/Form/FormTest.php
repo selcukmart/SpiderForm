@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Form;
+namespace SpiderForm\Tests\V2\Form;
 
-use FormGenerator\V2\Form\{Form, FormConfig, FormState};
+use SpiderForm\V2\Form\{Form, FormConfig, FormState};
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for Form class
  *
- * @covers \FormGenerator\V2\Form\Form
+ * @covers \SpiderForm\V2\Form\Form
  */
 class FormTest extends TestCase
 {
@@ -184,7 +184,7 @@ class FormTest extends TestCase
 
         $view = $this->form->createView();
 
-        $this->assertInstanceOf(\FormGenerator\V2\Form\FormView::class, $view);
+        $this->assertInstanceOf(\SpiderForm\V2\Form\FormView::class, $view);
     }
 
     public function testCreateViewIncludesChildren(): void
@@ -262,7 +262,7 @@ class FormTest extends TestCase
     {
         $config = $this->form->getConfig();
 
-        $this->assertInstanceOf(\FormGenerator\V2\Form\FormConfigInterface::class, $config);
+        $this->assertInstanceOf(\SpiderForm\V2\Form\FormConfigInterface::class, $config);
     }
 
     public function testGetMetadataReturnsEmptyArrayByDefault(): void

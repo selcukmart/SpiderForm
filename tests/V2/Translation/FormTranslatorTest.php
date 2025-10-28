@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Translation;
+namespace SpiderForm\Tests\V2\Translation;
 
-use FormGenerator\V2\Translation\FormTranslator;
-use FormGenerator\V2\Translation\Loader\PhpLoader;
+use SpiderForm\V2\Translation\FormTranslator;
+use SpiderForm\V2\Translation\Loader\PhpLoader;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for FormTranslator
  *
- * @covers \FormGenerator\V2\Translation\FormTranslator
+ * @covers \SpiderForm\V2\Translation\FormTranslator
  */
 class FormTranslatorTest extends TestCase
 {

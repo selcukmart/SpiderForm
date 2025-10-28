@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Validation;
+namespace SpiderForm\V2\Validation;
 
-use FormGenerator\V2\Contracts\{ValidatorInterface, ValidationResult};
+use SpiderForm\V2\Contracts\{ValidatorInterface, ValidationResult};
 use Symfony\Component\Validator\Validator\ValidatorInterface as SymfonyValidatorInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Symfony Validator Integration
  *
- * Integrates Symfony Validator component with FormGenerator
+ * Integrates Symfony Validator component with SpiderForm
  * Supports DTO/Entity validation
  *
  * @author selcukmart

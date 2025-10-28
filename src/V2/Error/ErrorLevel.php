@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Error;
+namespace SpiderForm\V2\Error;
 
 /**
  * Error Level - Enum for Error Severity

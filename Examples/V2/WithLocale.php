@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Builder\DatePickerManager;
-use FormGenerator\V2\Builder\TimePickerManager;
-use FormGenerator\V2\Builder\DateTimePickerManager;
-use FormGenerator\V2\Builder\RangeSliderManager;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\Contracts\{TextDirection, OutputFormat};
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\DatePickerManager;
+use SpiderForm\V2\Builder\TimePickerManager;
+use SpiderForm\V2\Builder\DateTimePickerManager;
+use SpiderForm\V2\Builder\RangeSliderManager;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Contracts\{TextDirection, OutputFormat};
 
 /**
- * FormGenerator V2 - Form-Level Locale Support Examples
+ * SpiderForm V2 - Form-Level Locale Support Examples
  *
  * Demonstrates form-level locale support:
  * - Set locale once at form level

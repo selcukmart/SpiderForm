@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Validation;
+namespace SpiderForm\Tests\V2\Validation;
 
-use FormGenerator\V2\Validation\ExecutionContext;
-use FormGenerator\V2\Validation\ViolationBuilder;
+use SpiderForm\V2\Validation\ExecutionContext;
+use SpiderForm\V2\Validation\ViolationBuilder;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for ExecutionContext
  *
- * @covers \FormGenerator\V2\Validation\ExecutionContext
+ * @covers \SpiderForm\V2\Validation\ExecutionContext
  */
 class ExecutionContextTest extends TestCase
 {

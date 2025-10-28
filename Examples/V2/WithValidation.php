@@ -1,17 +1,17 @@
 <?php
 
 /**
- * FormGenerator V2 - Validation Example
+ * SpiderForm V2 - Validation Example
  *
  * Demonstrates built-in validation with both PHP and JavaScript
  */
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\Validation\NativeValidator;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Validation\NativeValidator;
 
 $renderer = new TwigRenderer(__DIR__ . '/../../src/V2/Theme/templates');
 $theme = new Bootstrap5Theme();

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Form;
+namespace SpiderForm\Tests\V2\Form;
 
-use FormGenerator\V2\Form\FormView;
+use SpiderForm\V2\Form\FormView;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for FormView class
  *
- * @covers \FormGenerator\V2\Form\FormView
+ * @covers \SpiderForm\V2\Form\FormView
  */
 class FormViewTest extends TestCase
 {

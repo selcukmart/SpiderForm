@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Builder;
+namespace SpiderForm\V2\Builder;
 
 /**
  * Repeater Manager
@@ -78,7 +78,7 @@ class RepeaterManager
     'use strict';
 
     /**
-     * FormGenerator V2 Repeater Manager
+     * SpiderForm V2 Repeater Manager
      * Repeater ID: {$repeaterId}
      * Similar to jquery.repeater, jquery-repeater-field, and CodyHouse repeater
      */

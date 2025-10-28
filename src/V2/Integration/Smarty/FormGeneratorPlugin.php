@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Integration\Smarty;
+namespace SpiderForm\V2\Integration\Smarty;
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Contracts\ThemeInterface;
-use FormGenerator\V2\Contracts\RendererInterface;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Contracts\ThemeInterface;
+use SpiderForm\V2\Contracts\RendererInterface;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 /**
- * Smarty Plugin Helper for FormGenerator V2
+ * Smarty Plugin Helper for SpiderForm V2
  * 
  * Provides static methods to be used as Smarty function plugins.
  * 

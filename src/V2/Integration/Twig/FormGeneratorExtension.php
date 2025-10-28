@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Integration\Twig;
+namespace SpiderForm\V2\Integration\Twig;
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Contracts\ThemeInterface;
-use FormGenerator\V2\Contracts\RendererInterface;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Contracts\ThemeInterface;
+use SpiderForm\V2\Contracts\RendererInterface;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
- * Twig Extension for FormGenerator V2
+ * Twig Extension for SpiderForm V2
  * 
  * Allows form generation directly in Twig templates without controller involvement.
  * 

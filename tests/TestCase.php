@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests;
+namespace SpiderForm\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
 /**
- * Base Test Case for FormGenerator V2
+ * Base Test Case for SpiderForm V2
  * 
  * Provides common functionality and utilities for all test classes.
  */

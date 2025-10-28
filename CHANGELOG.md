@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to FormGenerator V2 will be documented in this file.
+All notable changes to SpiderForm V2 will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -9,11 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added - Complete i18n & Auto CSRF Protection 🌍🔒
 
-**PRODUCTION READY!** Version 3.0.0 completes the Symfony Form Component alternative with full internationalization support and automatic CSRF protection. FormGenerator is now a complete, enterprise-grade form solution!
+**PRODUCTION READY!** Version 3.0.0 completes the Symfony Form Component alternative with full internationalization support and automatic CSRF protection. SpiderForm is now a complete, enterprise-grade form solution!
 
 #### 🎉 Major Milestone
 
-This is a **MAJOR RELEASE** that marks the completion of the Symfony alternative roadmap. FormGenerator now has **FULL PARITY** with Symfony Form Component while offering a simpler, more intuitive API.
+This is a **MAJOR RELEASE** that marks the completion of the Symfony alternative roadmap. SpiderForm now has **FULL PARITY** with Symfony Form Component while offering a simpler, more intuitive API.
 
 #### New Features
 
@@ -161,7 +161,7 @@ $form->setCsrfTokenId('my_form')
 - ✅ Internationalization (i18n)
 - ✅ Automatic CSRF protection
 
-**🚀 FormGenerator Advantages:**
+**🚀 SpiderForm Advantages:**
 - Simpler API - no compiler passes or container configuration
 - Lighter weight - no Symfony dependencies required
 - Better field-level events (10+ events)
@@ -188,7 +188,7 @@ $form->setCsrfTokenId('my_form')
 
 #### Thank You
 
-This completes the journey to create a production-ready Symfony Form Component alternative. FormGenerator v3.0.0 is ready for enterprise applications!
+This completes the journey to create a production-ready Symfony Form Component alternative. SpiderForm v3.0.0 is ready for enterprise applications!
 
 ---
 
@@ -435,7 +435,7 @@ See full details in CHANGELOG.md
 
 ### Added - Nested Forms & Form Collections 🎉
 
-**This is a MAJOR release** that brings FormGenerator significantly closer to Symfony Form Component parity! Version 2.4.0 introduces the most requested feature: support for hierarchical data structures with nested forms and dynamic collections.
+**This is a MAJOR release** that brings SpiderForm significantly closer to Symfony Form Component parity! Version 2.4.0 introduces the most requested feature: support for hierarchical data structures with nested forms and dynamic collections.
 
 #### 🚀 Core Features
 
@@ -671,7 +671,7 @@ if ($form->isSubmitted() && $form->isValid()) {
 
 #### 📊 Comparison to Symfony Form Component
 
-| Feature | Symfony | FormGenerator 2.4.0 |
+| Feature | Symfony | SpiderForm 2.4.0 |
 |---------|---------|---------------------|
 | Nested Forms | ✅ Yes | ✅ **YES** (NEW!) |
 | Form Collections | ✅ Yes | ✅ **YES** (NEW!) |
@@ -687,7 +687,7 @@ if ($form->isSubmitted() && $form->isValid()) {
 
 #### 🎉 What's Next?
 
-FormGenerator is now ready for **complex enterprise applications** with hierarchical data!
+SpiderForm is now ready for **complex enterprise applications** with hierarchical data!
 
 **Upcoming releases:**
 - **v2.5.0** - Type System & Extension mechanism (custom field types)
@@ -701,7 +701,7 @@ See [SYMFONY_ALTERNATIVE_ROADMAP.md](SYMFONY_ALTERNATIVE_ROADMAP.md) for the com
 
 #### 🏆 This Release Marks a Major Milestone
 
-With v2.4.0, FormGenerator becomes a **viable alternative to Symfony Form Component** for projects requiring:
+With v2.4.0, SpiderForm becomes a **viable alternative to Symfony Form Component** for projects requiring:
 - Lightweight form handling without Symfony dependencies
 - Modern PHP 8.1+ codebase
 - Clean, fluent API
@@ -719,13 +719,13 @@ Complete data transformation support for converting data between model format (n
 
 #### Core Data Transformer Features
 
-- **DataTransformerInterface** (`FormGenerator\V2\Contracts\DataTransformerInterface`)
+- **DataTransformerInterface** (`SpiderForm\V2\Contracts\DataTransformerInterface`)
   - `transform($value)` - Convert model → view format
   - `reverseTransform($value)` - Convert view → model format
   - Standard contract for all transformers
   - Exception handling support
 
-- **AbstractDataTransformer** (`FormGenerator\V2\DataTransformer\AbstractDataTransformer`)
+- **AbstractDataTransformer** (`SpiderForm\V2\DataTransformer\AbstractDataTransformer`)
   - Base class with common transformation utilities
   - Null value handling
   - Empty value handling
@@ -734,21 +734,21 @@ Complete data transformation support for converting data between model format (n
 
 #### Built-in Transformers
 
-- **DateTimeToStringTransformer** (`FormGenerator\V2\DataTransformer\DateTimeToStringTransformer`)
+- **DateTimeToStringTransformer** (`SpiderForm\V2\DataTransformer\DateTimeToStringTransformer`)
   - Convert DateTime/DateTimeImmutable ↔ formatted string
   - Customizable date format (Y-m-d, d/m/Y, etc.)
   - Timezone support (input/output timezones)
   - Error handling for invalid dates
   - Example: `new DateTime('2024-01-15')` ↔ `'2024-01-15'`
 
-- **StringToArrayTransformer** (`FormGenerator\V2\DataTransformer\StringToArrayTransformer`)
+- **StringToArrayTransformer** (`SpiderForm\V2\DataTransformer\StringToArrayTransformer`)
   - Convert array ↔ delimited string
   - Customizable delimiter (comma, semicolon, pipe, etc.)
   - Automatic trimming of values
   - Empty value filtering
   - Example: `['php', 'symfony', 'laravel']` ↔ `'php, symfony, laravel'`
 
-- **NumberToLocalizedStringTransformer** (`FormGenerator\V2\DataTransformer\NumberToLocalizedStringTransformer`)
+- **NumberToLocalizedStringTransformer** (`SpiderForm\V2\DataTransformer\NumberToLocalizedStringTransformer`)
   - Convert number ↔ localized string representation
   - Customizable decimal separator
   - Customizable thousands separator
@@ -756,13 +756,13 @@ Complete data transformation support for converting data between model format (n
   - Rounding mode support
   - Example: `75000.50` ↔ `'75,000.50'` (US) or `'75.000,50'` (EU)
 
-- **BooleanToStringTransformer** (`FormGenerator\V2\DataTransformer\BooleanToStringTransformer`)
+- **BooleanToStringTransformer** (`SpiderForm\V2\DataTransformer\BooleanToStringTransformer`)
   - Convert boolean ↔ string representation
   - Customizable true/false values
   - Smart parsing (yes/no, on/off, 1/0, true/false)
   - Example: `true` ↔ `'yes'` or `'1'` or `'active'`
 
-- **CallbackTransformer** (`FormGenerator\V2\DataTransformer\CallbackTransformer`)
+- **CallbackTransformer** (`SpiderForm\V2\DataTransformer\CallbackTransformer`)
   - Custom transformation logic using closures
   - Perfect for quick transformations
   - No need to create dedicated transformer class
@@ -908,11 +908,11 @@ $modelData = $form->applyReverseTransform($_POST);
 
 ### Added - Blade Template Engine Support
 
-Complete Laravel Blade template engine integration for FormGenerator V2, providing the same level of support as Twig and Smarty template engines.
+Complete Laravel Blade template engine integration for SpiderForm V2, providing the same level of support as Twig and Smarty template engines.
 
 #### Core Blade Components
 
-- **BladeRenderer** (`FormGenerator\V2\Renderer\BladeRenderer`)
+- **BladeRenderer** (`SpiderForm\V2\Renderer\BladeRenderer`)
   - Full RendererInterface implementation
   - Laravel Illuminate/View integration
   - Blade template compilation and caching
@@ -971,7 +971,7 @@ All components support:
 
 #### Laravel Integration
 
-- **BladeServiceProvider** (`FormGenerator\V2\Integration\Blade\BladeServiceProvider`)
+- **BladeServiceProvider** (`SpiderForm\V2\Integration\Blade\BladeServiceProvider`)
   - Auto-registration of directives and components
   - Service container bindings
   - BladeRenderer singleton
@@ -1031,12 +1031,12 @@ All components support:
 ### Installation
 
 ```bash
-composer require selcukmart/form-generator
+composer require selcukmart/spider-form
 ```
 
 For Laravel:
 ```bash
-php artisan vendor:publish --tag=form-generator-config
+php artisan vendor:publish --tag=spider-form-config
 ```
 
 ### Breaking Changes
@@ -1063,7 +1063,7 @@ No migration required. Blade support is additive - existing code continues to wo
   - Comparison validation: `confirmed`, `in`, `not_in`
   - Database validation: `unique`, `exists` (with PDO support)
 
-- **Validator Class** (`FormGenerator\V2\Validation\Validator`)
+- **Validator Class** (`SpiderForm\V2\Validation\Validator`)
   - Laravel-style rule parsing (e.g., `"required|email|min:3"`)
   - Array-based rule definitions
   - Custom error messages per field/rule
@@ -1072,20 +1072,20 @@ No migration required. Blade support is additive - existing code continues to wo
   - Returns validated data only (excludes non-validated fields)
   - Event integration (PRE_SUBMIT, VALIDATION_SUCCESS, VALIDATION_ERROR, POST_SUBMIT)
 
-- **ValidatorFactory Class** (`FormGenerator\V2\Validation\ValidatorFactory`)
+- **ValidatorFactory Class** (`SpiderForm\V2\Validation\ValidatorFactory`)
   - `make()` - Create validator instances
   - `validate()` - Validate and throw exception on failure
   - `makeBail()` - Create validator with bail mode enabled
   - `setDefaultConnection()` - Set default PDO connection for all validators
 
-- **ValidationException Class** (`FormGenerator\V2\Validation\ValidationException`)
+- **ValidationException Class** (`SpiderForm\V2\Validation\ValidationException`)
   - Error bag with field-specific errors
   - `errors()` - Get all errors
   - `first($field)` - Get first error for a field
   - `all()` - Get all error messages as flat array
   - `toJson()` - Export errors as JSON
 
-- **RuleInterface** (`FormGenerator\V2\Validation\Rules\RuleInterface`)
+- **RuleInterface** (`SpiderForm\V2\Validation\Rules\RuleInterface`)
   - Consistent contract for all validation rules
   - Easy to extend with custom validation rules
   - `passes()`, `message()`, and `name()` methods
@@ -1198,7 +1198,7 @@ No migration required. Blade support is additive - existing code continues to wo
 
 #### Basic Validation
 ```php
-use FormGenerator\V2\Validation\ValidatorFactory;
+use SpiderForm\V2\Validation\ValidatorFactory;
 
 $validated = ValidatorFactory::validate($_POST, [
     'email' => 'required|email|unique:users,email',
@@ -1209,7 +1209,7 @@ $validated = ValidatorFactory::validate($_POST, [
 
 #### FormBuilder Integration
 ```php
-use FormGenerator\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\FormBuilder;
 
 $form = FormBuilder::create('register')
     ->addText('username', 'Username')
@@ -1254,7 +1254,7 @@ $validator = Validator::make($request->all(), [
     'email' => 'required|email|unique:users',
 ]);
 
-// FormGenerator V2
+// SpiderForm V2
 $validator = ValidatorFactory::make($_POST, [
     'email' => 'required|email|unique:users',
 ]);
@@ -1264,7 +1264,7 @@ $validator = ValidatorFactory::make($_POST, [
 
 ## [2.0.0] - 2024-10-27
 
-### Added - FormGenerator V2 Initial Release
+### Added - SpiderForm V2 Initial Release
 
 #### Core Features
 - Class-based FormType system (Symfony-style)
@@ -1361,5 +1361,5 @@ This project follows [Semantic Versioning](https://semver.org/):
 ## Links
 
 - [Documentation](./docs/V2/)
-- [Repository](https://github.com/selcukmart/FormGenerator)
-- [Issue Tracker](https://github.com/selcukmart/FormGenerator/issues)
+- [Repository](https://github.com/selcukmart/SpiderForm)
+- [Issue Tracker](https://github.com/selcukmart/SpiderForm/issues)

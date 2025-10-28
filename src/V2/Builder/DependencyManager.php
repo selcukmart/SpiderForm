@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Builder;
+namespace SpiderForm\V2\Builder;
 
 /**
  * Dependency Manager
@@ -109,7 +109,7 @@ class DependencyManager
     'use strict';
 
     /**
-     * FormGenerator V2 Dependency Manager (Enhanced)
+     * SpiderForm V2 Dependency Manager (Enhanced)
      * Form ID: {$formId}
      * Features: Nested Dependencies (A→B→C), Custom Animations
      */
@@ -128,7 +128,7 @@ class DependencyManager
         init: function() {
             const form = document.querySelector(this.formSelector);
             if (!form) {
-                console.warn('FormGenerator: Form not found:', this.formSelector);
+                console.warn('SpiderForm: Form not found:', this.formSelector);
                 return;
             }
 

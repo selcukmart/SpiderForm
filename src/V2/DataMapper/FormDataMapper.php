@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\DataMapper;
+namespace SpiderForm\V2\DataMapper;
 
-use FormGenerator\V2\Form\FormInterface;
+use SpiderForm\V2\Form\FormInterface;
 
 /**
  * Form Data Mapper - Maps Nested Data to/from Forms

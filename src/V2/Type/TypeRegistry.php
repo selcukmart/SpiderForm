@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Type;
+namespace SpiderForm\V2\Type;
 
-use FormGenerator\V2\Form\AbstractFormType;
+use SpiderForm\V2\Form\AbstractFormType;
 
 /**
  * Type Registry - Central Registry for Form Types

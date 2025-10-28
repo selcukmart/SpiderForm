@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Integration\Blade;
+namespace SpiderForm\V2\Integration\Blade;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
-use FormGenerator\V2\Integration\Blade\Components\{
+use SpiderForm\V2\Integration\Blade\Components\{
     Form,
     FormText,
     FormEmail,
@@ -16,11 +16,11 @@ use FormGenerator\V2\Integration\Blade\Components\{
     FormSelect,
     FormSubmit
 };
-use FormGenerator\V2\Renderer\BladeRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Renderer\BladeRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 /**
- * Laravel Service Provider for FormGenerator Blade Integration
+ * Laravel Service Provider for SpiderForm Blade Integration
  *
  * Automatically registers:
  * - Blade directives (@formStart, @formText, @formEnd, etc.)
@@ -32,7 +32,7 @@ use FormGenerator\V2\Theme\Bootstrap5Theme;
  * ```php
  * 'providers' => [
  *     // Other providers...
- *     \FormGenerator\V2\Integration\Blade\BladeServiceProvider::class,
+ *     \SpiderForm\V2\Integration\Blade\BladeServiceProvider::class,
  * ],
  * ```
  *
@@ -58,19 +58,19 @@ class BladeServiceProvider extends ServiceProvider
 
         // Bind RendererInterface to BladeRenderer
         $this->app->bind(
-            \FormGenerator\V2\Contracts\RendererInterface::class,
+            \SpiderForm\V2\Contracts\RendererInterface::class,
             BladeRenderer::class
         );
 
         // Register FormBuilder in container
-        $this->app->singleton(\FormGenerator\V2\Builder\FormBuilder::class, function ($app) {
+        $this->app->singleton(\SpiderForm\V2\Builder\FormBuilder::class, function ($app) {
             $renderer = $app->make(BladeRenderer::class);
             $theme = new Bootstrap5Theme();
 
             FormGeneratorBladeDirectives::setRenderer($renderer);
             FormGeneratorBladeDirectives::setDefaultTheme($theme);
 
-            return \FormGenerator\V2\Builder\FormBuilder::create('default')
+            return \SpiderForm\V2\Builder\FormBuilder::create('default')
                 ->setRenderer($renderer)
                 ->setTheme($theme);
         });
@@ -96,14 +96,14 @@ class BladeServiceProvider extends ServiceProvider
 
         // Publish configuration if needed
         $this->publishes([
-            __DIR__ . '/../Laravel/config/form-generator.php' => config_path('form-generator.php'),
-        ], 'form-generator-config');
+            __DIR__ . '/../Laravel/config/spider-form.php' => config_path('spider-form.php'),
+        ], 'spider-form-config');
 
         // Publish views if needed
         if (is_dir(__DIR__ . '/views')) {
             $this->publishes([
-                __DIR__ . '/views' => resource_path('views/vendor/form-generator'),
-            ], 'form-generator-views');
+                __DIR__ . '/views' => resource_path('views/vendor/spider-form'),
+            ], 'spider-form-views');
         }
     }
 
@@ -140,8 +140,8 @@ class BladeServiceProvider extends ServiceProvider
     {
         return [
             BladeRenderer::class,
-            \FormGenerator\V2\Contracts\RendererInterface::class,
-            \FormGenerator\V2\Builder\FormBuilder::class,
+            \SpiderForm\V2\Contracts\RendererInterface::class,
+            \SpiderForm\V2\Builder\FormBuilder::class,
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Validation;
+namespace SpiderForm\V2\Validation;
 
-use FormGenerator\V2\Contracts\ValidatorInterface;
+use SpiderForm\V2\Contracts\ValidatorInterface;
 
 /**
  * Validation Manager
@@ -85,7 +85,7 @@ class ValidationManager
     'use strict';
 
     /**
-     * FormGenerator V2 Validation Manager
+     * SpiderForm V2 Validation Manager
      * Form ID: {$formId}
      */
     const {$namespace} = {

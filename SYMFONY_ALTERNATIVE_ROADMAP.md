@@ -1,4 +1,4 @@
-# FormGenerator: Symfony Form Component Alternative - Complete Roadmap
+# SpiderForm: Symfony Form Component Alternative - Complete Roadmap
 
 **Current Version:** v2.3.1
 **Target:** Full Symfony Form Component Alternative
@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-This roadmap transforms FormGenerator into a **production-ready alternative** to Symfony Form Component by adding:
+This roadmap transforms SpiderForm into a **production-ready alternative** to Symfony Form Component by adding:
 - **Nested Forms & Collections** (v2.4.0)
 - **Type System & Extensions** (v2.5.0)
 - **FormView & Stateful Objects** (v2.6.0)
@@ -446,7 +446,7 @@ Forms need to change based on user input, loaded data, or business logic at runt
 
 #### 1. **Event-Based Form Modification**
 ```php
-use FormGenerator\V2\Event\FormEvents;
+use SpiderForm\V2\Event\FormEvents;
 
 $form = FormBuilder::create('product')
     ->addSelect('category', 'Category')
@@ -777,7 +777,7 @@ git push origin v2.X.0
 
 ## 📦 Final Deliverable (v3.0.0)
 
-By v3.0.0, FormGenerator will be a **complete Symfony Form Component alternative** with:
+By v3.0.0, SpiderForm will be a **complete Symfony Form Component alternative** with:
 
 ✅ **All Core Features:**
 - Nested forms & collections

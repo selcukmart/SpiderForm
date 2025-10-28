@@ -32,7 +32,7 @@ return [
     |
     */
     'template_paths' => [
-        resource_path('views/vendor/form-generator'),
+        resource_path('views/vendor/spider-form'),
         __DIR__ . '/../../../Theme/templates',
     ],
 
@@ -46,7 +46,7 @@ return [
     */
     'cache' => [
         'enabled' => env('FORM_GENERATOR_CACHE', true),
-        'dir' => storage_path('framework/cache/form-generator'),
+        'dir' => storage_path('framework/cache/spider-form'),
     ],
 
     /*

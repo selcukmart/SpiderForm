@@ -1,13 +1,13 @@
 # Blade Template Engine Examples
 
-This directory contains example Blade templates demonstrating FormGenerator V2 integration with Laravel's Blade template engine.
+This directory contains example Blade templates demonstrating SpiderForm V2 integration with Laravel's Blade template engine.
 
 ## Installation
 
 ### 1. Install via Composer
 
 ```bash
-composer require selcukmart/form-generator
+composer require selcukmart/spider-form
 ```
 
 ### 2. Register Service Provider (Laravel 10 and below)
@@ -17,7 +17,7 @@ Add to `config/app.php`:
 ```php
 'providers' => [
     // Other providers...
-    \FormGenerator\V2\Integration\Blade\BladeServiceProvider::class,
+    \SpiderForm\V2\Integration\Blade\BladeServiceProvider::class,
 ],
 ```
 
@@ -26,12 +26,12 @@ Add to `config/app.php`:
 ### 3. Publish Configuration (Optional)
 
 ```bash
-php artisan vendor:publish --tag=form-generator-config
+php artisan vendor:publish --tag=spider-form-config
 ```
 
 ## Usage Methods
 
-FormGenerator V2 provides two ways to use Blade integration:
+SpiderForm V2 provides two ways to use Blade integration:
 
 ### Method 1: Blade Directives
 
@@ -128,7 +128,7 @@ All input directives/components support these options:
 
 ## Validation Integration
 
-FormGenerator V2 includes Laravel-style validation that integrates seamlessly with Blade:
+SpiderForm V2 includes Laravel-style validation that integrates seamlessly with Blade:
 
 ```php
 // In your controller
@@ -156,7 +156,7 @@ public function store(Request $request)
         User::create($validated);
 
         return redirect()->back()->with('success', 'Registration successful!');
-    } catch (\FormGenerator\V2\Validation\ValidationException $e) {
+    } catch (\SpiderForm\V2\Validation\ValidationException $e) {
         return redirect()->back()->withErrors($e->errors())->withInput();
     }
 }
@@ -192,8 +192,8 @@ Then in your Blade template:
 ### Custom Themes
 
 ```php
-use FormGenerator\V2\Theme\TailwindTheme;
-use FormGenerator\V2\Integration\Blade\FormGeneratorBladeDirectives;
+use SpiderForm\V2\Theme\TailwindTheme;
+use SpiderForm\V2\Integration\Blade\FormGeneratorBladeDirectives;
 
 FormGeneratorBladeDirectives::setDefaultTheme(new TailwindTheme());
 ```
@@ -201,8 +201,8 @@ FormGeneratorBladeDirectives::setDefaultTheme(new TailwindTheme());
 ### Custom Renderer
 
 ```php
-use FormGenerator\V2\Renderer\BladeRenderer;
-use FormGenerator\V2\Integration\Blade\FormGeneratorBladeDirectives;
+use SpiderForm\V2\Renderer\BladeRenderer;
+use SpiderForm\V2\Integration\Blade\FormGeneratorBladeDirectives;
 
 $renderer = new BladeRenderer(resource_path('views'), storage_path('framework/views'));
 FormGeneratorBladeDirectives::setRenderer($renderer);
@@ -210,6 +210,6 @@ FormGeneratorBladeDirectives::setRenderer($renderer);
 
 ## More Information
 
-- [FormGenerator V2 Documentation](../../docs/V2/)
+- [SpiderForm V2 Documentation](../../docs/V2/)
 - [Validation Documentation](../../docs/V2/VALIDATION.md)
 - [Laravel Integration Guide](../../README_V2.md#laravel-integration)

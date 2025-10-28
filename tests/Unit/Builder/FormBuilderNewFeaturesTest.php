@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Unit\Builder;
+namespace SpiderForm\Tests\Unit\Builder;
 
-use FormGenerator\Tests\TestCase;
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Builder\DatePickerManager;
-use FormGenerator\V2\Builder\TimePickerManager;
-use FormGenerator\V2\Builder\DateTimePickerManager;
-use FormGenerator\V2\Contracts\{TextDirection, OutputFormat};
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\Renderer\TwigRenderer;
+use SpiderForm\Tests\TestCase;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\DatePickerManager;
+use SpiderForm\V2\Builder\TimePickerManager;
+use SpiderForm\V2\Builder\DateTimePickerManager;
+use SpiderForm\V2\Contracts\{TextDirection, OutputFormat};
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Renderer\TwigRenderer;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 

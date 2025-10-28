@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Unit\Validation;
+namespace SpiderForm\Tests\Unit\Validation;
 
-use FormGenerator\V2\Validation\{Validator, ValidatorFactory, ValidationException};
+use SpiderForm\V2\Validation\{Validator, ValidatorFactory, ValidationException};
 use PHPUnit\Framework\TestCase;
 
 /**

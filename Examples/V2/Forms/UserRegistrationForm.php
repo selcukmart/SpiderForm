@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Examples\V2\Forms;
+namespace SpiderForm\Examples\V2\Forms;
 
-use FormGenerator\V2\Form\AbstractFormType;
-use FormGenerator\V2\Builder\FormBuilder;
+use SpiderForm\V2\Form\AbstractFormType;
+use SpiderForm\V2\Builder\FormBuilder;
 
 /**
  * Example: User Registration Form Type

@@ -7,12 +7,12 @@
 
 namespace Examples\DBExamples\Libraries\Database;
 
-use FormGenerator\Tools\DB\DBInterface;
+use SpiderForm\Tools\DB\DBInterface;
 use PDO;
 
 /**
  * Class DBExample
- * @package FormGenerator\Tools\DB
+ * @package SpiderForm\Tools\DB
  * @author selcukmart
  * @desc it is only example, it is not a professional solution for DB operations.
  * 3.02.2022

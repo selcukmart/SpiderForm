@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Builder\StepperManager;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\StepperManager;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 /**
- * FormGenerator V2 - Stepper/Wizard Examples
+ * SpiderForm V2 - Stepper/Wizard Examples
  *
  * Demonstrates multi-step form wizards with different configurations
  */

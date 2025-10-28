@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Validation\Rules;
+namespace SpiderForm\V2\Validation\Rules;
 
 /**
  * Json Rule - Value must be valid JSON

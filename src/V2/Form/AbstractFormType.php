@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Form;
+namespace SpiderForm\V2\Form;
 
-use FormGenerator\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\FormBuilder;
 
 /**
  * Abstract Form Type - Base class for all form types

@@ -18,11 +18,11 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Translation\{FormTranslator, TranslatorInterface};
-use FormGenerator\V2\Translation\Loader\PhpLoader;
-use FormGenerator\V2\Security\{CsrfProtection, CsrfTokenManager};
-use FormGenerator\V2\Form\Form;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Translation\{FormTranslator, TranslatorInterface};
+use SpiderForm\V2\Translation\Loader\PhpLoader;
+use SpiderForm\V2\Security\{CsrfProtection, CsrfTokenManager};
+use SpiderForm\V2\Form\Form;
 
 echo "\n=== i18n & Auto CSRF Protection Examples (v3.0.0) ===\n\n";
 

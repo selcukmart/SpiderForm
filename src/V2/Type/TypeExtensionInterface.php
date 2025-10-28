@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Type;
+namespace SpiderForm\V2\Type;
 
-use FormGenerator\V2\Builder\InputBuilder;
+use SpiderForm\V2\Builder\InputBuilder;
 
 /**
  * Type Extension Interface

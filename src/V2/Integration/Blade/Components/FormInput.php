@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Integration\Blade\Components;
+namespace SpiderForm\V2\Integration\Blade\Components;
 
 use Illuminate\View\Component;
-use FormGenerator\V2\Integration\Blade\FormGeneratorBladeDirectives;
+use SpiderForm\V2\Integration\Blade\FormGeneratorBladeDirectives;
 
 /**
  * Base Form Input Component

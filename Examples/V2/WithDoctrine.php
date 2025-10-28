@@ -1,18 +1,18 @@
 <?php
 
 /**
- * FormGenerator V2 - Doctrine Integration Example
+ * SpiderForm V2 - Doctrine Integration Example
  *
  * This example shows how to use Doctrine ORM for data population
  */
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\DataProvider\DoctrineDataProvider;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\Contracts\ScopeType;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\DataProvider\DoctrineDataProvider;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Contracts\ScopeType;
 use Doctrine\ORM\EntityManager;
 
 // Assume you have EntityManager configured
@@ -85,7 +85,7 @@ echo $form;
 
 // Example showing how it integrates with Symfony Form Component
 /*
-use FormGenerator\V2\Integration\Symfony\FormType\FormGeneratorType;
+use SpiderForm\V2\Integration\Symfony\FormType\FormGeneratorType;
 use Symfony\Component\Form\FormFactoryInterface;
 
 $symfonyForm = $formFactory->create(FormGeneratorType::class, $user, [

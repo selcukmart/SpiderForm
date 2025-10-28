@@ -17,9 +17,9 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Event\{FormEvents, FormEvent};
-use FormGenerator\V2\Form\Form;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Event\{FormEvents, FormEvent};
+use SpiderForm\V2\Form\Form;
 
 echo "\n=== Dynamic Form Modification API Examples (v2.8.0) ===\n\n";
 

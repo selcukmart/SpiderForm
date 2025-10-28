@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Validation;
+namespace SpiderForm\V2\Validation;
 
-use FormGenerator\V2\Contracts\{ValidatorInterface, ValidationResult};
+use SpiderForm\V2\Contracts\{ValidatorInterface, ValidationResult};
 
 /**
  * Native Validator

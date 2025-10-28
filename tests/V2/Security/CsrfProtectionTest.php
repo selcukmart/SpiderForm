@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Security;
+namespace SpiderForm\Tests\V2\Security;
 
-use FormGenerator\V2\Security\{CsrfProtection, CsrfTokenManager, CsrfTokenException};
-use FormGenerator\V2\Form\Form;
+use SpiderForm\V2\Security\{CsrfProtection, CsrfTokenManager, CsrfTokenException};
+use SpiderForm\V2\Form\Form;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for CsrfProtection
  *
- * @covers \FormGenerator\V2\Security\CsrfProtection
+ * @covers \SpiderForm\V2\Security\CsrfProtection
  */
 class CsrfProtectionTest extends TestCase
 {

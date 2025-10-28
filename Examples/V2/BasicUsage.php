@@ -1,17 +1,17 @@
 <?php
 
 /**
- * FormGenerator V2 - Basic Usage Example
+ * SpiderForm V2 - Basic Usage Example
  *
  * This example demonstrates the new Chain Pattern fluent interface
  */
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\Security\SecurityManager;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Security\SecurityManager;
 
 // Initialize components
 $renderer = new TwigRenderer(
@@ -85,7 +85,7 @@ $form = FormBuilder::create('user_registration')
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Registration - FormGenerator V2</title>
+    <title>User Registration - SpiderForm V2</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>

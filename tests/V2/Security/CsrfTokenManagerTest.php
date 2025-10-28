@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Security;
+namespace SpiderForm\Tests\V2\Security;
 
-use FormGenerator\V2\Security\CsrfTokenManager;
+use SpiderForm\V2\Security\CsrfTokenManager;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for CsrfTokenManager
  *
- * @covers \FormGenerator\V2\Security\CsrfTokenManager
+ * @covers \SpiderForm\V2\Security\CsrfTokenManager
  */
 class CsrfTokenManagerTest extends TestCase
 {

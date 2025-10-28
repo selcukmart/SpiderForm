@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Integration\Symfony;
+namespace SpiderForm\V2\Integration\Symfony;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

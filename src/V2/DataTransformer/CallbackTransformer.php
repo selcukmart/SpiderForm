@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\DataTransformer;
+namespace SpiderForm\V2\DataTransformer;
 
-use FormGenerator\V2\Contracts\DataTransformerInterface;
+use SpiderForm\V2\Contracts\DataTransformerInterface;
 
 /**
  * Callback Transformer

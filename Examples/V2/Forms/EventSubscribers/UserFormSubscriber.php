@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Examples\V2\Forms\EventSubscribers;
+namespace SpiderForm\Examples\V2\Forms\EventSubscribers;
 
-use FormGenerator\V2\Event\{EventSubscriberInterface, FormEvent, FormEvents};
+use SpiderForm\V2\Event\{EventSubscriberInterface, FormEvent, FormEvents};
 
 /**
  * Example: User Form Event Subscriber

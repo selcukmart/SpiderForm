@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Unit\Builder;
+namespace SpiderForm\Tests\Unit\Builder;
 
-use FormGenerator\Tests\TestCase;
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Contracts\InputType;
-use FormGenerator\V2\Contracts\ScopeType;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\Theme\TailwindTheme;
-use FormGenerator\V2\Validation\NativeValidator;
-use FormGenerator\V2\DataProvider\ArrayDataProvider;
-use FormGenerator\V2\Security\SecurityManager;
+use SpiderForm\Tests\TestCase;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Contracts\InputType;
+use SpiderForm\V2\Contracts\ScopeType;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Theme\TailwindTheme;
+use SpiderForm\V2\Validation\NativeValidator;
+use SpiderForm\V2\DataProvider\ArrayDataProvider;
+use SpiderForm\V2\Security\SecurityManager;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 

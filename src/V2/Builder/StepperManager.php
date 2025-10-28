@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Builder;
+namespace SpiderForm\V2\Builder;
 
 /**
  * Stepper/Wizard Manager
@@ -101,7 +101,7 @@ class StepperManager
     'use strict';
 
     /**
-     * FormGenerator V2 Stepper Manager
+     * SpiderForm V2 Stepper Manager
      * Stepper ID: {$stepperId}
      * Layout: {$layout}
      * Mode: {$mode}

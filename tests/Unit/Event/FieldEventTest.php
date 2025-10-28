@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Unit\Event;
+namespace SpiderForm\Tests\Unit\Event;
 
 use PHPUnit\Framework\TestCase;
-use FormGenerator\V2\Builder\{FormBuilder, InputBuilder};
-use FormGenerator\V2\Contracts\InputType;
-use FormGenerator\V2\Event\{FieldEvent, FieldEvents};
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\{FormBuilder, InputBuilder};
+use SpiderForm\V2\Contracts\InputType;
+use SpiderForm\V2\Event\{FieldEvent, FieldEvents};
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 /**
  * Tests for Field Event System

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Integration\Blade;
+namespace SpiderForm\V2\Integration\Blade;
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Contracts\ThemeInterface;
-use FormGenerator\V2\Contracts\RendererInterface;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Contracts\ThemeInterface;
+use SpiderForm\V2\Contracts\RendererInterface;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 use Illuminate\Support\Facades\Blade;
 
 /**
- * Blade Directives for FormGenerator V2
+ * Blade Directives for SpiderForm V2
  *
  * Provides custom Blade directives for easy form generation in Laravel Blade templates.
  *
@@ -74,57 +74,57 @@ class FormGeneratorBladeDirectives
     {
         // Form control directives
         Blade::directive('formStart', function ($expression) {
-            return "<?php echo \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormStart($expression); ?>";
+            return "<?php echo \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormStart($expression); ?>";
         });
 
         Blade::directive('formEnd', function () {
-            return "<?php echo \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormEnd(); ?>";
+            return "<?php echo \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormEnd(); ?>";
         });
 
         // Input directives
         Blade::directive('formText', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormText($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormText($expression); ?>";
         });
 
         Blade::directive('formEmail', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormEmail($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormEmail($expression); ?>";
         });
 
         Blade::directive('formPassword', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormPassword($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormPassword($expression); ?>";
         });
 
         Blade::directive('formTextarea', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormTextarea($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormTextarea($expression); ?>";
         });
 
         Blade::directive('formNumber', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormNumber($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormNumber($expression); ?>";
         });
 
         Blade::directive('formDate', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormDate($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormDate($expression); ?>";
         });
 
         Blade::directive('formSelect', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormSelect($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormSelect($expression); ?>";
         });
 
         Blade::directive('formCheckbox', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormCheckbox($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormCheckbox($expression); ?>";
         });
 
         Blade::directive('formRadio', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormRadio($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormRadio($expression); ?>";
         });
 
         Blade::directive('formSubmit', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormSubmit($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormSubmit($expression); ?>";
         });
 
         // Laravel-specific directives
         Blade::directive('formButton', function ($expression) {
-            return "<?php \\FormGenerator\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormButton($expression); ?>";
+            return "<?php \\SpiderForm\\V2\\Integration\\Blade\\FormGeneratorBladeDirectives::directiveFormButton($expression); ?>";
         });
     }
 

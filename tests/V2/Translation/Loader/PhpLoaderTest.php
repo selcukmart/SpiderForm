@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Translation\Loader;
+namespace SpiderForm\Tests\V2\Translation\Loader;
 
-use FormGenerator\V2\Translation\Loader\PhpLoader;
+use SpiderForm\V2\Translation\Loader\PhpLoader;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for PhpLoader
  *
- * @covers \FormGenerator\V2\Translation\Loader\PhpLoader
+ * @covers \SpiderForm\V2\Translation\Loader\PhpLoader
  */
 class PhpLoaderTest extends TestCase
 {

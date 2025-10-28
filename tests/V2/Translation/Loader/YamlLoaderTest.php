@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Translation\Loader;
+namespace SpiderForm\Tests\V2\Translation\Loader;
 
-use FormGenerator\V2\Translation\Loader\YamlLoader;
+use SpiderForm\V2\Translation\Loader\YamlLoader;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for YamlLoader
  *
- * @covers \FormGenerator\V2\Translation\Loader\YamlLoader
+ * @covers \SpiderForm\V2\Translation\Loader\YamlLoader
  */
 class YamlLoaderTest extends TestCase
 {

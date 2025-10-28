@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Validation\Rules;
+namespace SpiderForm\V2\Validation\Rules;
 
 /**
  * In Rule - Value must be in a list of allowed values

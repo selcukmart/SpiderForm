@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Translation;
+namespace SpiderForm\V2\Translation;
 
 /**
  * Translator Interface - Contract for Translation Systems

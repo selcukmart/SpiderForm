@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Security;
+namespace SpiderForm\V2\Security;
 
-use FormGenerator\V2\Contracts\SecurityInterface;
+use SpiderForm\V2\Contracts\SecurityInterface;
 
 /**
  * Security Manager

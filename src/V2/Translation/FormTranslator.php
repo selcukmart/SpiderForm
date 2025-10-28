@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Translation;
+namespace SpiderForm\V2\Translation;
 
-use FormGenerator\V2\Translation\Loader\LoaderInterface;
+use SpiderForm\V2\Translation\Loader\LoaderInterface;
 
 /**
  * Form Translator - Native Translation System

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Unit\Contracts;
+namespace SpiderForm\Tests\Unit\Contracts;
 
-use FormGenerator\Tests\TestCase;
-use FormGenerator\V2\Contracts\TextDirection;
+use SpiderForm\Tests\TestCase;
+use SpiderForm\V2\Contracts\TextDirection;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 

@@ -2,7 +2,7 @@
 
 ###### What Does This Class Do?
 
-Explanation texts are added to the form-generator in the div to be added to the form.
+Explanation texts are added to the spider-form in the div to be added to the form.
 
 ###### How to use
 

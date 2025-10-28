@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Translation\Loader;
+namespace SpiderForm\V2\Translation\Loader;
 
 /**
  * PHP Array Loader - Load Translations from PHP Files

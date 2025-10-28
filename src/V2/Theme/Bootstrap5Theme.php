@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Theme;
+namespace SpiderForm\V2\Theme;
 
-use FormGenerator\V2\Contracts\InputType;
+use SpiderForm\V2\Contracts\InputType;
 
 /**
  * Bootstrap 5 Theme

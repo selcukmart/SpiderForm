@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Event;
+namespace SpiderForm\Tests\V2\Event;
 
-use FormGenerator\V2\Event\EventDispatcher;
-use FormGenerator\V2\Event\EventSubscriberInterface;
-use FormGenerator\V2\Event\FormEvent;
-use FormGenerator\V2\Event\FormEvents;
-use FormGenerator\V2\Form\Form;
+use SpiderForm\V2\Event\EventDispatcher;
+use SpiderForm\V2\Event\EventSubscriberInterface;
+use SpiderForm\V2\Event\FormEvent;
+use SpiderForm\V2\Event\FormEvents;
+use SpiderForm\V2\Form\Form;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for EventDispatcher
  *
- * @covers \FormGenerator\V2\Event\EventDispatcher
+ * @covers \SpiderForm\V2\Event\EventDispatcher
  */
 class EventDispatcherTest extends TestCase
 {

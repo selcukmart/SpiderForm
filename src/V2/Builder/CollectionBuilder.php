@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Builder;
+namespace SpiderForm\V2\Builder;
 
-use FormGenerator\V2\Form\{FormCollection, FormConfig};
+use SpiderForm\V2\Form\{FormCollection, FormConfig};
 
 /**
  * Collection Builder - Fluent Interface for Form Collections
@@ -137,7 +137,7 @@ class CollectionBuilder
                     compound: false
                 );
 
-                $field = new \FormGenerator\V2\Form\Form($input->getName(), $fieldConfig, $input->toArray());
+                $field = new \SpiderForm\V2\Form\Form($input->getName(), $fieldConfig, $input->toArray());
                 $entryForm->add($input->getName(), $field);
             }
         });

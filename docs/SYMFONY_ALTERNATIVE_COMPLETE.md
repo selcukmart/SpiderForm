@@ -1,4 +1,4 @@
-# FormGenerator: Complete Symfony Form Component Alternative
+# SpiderForm: Complete Symfony Form Component Alternative
 
 **Status:** ✅ **Production Ready - v3.0.0**
 **Feature Parity:** 100%
@@ -8,7 +8,7 @@
 
 ## 🎯 Mission Accomplished
 
-FormGenerator v3.0.0 has achieved **complete feature parity** with Symfony Form Component while offering a simpler, more intuitive API.
+SpiderForm v3.0.0 has achieved **complete feature parity** with Symfony Form Component while offering a simpler, more intuitive API.
 
 ### ✅ All Features Implemented
 
@@ -30,7 +30,7 @@ FormGenerator v3.0.0 has achieved **complete feature parity** with Symfony Form 
 
 ### Detailed Comparison Table
 
-| Feature | Symfony Form | FormGenerator | Winner |
+| Feature | Symfony Form | SpiderForm | Winner |
 |---------|--------------|---------------|--------|
 | **Core Features** ||||
 | Form Building | ✅ | ✅ | 🤝 Equal |
@@ -48,30 +48,30 @@ FormGenerator v3.0.0 has achieved **complete feature parity** with Symfony Form 
 | Validation Groups | ✅ | ✅ | 🤝 Equal |
 | **Error Handling** ||||
 | Basic Errors | ✅ | ✅ | 🤝 Equal |
-| Error Levels | ❌ | ✅ ERROR/WARNING/INFO | ⭐ FormGenerator |
-| Error Metadata | ✅ Basic | ✅ Enhanced | ⭐ FormGenerator |
-| Error Bubbling | ✅ | ✅ Configurable | ⭐ FormGenerator |
-| Error Filtering | ❌ | ✅ By level/path | ⭐ FormGenerator |
+| Error Levels | ❌ | ✅ ERROR/WARNING/INFO | ⭐ SpiderForm |
+| Error Metadata | ✅ Basic | ✅ Enhanced | ⭐ SpiderForm |
+| Error Bubbling | ✅ | ✅ Configurable | ⭐ SpiderForm |
+| Error Filtering | ❌ | ✅ By level/path | ⭐ SpiderForm |
 | **Internationalization** ||||
 | Translation | ✅ | ✅ | 🤝 Equal |
 | Translation Loaders | ✅ Multiple | ✅ PHP, YAML | 🤝 Equal |
 | Parameter Interpolation | ✅ | ✅ | 🤝 Equal |
 | Locale Fallback | ✅ | ✅ | 🤝 Equal |
 | **Security** ||||
-| CSRF Protection | ✅ | ✅ Automatic | ⭐ FormGenerator |
+| CSRF Protection | ✅ | ✅ Automatic | ⭐ SpiderForm |
 | XSS Protection | ✅ | ✅ | 🤝 Equal |
-| Token Management | ✅ Manual | ✅ Automatic | ⭐ FormGenerator |
+| Token Management | ✅ Manual | ✅ Automatic | ⭐ SpiderForm |
 | **Developer Experience** ||||
-| API Style | 📝 Array config | ⛓️ Chain pattern | ⭐ FormGenerator |
-| Boilerplate | 🔴 High | 🟢 Low | ⭐ FormGenerator |
-| IDE Support | 🟡 Medium | 🟢 Excellent | ⭐ FormGenerator |
-| Learning Curve | 🔴 Steep | 🟢 Gentle | ⭐ FormGenerator |
-| Code Readability | 🟡 Medium | 🟢 High | ⭐ FormGenerator |
+| API Style | 📝 Array config | ⛓️ Chain pattern | ⭐ SpiderForm |
+| Boilerplate | 🔴 High | 🟢 Low | ⭐ SpiderForm |
+| IDE Support | 🟡 Medium | 🟢 Excellent | ⭐ SpiderForm |
+| Learning Curve | 🔴 Steep | 🟢 Gentle | ⭐ SpiderForm |
+| Code Readability | 🟡 Medium | 🟢 High | ⭐ SpiderForm |
 | **Architecture** ||||
-| Dependencies | 🔴 Many | 🟢 Zero | ⭐ FormGenerator |
-| Framework Coupling | 🔴 Tight | 🟢 Loose | ⭐ FormGenerator |
-| Standalone Usage | 🔴 Complex | 🟢 Simple | ⭐ FormGenerator |
-| Package Size | 🔴 Large | 🟢 Small | ⭐ FormGenerator |
+| Dependencies | 🔴 Many | 🟢 Zero | ⭐ SpiderForm |
+| Framework Coupling | 🔴 Tight | 🟢 Loose | ⭐ SpiderForm |
+| Standalone Usage | 🔴 Complex | 🟢 Simple | ⭐ SpiderForm |
+| Package Size | 🔴 Large | 🟢 Small | ⭐ SpiderForm |
 | **Testing** ||||
 | Test Suite | ✅ Comprehensive | ✅ 500+ tests | 🤝 Equal |
 | Coverage | ✅ High | ✅ High | 🤝 Equal |
@@ -79,7 +79,7 @@ FormGenerator v3.0.0 has achieved **complete feature parity** with Symfony Form 
 
 **Summary:**
 - 🤝 **Equal:** 20 features
-- ⭐ **FormGenerator Better:** 14 features
+- ⭐ **SpiderForm Better:** 14 features
 - 🔴 **Symfony Better:** 0 features
 
 ---
@@ -109,9 +109,9 @@ $form = $this->createFormBuilder()
     ->getForm();
 ```
 
-#### FormGenerator
+#### SpiderForm
 ```php
-use FormGenerator\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\FormBuilder;
 
 $form = FormBuilder::create('user_form')
     ->addText('username', 'Username')
@@ -156,9 +156,9 @@ $form = $this->createFormBuilder()
     ->getForm();
 ```
 
-#### FormGenerator
+#### SpiderForm
 ```php
-use FormGenerator\V2\Form\Form;
+use SpiderForm\V2\Form\Form;
 
 $addressForm = new Form('address');
 $addressForm->add('street', FormBuilder::text('street', 'Street'));
@@ -198,9 +198,9 @@ $form = $this->createFormBuilder()
     ->getForm();
 ```
 
-#### FormGenerator
+#### SpiderForm
 ```php
-use FormGenerator\V2\Validation\Constraints\Callback;
+use SpiderForm\V2\Validation\Constraints\Callback;
 
 $form = FormBuilder::create('user')
     ->addPassword('password', 'Password')->add()
@@ -245,9 +245,9 @@ $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) 
 $form = $builder->getForm();
 ```
 
-#### FormGenerator
+#### SpiderForm
 ```php
-use FormGenerator\V2\Event\FormEvents;
+use SpiderForm\V2\Event\FormEvents;
 
 $form = FormBuilder::create('product')
     ->addSelect('product_type', 'Type')
@@ -270,7 +270,7 @@ $form->addEventListener(FormEvents::PRE_SET_DATA, function($event) {
 - ✅ Compatible API
 - ✅ Drop-in replacement
 
-### Error Handling (Enhanced in FormGenerator)
+### Error Handling (Enhanced in SpiderForm)
 
 #### Symfony Form Component
 ```php
@@ -284,7 +284,7 @@ if (!$form->isValid()) {
 }
 ```
 
-#### FormGenerator
+#### SpiderForm
 ```php
 $form->submit($_POST);
 
@@ -335,10 +335,10 @@ class UserController extends AbstractController
 }
 ```
 
-#### FormGenerator
+#### SpiderForm
 ```php
-use FormGenerator\V2\Translation\FormTranslator;
-use FormGenerator\V2\Translation\Loader\PhpLoader;
+use SpiderForm\V2\Translation\FormTranslator;
+use SpiderForm\V2\Translation\Loader\PhpLoader;
 
 $translator = new FormTranslator('en_US');
 $translator->addLoader('php', new PhpLoader());
@@ -383,7 +383,7 @@ class UserController extends AbstractController
 }
 ```
 
-#### FormGenerator
+#### SpiderForm
 ```php
 $form = FormBuilder::create('user_form')
     ->setCsrfTokenId('user_form') // That's it!
@@ -408,7 +408,7 @@ $form->submit($_POST);
 
 ---
 
-## 💡 Why Choose FormGenerator?
+## 💡 Why Choose SpiderForm?
 
 ### 1. **Simplicity**
 - **70% less boilerplate** code
@@ -444,7 +444,7 @@ $form->submit($_POST);
 
 ## 🎯 Use Cases
 
-### When to Use FormGenerator
+### When to Use SpiderForm
 
 ✅ **Perfect for:**
 - New PHP projects (any framework or standalone)
@@ -474,7 +474,7 @@ $form->submit($_POST);
 
 ## 📈 Performance Comparison
 
-| Metric | Symfony Form | FormGenerator | Improvement |
+| Metric | Symfony Form | SpiderForm | Improvement |
 |--------|--------------|---------------|-------------|
 | **Package Size** | ~5MB | ~1MB | 80% smaller |
 | **Dependencies** | 15+ packages | 0 | 100% less |
@@ -490,9 +490,9 @@ $form->submit($_POST);
 
 ### Step-by-Step Migration
 
-1. **Install FormGenerator**
+1. **Install SpiderForm**
    ```bash
-   composer require selcukmart/form-generator
+   composer require selcukmart/spider-form
    ```
 
 2. **Replace Form Creation**
@@ -541,7 +541,7 @@ $form->submit($_POST);
 
 ## 🎉 Conclusion
 
-FormGenerator v3.0.0 provides **100% feature parity** with Symfony Form Component while offering:
+SpiderForm v3.0.0 provides **100% feature parity** with Symfony Form Component while offering:
 
 - ✅ **Simpler API** with chain pattern
 - ✅ **Zero dependencies** for standalone use

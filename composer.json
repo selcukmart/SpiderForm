@@ -41,7 +41,7 @@
   },
   "autoload": {
     "psr-4": {
-      "SpiderForm\\V1\\": "FormGenerator/",
+      "SpiderForm\\V1\\": "SpiderForm/",
       "SpiderForm\\V2\\": "src/V2/",
       "SpiderForm\\": "src/V1/"
     },

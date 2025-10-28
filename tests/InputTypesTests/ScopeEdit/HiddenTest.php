@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeEdit;
 
 
-use FormGenerator\FormGeneratorDirector;
+use SpiderForm\FormGeneratorDirector;
 use PHPUnit\Framework\TestCase;
 use Tests\FormDataAsRow;
 

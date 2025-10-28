@@ -8,7 +8,7 @@
 namespace Tests\BuildTests\InputCapsuleTests;
 
 
-use FormGenerator\FormGeneratorDirector;
+use SpiderForm\FormGeneratorDirector;
 use PHPUnit\Framework\TestCase;
 use Tests\FormDataAsRow;
 use Tests\SmartyForTests;

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Validation;
+namespace SpiderForm\Tests\V2\Validation;
 
-use FormGenerator\V2\Validation\GroupedValidation;
+use SpiderForm\V2\Validation\GroupedValidation;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for GroupedValidation
  *
- * @covers \FormGenerator\V2\Validation\GroupedValidation
+ * @covers \SpiderForm\V2\Validation\GroupedValidation
  */
 class GroupedValidationTest extends TestCase
 {

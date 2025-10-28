@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Event;
+namespace SpiderForm\Tests\V2\Event;
 
-use FormGenerator\V2\Event\FormEvent;
-use FormGenerator\V2\Form\Form;
+use SpiderForm\V2\Event\FormEvent;
+use SpiderForm\V2\Form\Form;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for FormEvent
  *
- * @covers \FormGenerator\V2\Event\FormEvent
+ * @covers \SpiderForm\V2\Event\FormEvent
  */
 class FormEventTest extends TestCase
 {

@@ -1,8 +1,8 @@
-# FormGenerator V2 Comprehensive Analysis
+# SpiderForm V2 Comprehensive Analysis
 
 **Last Updated**: 2024-10-27
 **Current Version**: 2.3.1
-**Branch**: claude/enhance-form-generator-011CUXv2h6nBNdGjJMXxRmow
+**Branch**: claude/enhance-spider-form-011CUXv2h6nBNdGjJMXxRmow
 
 ---
 
@@ -113,7 +113,7 @@ src/V2/
     ├── Laravel/
     │   ├── FormGeneratorServiceProvider.php
     │   ├── BaseFormRequest.php
-    │   └── config/form-generator.php
+    │   └── config/spider-form.php
     ├── Symfony/
     │   ├── FormGeneratorBundle.php
     │   ├── DependencyInjection/
@@ -290,7 +290,7 @@ src/V2/
 
 ### 3.1 Core Form Features NOT Implemented
 
-| Feature | Symfony | FormGenerator | Status |
+| Feature | Symfony | SpiderForm | Status |
 |---------|---------|---|---------|
 | **Sub-forms / Embedded Forms** | ✅ | ❌ | MISSING |
 | **Form Collections** | ✅ | ❌ | MISSING (Repeater is partial) |
@@ -311,7 +311,7 @@ src/V2/
 
 ### 3.2 Validation Features NOT Implemented
 
-| Feature | Symfony | FormGenerator | Status |
+| Feature | Symfony | SpiderForm | Status |
 |---------|---------|---|---------|
 | **Constraint Validators** | ✅ | ✅ | Rules-based (different approach) |
 | **Payload** | ✅ | ❌ | MISSING |
@@ -323,7 +323,7 @@ src/V2/
 
 ### 3.3 Rendering Features NOT Implemented
 
-| Feature | Symfony | FormGenerator | Status |
+| Feature | Symfony | SpiderForm | Status |
 |---------|---------|---|---------|
 | **Form Rendering Functions** | ✅ | ✅ | Via theme templates |
 | **Block Customization** | ✅ | ⚠️ | Via template overrides |
@@ -336,7 +336,7 @@ src/V2/
 
 ### 3.4 Event System Differences
 
-| Feature | Symfony | FormGenerator | Status |
+| Feature | Symfony | SpiderForm | Status |
 |---------|---------|---|---------|
 | **Pre-submit Event** | ✅ | ✅ | IMPLEMENTED |
 | **Submit Event** | ✅ | ✅ | IMPLEMENTED |
@@ -349,7 +349,7 @@ src/V2/
 
 ### 3.5 Data Handling Features NOT Implemented
 
-| Feature | Symfony | FormGenerator | Status |
+| Feature | Symfony | SpiderForm | Status |
 |---------|---------|---|---------|
 | **Property Path** | ✅ | ⚠️ | Dot notation limited |
 | **Compound Fields** | ✅ | ❌ | MISSING |
@@ -361,7 +361,7 @@ src/V2/
 
 ### 3.6 Other Missing Features
 
-| Feature | Symfony | FormGenerator | Status |
+| Feature | Symfony | SpiderForm | Status |
 |---------|---------|---|---------|
 | **Locale Aware Formatting** | ✅ | ⚠️ | Partial in transformers |
 | **Multiple Submits** | ✅ | ✅ | Supported |
@@ -701,7 +701,7 @@ Data Transformation
 
 ## CONCLUSION
 
-**FormGenerator V2.3.1** is a mature, well-architected form generation library with:
+**SpiderForm V2.3.1** is a mature, well-architected form generation library with:
 
 ✅ **Strengths**:
 - Modern PHP 8.1+ design with excellent patterns

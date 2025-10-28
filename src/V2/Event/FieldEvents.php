@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Event;
+namespace SpiderForm\V2\Event;
 
 /**
  * Field Events - Constants for field-level events

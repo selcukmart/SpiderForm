@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Type\Types;
+namespace SpiderForm\Tests\V2\Type\Types;
 
-use FormGenerator\V2\Type\Types\TextType;
-use FormGenerator\V2\Type\Types\EmailType;
-use FormGenerator\V2\Type\Types\SelectType;
-use FormGenerator\V2\Type\Types\PasswordType;
-use FormGenerator\V2\Type\Types\CheckboxType;
-use FormGenerator\V2\Type\OptionsResolver;
-use FormGenerator\V2\Builder\InputBuilder;
-use FormGenerator\V2\Contracts\InputType;
+use SpiderForm\V2\Type\Types\TextType;
+use SpiderForm\V2\Type\Types\EmailType;
+use SpiderForm\V2\Type\Types\SelectType;
+use SpiderForm\V2\Type\Types\PasswordType;
+use SpiderForm\V2\Type\Types\CheckboxType;
+use SpiderForm\V2\Type\OptionsResolver;
+use SpiderForm\V2\Builder\InputBuilder;
+use SpiderForm\V2\Contracts\InputType;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for built-in field types
  *
- * @covers \FormGenerator\V2\Type\Types\TextType
- * @covers \FormGenerator\V2\Type\Types\EmailType
- * @covers \FormGenerator\V2\Type\Types\SelectType
- * @covers \FormGenerator\V2\Type\Types\PasswordType
- * @covers \FormGenerator\V2\Type\Types\CheckboxType
+ * @covers \SpiderForm\V2\Type\Types\TextType
+ * @covers \SpiderForm\V2\Type\Types\EmailType
+ * @covers \SpiderForm\V2\Type\Types\SelectType
+ * @covers \SpiderForm\V2\Type\Types\PasswordType
+ * @covers \SpiderForm\V2\Type\Types\CheckboxType
  */
 class BuiltInTypesTest extends TestCase
 {

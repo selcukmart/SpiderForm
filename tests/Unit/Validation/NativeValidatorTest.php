@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Unit\Validation;
+namespace SpiderForm\Tests\Unit\Validation;
 
-use FormGenerator\Tests\TestCase;
-use FormGenerator\V2\Validation\NativeValidator;
-use FormGenerator\V2\Contracts\ValidationResult;
+use SpiderForm\Tests\TestCase;
+use SpiderForm\V2\Validation\NativeValidator;
+use SpiderForm\V2\Contracts\ValidationResult;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;

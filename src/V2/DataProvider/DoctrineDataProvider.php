@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\DataProvider;
+namespace SpiderForm\V2\DataProvider;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use FormGenerator\V2\Contracts\DataProviderInterface;
+use SpiderForm\V2\Contracts\DataProviderInterface;
 
 /**
  * Doctrine ORM Data Provider

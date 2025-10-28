@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Contracts;
+namespace SpiderForm\V2\Contracts;
 
 /**
  * Renderer Interface

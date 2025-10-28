@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Type\Types;
+namespace SpiderForm\V2\Type\Types;
 
-use FormGenerator\V2\Type\OptionsResolver;
-use FormGenerator\V2\Builder\InputBuilder;
+use SpiderForm\V2\Type\OptionsResolver;
+use SpiderForm\V2\Builder\InputBuilder;
 
 /**
  * Integer Type - Integer Number Input

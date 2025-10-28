@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Renderer;
+namespace SpiderForm\V2\Renderer;
 
-use FormGenerator\V2\Contracts\RendererInterface;
+use SpiderForm\V2\Contracts\RendererInterface;
 use Smarty;
 
 /**

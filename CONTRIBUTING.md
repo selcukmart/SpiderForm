@@ -1,6 +1,6 @@
-# Contributing to FormGenerator
+# Contributing to SpiderForm
 
-Thank you for your interest in contributing to FormGenerator! This document provides guidelines and instructions for contributing to the project.
+Thank you for your interest in contributing to SpiderForm! This document provides guidelines and instructions for contributing to the project.
 
 ## Table of Contents
 
@@ -24,8 +24,8 @@ Thank you for your interest in contributing to FormGenerator! This document prov
 ## Getting Started
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/FormGenerator.git`
-3. Add upstream remote: `git remote add upstream https://github.com/selcukmart/FormGenerator.git`
+2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/SpiderForm.git`
+3. Add upstream remote: `git remote add upstream https://github.com/selcukmart/SpiderForm.git`
 4. Create a feature branch: `git checkout -b feature/your-feature-name`
 
 ## Development Setup
@@ -65,9 +65,9 @@ vendor/bin/phpunit --coverage-html coverage/html
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Example;
+namespace SpiderForm\V2\Example;
 
-use FormGenerator\V2\Contracts\InputType;
+use SpiderForm\V2\Contracts\InputType;
 
 class ExampleClass
 {
@@ -135,9 +135,9 @@ public function addText(string $name, ?string $label = null): InputBuilder
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Unit\Example;
+namespace SpiderForm\Tests\Unit\Example;
 
-use FormGenerator\Tests\TestCase;
+use SpiderForm\Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 
@@ -268,7 +268,7 @@ Provide working examples in the `Examples/` directory:
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\FormBuilder;
 
 // Clear, commented example code
 $form = FormBuilder::create('example-form')
@@ -300,7 +300,7 @@ What actually happened
 
 **Environment**
 - PHP Version: 8.1.0
-- FormGenerator Version: 2.0.0
+- SpiderForm Version: 2.0.0
 - OS: Ubuntu 22.04
 
 **Code Sample**

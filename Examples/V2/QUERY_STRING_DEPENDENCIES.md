@@ -169,8 +169,8 @@ echo $form->build();
 
 ```php
 use Symfony\Component\HttpFoundation\Request;
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Event\FieldEvent;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Event\FieldEvent;
 
 #[Route('/form/query-based')]
 public function queryBasedForm(Request $request): Response

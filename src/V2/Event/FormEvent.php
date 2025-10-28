@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Event;
+namespace SpiderForm\V2\Event;
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Form\FormInterface;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Form\FormInterface;
 
 /**
  * Form Event - Container for event data

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Type;
+namespace SpiderForm\Tests\V2\Type;
 
-use FormGenerator\V2\Type\OptionsResolver;
+use SpiderForm\V2\Type\OptionsResolver;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for OptionsResolver
  *
- * @covers \FormGenerator\V2\Type\OptionsResolver
+ * @covers \SpiderForm\V2\Type\OptionsResolver
  */
 class OptionsResolverTest extends TestCase
 {

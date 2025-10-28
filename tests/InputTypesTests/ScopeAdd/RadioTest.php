@@ -9,7 +9,7 @@ namespace Tests\InputTypesTests\ScopeAdd;
 
 
 use Examples\DBExamples\Libraries\Database\DB;
-use FormGenerator\FormGeneratorDirector;
+use SpiderForm\FormGeneratorDirector;
 use PHPUnit\Framework\TestCase;
 
 class RadioTest extends TestCase
@@ -153,8 +153,8 @@ class RadioTest extends TestCase
                      */
                     'db' => [
                         /**
-                         * This must be an object, and it must implement FormGenerator\Tools\DB\DBInterface
-                         * There is an example in FormGenerator\Tools\DB\ folder as DBExample
+                         * This must be an object, and it must implement SpiderForm\Tools\DB\DBInterface
+                         * There is an example in SpiderForm\Tools\DB\ folder as DBExample
                          */
                         'object' => DB::class
                     ]

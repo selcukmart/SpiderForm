@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\DataProvider;
+namespace SpiderForm\V2\DataProvider;
 
-use FormGenerator\V2\Contracts\DataProviderInterface;
+use SpiderForm\V2\Contracts\DataProviderInterface;
 
 /**
  * Array Data Provider (for static data)

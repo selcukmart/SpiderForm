@@ -1,7 +1,7 @@
 <?php
 
 /**
- * FormGenerator V2 - Dependency Management Example
+ * SpiderForm V2 - Dependency Management Example
  *
  * This example demonstrates the native dependency management feature
  * where inputs show/hide based on other input values
@@ -9,10 +9,10 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
-use FormGenerator\V2\Security\SecurityManager;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Security\SecurityManager;
 
 // Initialize components
 $renderer = new TwigRenderer(

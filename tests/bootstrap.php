@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * PHPUnit Bootstrap File for FormGenerator V2
+ * PHPUnit Bootstrap File for SpiderForm V2
  * 
  * This file is automatically loaded before running tests.
  */
@@ -37,7 +37,7 @@ if (!is_dir($coverageDir)) {
 // Output test environment info
 if (getenv('VERBOSE_TESTS') === '1') {
     echo PHP_EOL;
-    echo "FormGenerator V2 Test Suite" . PHP_EOL;
+    echo "SpiderForm V2 Test Suite" . PHP_EOL;
     echo "============================" . PHP_EOL;
     echo "PHP Version: " . PHP_VERSION . PHP_EOL;
     echo "PHPUnit: " . PHPUnit\Runner\Version::id() . PHP_EOL;

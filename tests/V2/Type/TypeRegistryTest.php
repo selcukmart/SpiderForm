@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Type;
+namespace SpiderForm\Tests\V2\Type;
 
-use FormGenerator\V2\Type\TypeRegistry;
-use FormGenerator\V2\Type\AbstractType;
-use FormGenerator\V2\Type\Types\TextType;
-use FormGenerator\V2\Type\Types\EmailType;
-use FormGenerator\V2\Builder\InputBuilder;
+use SpiderForm\V2\Type\TypeRegistry;
+use SpiderForm\V2\Type\AbstractType;
+use SpiderForm\V2\Type\Types\TextType;
+use SpiderForm\V2\Type\Types\EmailType;
+use SpiderForm\V2\Builder\InputBuilder;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for TypeRegistry
  *
- * @covers \FormGenerator\V2\Type\TypeRegistry
+ * @covers \SpiderForm\V2\Type\TypeRegistry
  */
 class TypeRegistryTest extends TestCase
 {

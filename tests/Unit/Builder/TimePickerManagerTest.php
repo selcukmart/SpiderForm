@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Unit\Builder;
+namespace SpiderForm\Tests\Unit\Builder;
 
-use FormGenerator\Tests\TestCase;
-use FormGenerator\V2\Builder\TimePickerManager;
+use SpiderForm\Tests\TestCase;
+use SpiderForm\V2\Builder\TimePickerManager;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 

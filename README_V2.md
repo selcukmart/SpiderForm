@@ -1,4 +1,4 @@
-# FormGenerator V2
+# SpiderForm V2
 
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.1-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -69,7 +69,7 @@ Modern PHP Form Generator with Chain Pattern, Symfony & Laravel Integration
 ## 🚀 Installation
 
 ```bash
-composer require selcukmart/form-generator
+composer require selcukmart/spider-form
 ```
 
 ## 📖 Quick Start
@@ -77,9 +77,9 @@ composer require selcukmart/form-generator
 ### Basic Usage
 
 ```php
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 // Setup
 $renderer = new TwigRenderer(__DIR__ . '/templates');
@@ -126,7 +126,7 @@ echo $form;
 ### With Doctrine (Symfony)
 
 ```php
-use FormGenerator\V2\DataProvider\DoctrineDataProvider;
+use SpiderForm\V2\DataProvider\DoctrineDataProvider;
 use Doctrine\ORM\EntityManagerInterface;
 
 $provider = new DoctrineDataProvider($entityManager, User::class);
@@ -155,7 +155,7 @@ $form = FormBuilder::create('edit_user')
 ### With Laravel Eloquent
 
 ```php
-use FormGenerator\V2\DataProvider\EloquentDataProvider;
+use SpiderForm\V2\DataProvider\EloquentDataProvider;
 use App\Models\User;
 
 $provider = new EloquentDataProvider(User::class);
@@ -182,7 +182,7 @@ return view('users.form', ['form' => $form]);
 // config/bundles.php
 return [
     // ...
-    FormGenerator\V2\Integration\Symfony\FormGeneratorBundle::class => ['all' => true],
+    SpiderForm\V2\Integration\Symfony\FormGeneratorBundle::class => ['all' => true],
 ];
 ```
 
@@ -201,7 +201,7 @@ form_generator:
 3. Use in controllers:
 
 ```php
-use FormGenerator\V2\Integration\Symfony\FormType\FormGeneratorType;
+use SpiderForm\V2\Integration\Symfony\FormType\FormGeneratorType;
 
 $symfonyForm = $this->createForm(FormGeneratorType::class, $user, [
     'generator_builder' => $formBuilder,
@@ -213,7 +213,7 @@ $symfonyForm = $this->createForm(FormGeneratorType::class, $user, [
 1. Publish configuration:
 
 ```bash
-php artisan vendor:publish --tag=form-generator-config
+php artisan vendor:publish --tag=spider-form-config
 ```
 
 2. Use in Blade templates:
@@ -246,7 +246,7 @@ public function create()
 ### Bootstrap 5 (Included)
 
 ```php
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 $theme = new Bootstrap5Theme();
 
@@ -260,7 +260,7 @@ $theme->enableHorizontalForm('col-md-3', 'col-md-9');
 ### Custom Theme
 
 ```php
-use FormGenerator\V2\Theme\AbstractTheme;
+use SpiderForm\V2\Theme\AbstractTheme;
 
 class MyCustomTheme extends AbstractTheme
 {
@@ -297,7 +297,7 @@ class MyCustomTheme extends AbstractTheme
 ### CSRF Protection
 
 ```php
-use FormGenerator\V2\Security\SecurityManager;
+use SpiderForm\V2\Security\SecurityManager;
 
 $security = new SecurityManager();
 
@@ -759,7 +759,7 @@ See `/Examples/V2/WithQueryStringDependencies.php` and `/Examples/Symfony/QueryS
 ### Basic Validation
 
 ```php
-use FormGenerator\V2\Validation\NativeValidator;
+use SpiderForm\V2\Validation\NativeValidator;
 
 $validator = new NativeValidator();
 
@@ -871,7 +871,7 @@ $validator->addRule('username_available', function($value, $params, $context) {
 ### Quick Start
 
 ```php
-use FormGenerator\V2\Validation\{ValidatorFactory, ValidationException};
+use SpiderForm\V2\Validation\{ValidatorFactory, ValidationException};
 
 // Simple validation
 try {
@@ -1076,7 +1076,7 @@ class UserDTO
 
 // Setup Symfony Validator
 use Symfony\Component\Validator\Validation;
-use FormGenerator\V2\Validation\{SymfonyValidator, NativeValidator};
+use SpiderForm\V2\Validation\{SymfonyValidator, NativeValidator};
 
 $symfonyValidator = Validation::createValidatorBuilder()
     ->enableAnnotationMapping()
@@ -1139,7 +1139,7 @@ See `/Examples/V2/WithSymfonyDTO.php` and `/Examples/V2/WithValidation.php`
 ### Array Provider
 
 ```php
-use FormGenerator\V2\DataProvider\ArrayDataProvider;
+use SpiderForm\V2\DataProvider\ArrayDataProvider;
 
 $data = [
     ['id' => 1, 'name' => 'John', 'email' => 'john@example.com'],
@@ -1153,7 +1153,7 @@ $form->setDataProvider($provider)->loadData(1);
 ### PDO Provider
 
 ```php
-use FormGenerator\V2\DataProvider\PDODataProvider;
+use SpiderForm\V2\DataProvider\PDODataProvider;
 
 $pdo = new PDO('mysql:host=localhost;dbname=mydb', 'user', 'pass');
 $provider = new PDODataProvider($pdo, 'users', 'id');
@@ -1164,7 +1164,7 @@ $form->setDataProvider($provider)->loadData($userId);
 ### Doctrine Provider
 
 ```php
-use FormGenerator\V2\DataProvider\DoctrineDataProvider;
+use SpiderForm\V2\DataProvider\DoctrineDataProvider;
 
 $provider = new DoctrineDataProvider($entityManager, User::class);
 $form->setDataProvider($provider)->loadData($userId);
@@ -1173,7 +1173,7 @@ $form->setDataProvider($provider)->loadData($userId);
 ### Eloquent Provider
 
 ```php
-use FormGenerator\V2\DataProvider\EloquentDataProvider;
+use SpiderForm\V2\DataProvider\EloquentDataProvider;
 
 $provider = new EloquentDataProvider(User::class);
 $form->setDataProvider($provider)->loadData($userId);
@@ -2058,7 +2058,7 @@ Full support for right-to-left languages like Arabic and Hebrew. **Set direction
 **✨ New: Form-Level Direction Support**
 
 ```php
-use FormGenerator\V2\Contracts\TextDirection;
+use SpiderForm\V2\Contracts\TextDirection;
 
 // Arabic form - Set RTL once for the entire form
 $form = FormBuilder::create('arabic_form')
@@ -2102,7 +2102,7 @@ $form = FormBuilder::create('arabic_form')
 
 **Hebrew Example:**
 ```php
-use FormGenerator\V2\Contracts\TextDirection;
+use SpiderForm\V2\Contracts\TextDirection;
 
 $form = FormBuilder::create('hebrew_form')
     ->setRenderer($renderer)
@@ -2131,7 +2131,7 @@ $form = FormBuilder::create('hebrew_form')
 
 **LTR (Left-to-Right) Example:**
 ```php
-use FormGenerator\V2\Contracts\TextDirection;
+use SpiderForm\V2\Contracts\TextDirection;
 
 // English form - LTR is default but can be set explicitly
 $form = FormBuilder::create('english_form')
@@ -2181,7 +2181,7 @@ $form = FormBuilder::create('english_form')
 Generate forms in HTML, JSON, or XML format for different use cases.
 
 ```php
-use FormGenerator\V2\Contracts\OutputFormat;
+use SpiderForm\V2\Contracts\OutputFormat;
 
 $form = FormBuilder::create('user_form')
     ->setRenderer($renderer)
@@ -2301,9 +2301,9 @@ Generate forms directly in Twig templates without controller code:
 
 **Setup:**
 ```php
-use FormGenerator\V2\Integration\Twig\FormGeneratorExtension;
-use FormGenerator\V2\Renderer\TwigRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Integration\Twig\FormGeneratorExtension;
+use SpiderForm\V2\Renderer\TwigRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 $renderer = new TwigRenderer(__DIR__ . '/templates');
 $theme = new Bootstrap5Theme();
@@ -2342,9 +2342,9 @@ Generate forms directly in Smarty templates:
 
 **Setup:**
 ```php
-use FormGenerator\V2\Integration\Smarty\FormGeneratorPlugin;
-use FormGenerator\V2\Renderer\SmartyRenderer;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Integration\Smarty\FormGeneratorPlugin;
+use SpiderForm\V2\Renderer\SmartyRenderer;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 $renderer = new SmartyRenderer(__DIR__ . '/templates');
 $theme = new Bootstrap5Theme();
@@ -2393,11 +2393,11 @@ Complete Laravel Blade template engine support with directives and components:
 // Auto-registered via service provider (Laravel 11+)
 // Or add to config/app.php:
 'providers' => [
-    \FormGenerator\V2\Integration\Blade\BladeServiceProvider::class,
+    \SpiderForm\V2\Integration\Blade\BladeServiceProvider::class,
 ],
 
 // Publish configuration (optional)
-php artisan vendor:publish --tag=form-generator-config
+php artisan vendor:publish --tag=spider-form-config
 ```
 
 **Usage with Blade Directives:**
@@ -2472,9 +2472,9 @@ php artisan vendor:publish --tag=form-generator-config
 
 **Standalone Usage (Non-Laravel):**
 ```php
-use FormGenerator\V2\Renderer\BladeRenderer;
-use FormGenerator\V2\Integration\Blade\FormGeneratorBladeDirectives;
-use FormGenerator\V2\Theme\Bootstrap5Theme;
+use SpiderForm\V2\Renderer\BladeRenderer;
+use SpiderForm\V2\Integration\Blade\FormGeneratorBladeDirectives;
+use SpiderForm\V2\Theme\Bootstrap5Theme;
 
 $renderer = new BladeRenderer(__DIR__ . '/views', __DIR__ . '/cache');
 FormGeneratorBladeDirectives::setRenderer($renderer);
@@ -2492,7 +2492,7 @@ echo $renderer->render('registration', $data);
 - ✅ Blade components for modern syntax
 - ✅ Standalone usage (non-Laravel)
 - ✅ Validation integration
-- ✅ All FormGenerator features supported
+- ✅ All SpiderForm features supported
 
 **Examples:**
 - See `examples/blade/user-registration.blade.php` - Using directives

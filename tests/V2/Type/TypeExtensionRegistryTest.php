@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Type;
+namespace SpiderForm\Tests\V2\Type;
 
-use FormGenerator\V2\Type\TypeExtensionRegistry;
-use FormGenerator\V2\Type\TypeExtensionInterface;
-use FormGenerator\V2\Type\AbstractTypeExtension;
-use FormGenerator\V2\Type\OptionsResolver;
-use FormGenerator\V2\Builder\InputBuilder;
+use SpiderForm\V2\Type\TypeExtensionRegistry;
+use SpiderForm\V2\Type\TypeExtensionInterface;
+use SpiderForm\V2\Type\AbstractTypeExtension;
+use SpiderForm\V2\Type\OptionsResolver;
+use SpiderForm\V2\Builder\InputBuilder;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for TypeExtensionRegistry
  *
- * @covers \FormGenerator\V2\Type\TypeExtensionRegistry
+ * @covers \SpiderForm\V2\Type\TypeExtensionRegistry
  */
 class TypeExtensionRegistryTest extends TestCase
 {

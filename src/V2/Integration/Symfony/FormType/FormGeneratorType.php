@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Integration\Symfony\FormType;
+namespace SpiderForm\V2\Integration\Symfony\FormType;
 
-use FormGenerator\V2\Builder\FormBuilder as GeneratorFormBuilder;
+use SpiderForm\V2\Builder\FormBuilder as GeneratorFormBuilder;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Symfony Form Type for Form Generator Integration
  *
- * This allows using FormGenerator within Symfony's Form component
+ * This allows using SpiderForm within Symfony's Form component
  *
  * @author selcukmart
  * @since 2.0.0

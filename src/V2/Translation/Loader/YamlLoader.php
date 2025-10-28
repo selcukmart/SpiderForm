@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Translation\Loader;
+namespace SpiderForm\V2\Translation\Loader;
 
 /**
  * YAML Loader - Load Translations from YAML Files

@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeAdd;
 
 
-use FormGenerator\FormGeneratorDirector;
+use SpiderForm\FormGeneratorDirector;
 use PHPUnit\Framework\TestCase;
 
 class FormSectionTest extends TestCase

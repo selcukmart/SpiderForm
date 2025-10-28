@@ -18,9 +18,9 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Form\{Form, FormConfig};
-use FormGenerator\V2\Error\{ErrorLevel, ErrorBubblingStrategy, FormError};
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Form\{Form, FormConfig};
+use SpiderForm\V2\Error\{ErrorLevel, ErrorBubblingStrategy, FormError};
 
 echo "\n=== Advanced Error Handling Examples (v2.9.0) ===\n\n";
 

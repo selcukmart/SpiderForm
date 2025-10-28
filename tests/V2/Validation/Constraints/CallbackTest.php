@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Validation\Constraints;
+namespace SpiderForm\Tests\V2\Validation\Constraints;
 
-use FormGenerator\V2\Validation\Constraints\Callback;
-use FormGenerator\V2\Validation\ExecutionContext;
+use SpiderForm\V2\Validation\Constraints\Callback;
+use SpiderForm\V2\Validation\ExecutionContext;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for Callback constraint
  *
- * @covers \FormGenerator\V2\Validation\Constraints\Callback
+ * @covers \SpiderForm\V2\Validation\Constraints\Callback
  */
 class CallbackTest extends TestCase
 {

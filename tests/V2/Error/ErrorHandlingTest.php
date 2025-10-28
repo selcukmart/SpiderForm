@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\Error;
+namespace SpiderForm\Tests\V2\Error;
 
-use FormGenerator\V2\Error\ErrorLevel;
-use FormGenerator\V2\Error\FormError;
-use FormGenerator\V2\Error\ErrorList;
-use FormGenerator\V2\Error\ErrorBubblingStrategy;
-use FormGenerator\V2\Form\Form;
+use SpiderForm\V2\Error\ErrorLevel;
+use SpiderForm\V2\Error\FormError;
+use SpiderForm\V2\Error\ErrorList;
+use SpiderForm\V2\Error\ErrorBubblingStrategy;
+use SpiderForm\V2\Form\Form;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Comprehensive unit tests for Error Handling (v2.9.0)
  *
- * @covers \FormGenerator\V2\Error\ErrorLevel
- * @covers \FormGenerator\V2\Error\FormError
- * @covers \FormGenerator\V2\Error\ErrorList
- * @covers \FormGenerator\V2\Error\ErrorBubblingStrategy
+ * @covers \SpiderForm\V2\Error\ErrorLevel
+ * @covers \SpiderForm\V2\Error\FormError
+ * @covers \SpiderForm\V2\Error\ErrorList
+ * @covers \SpiderForm\V2\Error\ErrorBubblingStrategy
  */
 class ErrorHandlingTest extends TestCase
 {

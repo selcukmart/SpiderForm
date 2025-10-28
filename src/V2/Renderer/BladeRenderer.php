@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\V2\Renderer;
+namespace SpiderForm\V2\Renderer;
 
-use FormGenerator\V2\Contracts\RendererInterface;
+use SpiderForm\V2\Contracts\RendererInterface;
 use Illuminate\View\Factory;
 use Illuminate\View\ViewFinderInterface;
 use Illuminate\Filesystem\Filesystem;
@@ -17,7 +17,7 @@ use Illuminate\View\Compilers\BladeCompiler;
 /**
  * Blade Renderer Implementation
  *
- * Provides Laravel Blade template engine support for FormGenerator V2.
+ * Provides Laravel Blade template engine support for SpiderForm V2.
  *
  * Usage:
  * ```php
@@ -241,12 +241,12 @@ class BladeRenderer implements RendererInterface
     {
         // @attributes directive: converts array to HTML attributes string
         $this->directive('attributes', function ($expression) {
-            return "<?php echo FormGenerator\\V2\\Renderer\\BladeRenderer::renderAttributes($expression); ?>";
+            return "<?php echo SpiderForm\\V2\\Renderer\\BladeRenderer::renderAttributes($expression); ?>";
         });
 
         // @classes directive: converts array to CSS classes string
         $this->directive('classes', function ($expression) {
-            return "<?php echo FormGenerator\\V2\\Renderer\\BladeRenderer::renderClasses($expression); ?>";
+            return "<?php echo SpiderForm\\V2\\Renderer\\BladeRenderer::renderClasses($expression); ?>";
         });
 
         // @csrf directive for CSRF token

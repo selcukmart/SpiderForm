@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeAdd\OtherInputTypes;
 
 
-use FormGenerator\FormGeneratorDirector;
+use SpiderForm\FormGeneratorDirector;
 use PHPUnit\Framework\TestCase;
 
 class NumberTest extends TestCase

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\V2\DataMapper;
+namespace SpiderForm\Tests\V2\DataMapper;
 
-use FormGenerator\V2\DataMapper\FormDataMapper;
-use FormGenerator\V2\Form\Form;
+use SpiderForm\V2\DataMapper\FormDataMapper;
+use SpiderForm\V2\Form\Form;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for FormDataMapper
  *
- * @covers \FormGenerator\V2\DataMapper\FormDataMapper
+ * @covers \SpiderForm\V2\DataMapper\FormDataMapper
  */
 class FormDataMapperTest extends TestCase
 {

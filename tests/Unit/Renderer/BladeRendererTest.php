@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Unit\Renderer;
+namespace SpiderForm\Tests\Unit\Renderer;
 
-use FormGenerator\V2\Renderer\BladeRenderer;
+use SpiderForm\V2\Renderer\BladeRenderer;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Filesystem\Filesystem;
 
@@ -75,7 +75,7 @@ class BladeRendererTest extends TestCase
 
     public function testAddGlobal(): void
     {
-        $this->renderer->addGlobal('app_name', 'FormGenerator');
+        $this->renderer->addGlobal('app_name', 'SpiderForm');
 
         file_put_contents(
             $this->tempDir . '/views/global.blade.php',
@@ -83,7 +83,7 @@ class BladeRendererTest extends TestCase
         );
 
         $result = $this->renderer->render('global', []);
-        $this->assertEquals('FormGenerator', $result);
+        $this->assertEquals('SpiderForm', $result);
     }
 
     public function testGetTemplatePaths(): void

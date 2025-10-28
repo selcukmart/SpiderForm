@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace FormGenerator\Tests\Unit\Builder;
+namespace SpiderForm\Tests\Unit\Builder;
 
-use FormGenerator\Tests\TestCase;
-use FormGenerator\V2\Builder\FormBuilder;
-use FormGenerator\V2\Builder\InputBuilder;
-use FormGenerator\V2\Contracts\InputType;
+use SpiderForm\Tests\TestCase;
+use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Builder\InputBuilder;
+use SpiderForm\V2\Contracts\InputType;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 
