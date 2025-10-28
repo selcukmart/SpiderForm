@@ -8,7 +8,7 @@
 namespace SpiderForm\Render;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use Helpers\Classes;
 use SmartyException;
 
@@ -28,7 +28,7 @@ class Render
         'input_attr' => ''
     ];
 
-    public function __construct(FormGeneratorDirector $formGeneratorDirector)
+    public function __construct(SpiderFormDirector $formGeneratorDirector)
     {
         $this->formGeneratorDirector = $formGeneratorDirector;
     }
@@ -94,9 +94,9 @@ class Render
     }
 
     /**
-     * @return FormGeneratorDirector
+     * @return SpiderFormDirector
      */
-    public function getFormGeneratorDirector(): FormGeneratorDirector
+    public function getSpiderFormDirector(): SpiderFormDirector
     {
         return $this->formGeneratorDirector;
     }

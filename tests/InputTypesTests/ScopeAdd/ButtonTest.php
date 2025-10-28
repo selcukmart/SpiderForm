@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeAdd;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 
 class ButtonTest extends TestCase
@@ -37,7 +37,7 @@ class ButtonTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput();
         $expected = '<button name="test" type="button" class="">Button in Inputs</button>';

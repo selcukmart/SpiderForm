@@ -8,7 +8,7 @@
 
 namespace SpiderForm\Tools\FormDataProviders;
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 
 abstract class AbstractFormDataProviders
 {
@@ -25,7 +25,7 @@ abstract class AbstractFormDataProviders
         $formGenerator,
         $data;
 
-    public function __construct(FormGeneratorDirector $formGenerator)
+    public function __construct(SpiderFormDirector $formGenerator)
     {
         $this->formGenerator = $formGenerator;
 
@@ -37,14 +37,14 @@ abstract class AbstractFormDataProviders
         $this->data = $this->generator_array['data'];
     }
 
-    public static function getInstance(FormGeneratorDirector $formGenerator): AbstractFormDataProviders
+    public static function getInstance(SpiderFormDirector $formGenerator): AbstractFormDataProviders
     {
         $class = static::class;
-        if (!isset(self::$instances[FormGeneratorDirector::getInstanceCount()][$class])) {
-            self::$instances[FormGeneratorDirector::getInstanceCount()][$class] = new static($formGenerator);
+        if (!isset(self::$instances[SpiderFormDirector::getInstanceCount()][$class])) {
+            self::$instances[SpiderFormDirector::getInstanceCount()][$class] = new static($formGenerator);
         }
 
-        return self::$instances[FormGeneratorDirector::getInstanceCount()][$class];
+        return self::$instances[SpiderFormDirector::getInstanceCount()][$class];
     }
 
     /**

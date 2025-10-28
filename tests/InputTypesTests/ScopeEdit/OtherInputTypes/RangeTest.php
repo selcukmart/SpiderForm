@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeEdit\OtherInputTypes;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 use Tests\FormDataAsRow;
 
@@ -43,7 +43,7 @@ class RangeTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'edit');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput();
         $expected = '<input name="height" min="10" max="260" value="180" class="" placeholder="Height" __is_def="1" type="range" id="height" >';

@@ -9,7 +9,7 @@ namespace Tests\InputTypesTests\ScopeAdd;
 
 
 use Examples\DBExamples\Libraries\Database\DB;
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 
 class CheckboxTest extends TestCase
@@ -45,7 +45,7 @@ class CheckboxTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<input type="checkbox" id="iso-us" name="iso[]" value="us" ><label for="iso-us"> USA</label><br>    <input type="checkbox" id="iso-gb" name="iso[]" value="gb" ><label for="iso-gb"> United Kingdom</label><br>    <input type="checkbox" id="iso-de" name="iso[]" value="de" ><label for="iso-de"> Germany</label><br>';
@@ -95,7 +95,7 @@ class CheckboxTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<input type="checkbox" id="iso-gb" name="iso[]" value="gb" ><label for="iso-gb"> UK</label><br>    <input type="checkbox" id="iso-us" name="iso[]" value="us" ><label for="iso-us"> USA</label><br>    <input type="checkbox" id="iso-de" name="iso[]" value="de" ><label for="iso-de"> Germany</label><br>';
@@ -134,7 +134,7 @@ class CheckboxTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<input type="checkbox" id="iso-us" name="iso[]" value="us" ><label for="iso-us"> USA</label><br>    <input type="checkbox" id="iso-gb" name="iso[]" value="gb" ><label for="iso-gb"> UK</label><br>    <input type="checkbox" id="iso-de" name="iso[]" value="de" ><label for="iso-de"> Germany</label><br>';
@@ -187,7 +187,7 @@ class CheckboxTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<input type="checkbox" id="iso-us" name="iso[]" value="us" ><label for="iso-us"> USA</label><br>    <input type="checkbox" id="iso-gb" name="iso[]" value="gb" ><label for="iso-gb"> UK</label><br>    <input type="checkbox" id="iso-de" name="iso[]" value="de" ><label for="iso-de"> Germany</label><br>';

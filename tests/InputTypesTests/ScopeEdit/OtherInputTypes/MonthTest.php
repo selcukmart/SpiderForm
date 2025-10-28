@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeEdit\OtherInputTypes;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 use Tests\FormDataAsRow;
 
@@ -41,7 +41,7 @@ class MonthTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'edit');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput();
         $expected = '<input name="month" value="february" class="" placeholder="Month" __is_def="1" type="month" id="month" >';

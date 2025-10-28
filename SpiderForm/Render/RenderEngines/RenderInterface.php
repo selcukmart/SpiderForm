@@ -1,6 +1,6 @@
 <?php
 namespace SpiderForm\Render\RenderEngines;
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use SpiderForm\Render\Render;
 
 /**
@@ -10,7 +10,7 @@ use SpiderForm\Render\Render;
  */
 interface RenderInterface
 {
-    public function __construct(FormGeneratorDirector $formGenerator, Render $templateObject);
+    public function __construct(SpiderFormDirector $formGenerator, Render $templateObject);
 
     public function createHtmlOutput(string $template):string;
 }

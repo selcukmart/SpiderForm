@@ -8,4 +8,4 @@
 
 require(__DIR__ . '/../vendor/autoload.php');
 $format = 'Bootstrapv3FormWizard';
-include __DIR__ . '/form_generator_array.php';
+include __DIR__ . '/spider_form_array.php';

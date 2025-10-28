@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeEdit;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 use Tests\FormDataAsRow;
 
@@ -38,7 +38,7 @@ class FormSectionTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'edit');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<h4 class="form-section" style="text-transform: capitalize;margin-bottom: 0px; margin-top: 20px;">Nationality is Turkey Citizen</h4>';

@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeEdit;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 use Tests\FormDataAsRow;
 
@@ -41,7 +41,7 @@ class FileTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'edit');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '1

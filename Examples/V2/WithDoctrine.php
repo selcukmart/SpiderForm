@@ -85,10 +85,10 @@ echo $form;
 
 // Example showing how it integrates with Symfony Form Component
 /*
-use SpiderForm\V2\Integration\Symfony\FormType\FormGeneratorType;
+use SpiderForm\V2\Integration\Symfony\FormType\SpiderFormType;
 use Symfony\Component\Form\FormFactoryInterface;
 
-$symfonyForm = $formFactory->create(FormGeneratorType::class, $user, [
+$symfonyForm = $formFactory->create(SpiderFormType::class, $user, [
     'generator_builder' => $form,
 ]);
 */

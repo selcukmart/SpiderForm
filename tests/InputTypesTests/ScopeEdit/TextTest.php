@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeEdit;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 use Tests\FormDataAsRow;
 
@@ -41,7 +41,7 @@ class TextTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'edit');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput();
         $expected = '<input name="nationality_tc_or_not" value="1" class="" placeholder="Nationality is Turkey Citizen" __is_def="1" type="text" id="nationality_tc_or_not" >';

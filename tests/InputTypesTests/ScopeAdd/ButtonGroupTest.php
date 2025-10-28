@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeAdd;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 
 class ButtonGroupTest extends TestCase
@@ -56,7 +56,7 @@ class ButtonGroupTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput('buttons');
         $expected = '<button name="btn1" type="button" class="btn btn-success">Button</button><button name="btn2" type="reset" class="btn btn-success">Reset</button><button name="btn3" type="submit" class="btn btn-success">Submit</button>';

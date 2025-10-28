@@ -8,7 +8,7 @@
 namespace SpiderForm\Tools;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 
 class DefaultValue
 {
@@ -16,7 +16,7 @@ class DefaultValue
         $all_field_options = [],
         $field = '';
 
-    public function __construct(FormGeneratorDirector $formGenerator, string $field)
+    public function __construct(SpiderFormDirector $formGenerator, string $field)
     {
         if (is_object($formGenerator->getDb())) {
             $table = $formGenerator->getTable();

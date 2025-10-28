@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SpiderForm\V2\Integration\Blade\Components;
 
 use Illuminate\View\Component;
-use SpiderForm\V2\Integration\Blade\FormGeneratorBladeDirectives;
+use SpiderForm\V2\Integration\Blade\SpiderFormBladeDirectives;
 
 /**
  * Base Form Input Component
@@ -65,7 +65,7 @@ class FormText extends FormInput
 {
     public function render()
     {
-        FormGeneratorBladeDirectives::directiveFormText(
+        SpiderFormBladeDirectives::directiveFormText(
             $this->name,
             $this->label,
             $this->getOptions()
@@ -86,7 +86,7 @@ class FormEmail extends FormInput
 {
     public function render()
     {
-        FormGeneratorBladeDirectives::directiveFormEmail(
+        SpiderFormBladeDirectives::directiveFormEmail(
             $this->name,
             $this->label,
             $this->getOptions()
@@ -107,7 +107,7 @@ class FormPassword extends FormInput
 {
     public function render()
     {
-        FormGeneratorBladeDirectives::directiveFormPassword(
+        SpiderFormBladeDirectives::directiveFormPassword(
             $this->name,
             $this->label,
             $this->getOptions()
@@ -157,7 +157,7 @@ class FormTextarea extends FormInput
 
     public function render()
     {
-        FormGeneratorBladeDirectives::directiveFormTextarea(
+        SpiderFormBladeDirectives::directiveFormTextarea(
             $this->name,
             $this->label,
             $this->getOptions()
@@ -209,7 +209,7 @@ class FormNumber extends FormInput
 
     public function render()
     {
-        FormGeneratorBladeDirectives::directiveFormNumber(
+        SpiderFormBladeDirectives::directiveFormNumber(
             $this->name,
             $this->label,
             $this->getOptions()
@@ -245,7 +245,7 @@ class FormSelect extends FormInput
 
     public function render()
     {
-        FormGeneratorBladeDirectives::directiveFormSelect(
+        SpiderFormBladeDirectives::directiveFormSelect(
             $this->name,
             $this->label,
             $this->selectOptions,
@@ -274,7 +274,7 @@ class FormSubmit extends Component
 
     public function render()
     {
-        FormGeneratorBladeDirectives::directiveFormSubmit($this->label);
+        SpiderFormBladeDirectives::directiveFormSubmit($this->label);
         return '';
     }
 }

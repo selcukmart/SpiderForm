@@ -8,7 +8,7 @@
 
 namespace SpiderForm\Tools;
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use GlobalTraits\ErrorMessagesWithResultTrait;
 use Helpers\Classes;
 
@@ -29,7 +29,7 @@ class Row
         'rows'
     ];
 
-    public function __construct(FormGeneratorDirector $formGenerator, array $generator_array)
+    public function __construct(SpiderFormDirector $formGenerator, array $generator_array)
     {
         $this->generator_array = $generator_array;
         $this->formGenerator = $formGenerator;

@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeAdd;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 
 class FileTest extends TestCase
@@ -36,7 +36,7 @@ class FileTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<div class="fileinput fileinput-new" data-provides="fileinput">

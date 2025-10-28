@@ -67,8 +67,8 @@ class BladeServiceProvider extends ServiceProvider
             $renderer = $app->make(BladeRenderer::class);
             $theme = new Bootstrap5Theme();
 
-            FormGeneratorBladeDirectives::setRenderer($renderer);
-            FormGeneratorBladeDirectives::setDefaultTheme($theme);
+            SpiderFormBladeDirectives::setRenderer($renderer);
+            SpiderFormBladeDirectives::setDefaultTheme($theme);
 
             return \SpiderForm\V2\Builder\FormBuilder::create('default')
                 ->setRenderer($renderer)
@@ -85,8 +85,8 @@ class BladeServiceProvider extends ServiceProvider
         $renderer = $this->app->make(BladeRenderer::class);
         $theme = new Bootstrap5Theme();
 
-        FormGeneratorBladeDirectives::setRenderer($renderer);
-        FormGeneratorBladeDirectives::setDefaultTheme($theme);
+        SpiderFormBladeDirectives::setRenderer($renderer);
+        SpiderFormBladeDirectives::setDefaultTheme($theme);
 
         // Register Blade directives
         $this->registerBladeDirectives();
@@ -112,7 +112,7 @@ class BladeServiceProvider extends ServiceProvider
      */
     protected function registerBladeDirectives(): void
     {
-        FormGeneratorBladeDirectives::register();
+        SpiderFormBladeDirectives::register();
     }
 
     /**

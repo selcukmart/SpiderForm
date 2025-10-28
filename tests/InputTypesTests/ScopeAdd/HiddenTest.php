@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeAdd;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 
 class HiddenTest extends TestCase
@@ -36,7 +36,7 @@ class HiddenTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<input id="address_identification" name="address_identification" value="" type="hidden">';

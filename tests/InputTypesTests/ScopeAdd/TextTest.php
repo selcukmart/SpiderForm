@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeAdd;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 
 class TextTest extends TestCase
@@ -36,7 +36,7 @@ class TextTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput();
         $expected = '<input name="address_identification" value="" class="" placeholder="Address Identification" __is_def="1" type="text" id="address_identification" >';
