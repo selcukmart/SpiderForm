@@ -1,0 +1,1 @@
+<span class="help-block"> {$help_block} </span>

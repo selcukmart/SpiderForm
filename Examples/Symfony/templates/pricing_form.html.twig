@@ -1,0 +1,161 @@
+{# templates/pricing_form.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Dynamic Pricing Form{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h1 class="mb-4">Dynamic Pricing Form</h1>
+    <p class="lead">Form fields change based on selected pricing plan</p>
+
+    {# Plan Selector #}
+    <div class="card mb-4 bg-light">
+        <div class="card-header">
+            <strong>Select Your Plan:</strong>
+        </div>
+        <div class="card-body">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="card {{ plan == 'basic' ? 'border-primary' : '' }}">
+                        <div class="card-body">
+                            <h5 class="card-title">Basic</h5>
+                            <h2 class="mb-3">$10<small class="text-muted">/mo</small></h2>
+                            <ul class="list-unstyled mb-4">
+                                <li>Up to 10 users</li>
+                                <li>1GB storage</li>
+                                <li>Email support</li>
+                            </ul>
+                            <a href="{{ path('dynamic_pricing_form', {plan: 'basic'}) }}"
+                               class="btn {{ plan == 'basic' ? 'btn-primary' : 'btn-outline-primary' }}">
+                                {% if plan == 'basic' %}Current Plan{% else %}Select Basic{% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card {{ plan == 'pro' ? 'border-success' : '' }}">
+                        <div class="card-body">
+                            <h5 class="card-title">Pro</h5>
+                            <h2 class="mb-3">$50<small class="text-muted">/mo</small></h2>
+                            <ul class="list-unstyled mb-4">
+                                <li>Up to 100 users</li>
+                                <li>10GB storage</li>
+                                <li>Priority support</li>
+                                <li>Integrations</li>
+                            </ul>
+                            <a href="{{ path('dynamic_pricing_form', {plan: 'pro'}) }}"
+                               class="btn {{ plan == 'pro' ? 'btn-success' : 'btn-outline-success' }}">
+                                {% if plan == 'pro' %}Current Plan{% else %}Select Pro{% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card {{ plan == 'enterprise' ? 'border-warning' : '' }}">
+                        <div class="card-body">
+                            <h5 class="card-title">Enterprise</h5>
+                            <h2 class="mb-3">Custom</h2>
+                            <ul class="list-unstyled mb-4">
+                                <li>Unlimited users</li>
+                                <li>Unlimited storage</li>
+                                <li>24/7 support</li>
+                                <li>SSO, API, SLA</li>
+                            </ul>
+                            <a href="{{ path('dynamic_pricing_form', {plan: 'enterprise'}) }}"
+                               class="btn {{ plan == 'enterprise' ? 'btn-warning' : 'btn-outline-warning' }}">
+                                {% if plan == 'enterprise' %}Current Plan{% else %}Select Enterprise{% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Promo Code Banner #}
+    {% if promo_code %}
+        <div class="alert alert-success">
+            <h5>🎉 Promo Code Applied!</h5>
+            <p class="mb-0">Code: <strong>{{ promo_code }}</strong></p>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <p class="mb-0">
+                Try these promo codes:
+                <a href="{{ path('dynamic_pricing_form', {plan: plan, promo: 'SAVE20'}) }}">SAVE20</a>,
+                <a href="{{ path('dynamic_pricing_form', {plan: plan, promo: 'WELCOME10'}) }}">WELCOME10</a>,
+                <a href="{{ path('dynamic_pricing_form', {plan: plan, promo: 'ANNUAL50'}) }}">ANNUAL50</a>
+            </p>
+        </div>
+    {% endif %}
+
+    {# Subscription Form #}
+    <div class="card mb-5">
+        <div class="card-header">
+            <strong>Complete Your Subscription</strong>
+        </div>
+        <div class="card-body">
+            {{ form|raw }}
+        </div>
+    </div>
+
+    {# Features Comparison #}
+    <div class="card">
+        <div class="card-header">
+            <strong>Plan Features Comparison</strong>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Basic</th>
+                        <th>Pro</th>
+                        <th>Enterprise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Max Users</td>
+                        <td>10</td>
+                        <td>100</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Storage</td>
+                        <td>1GB</td>
+                        <td>10GB</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Integrations (Slack, GitHub, Jira)</td>
+                        <td>-</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Dedicated Account Manager</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>SSO & API Access</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>24/7 SLA Support</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>✓</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{# Bootstrap 5 Checkbox Tree Template #}
+<div class="mb-3 {{ classes.wrapper }}" {{ wrapperAttributes|attributes|raw }}>
+    {% if label %}
+        <label class="{{ classes.label }}">
+            {{ label }}
+            {% if required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    {% if helpText %}
+        <div class="{{ classes.help }}">{{ helpText }}</div>
+    {% endif %}
+
+    <div class="checkbox-tree" data-checkbox-tree="{{ attributes.id }}" data-tree-mode="{{ treeMode }}">
+        {{ _self.render_tree_node(tree, attributes.name, attributes.id, 0) }}
+    </div>
+</div>
+
+{% macro render_tree_node(nodes, name, tree_id, level) %}
+    <ul class="list-unstyled ps-{{ level > 0 ? '4' : '0' }}">
+        {% for node in nodes %}
+            <li class="mb-1">
+                <label class="form-check-label d-flex align-items-center">
+                    <input 
+                        type="checkbox" 
+                        class="form-check-input me-2" 
+                        name="{{ name }}[]" 
+                        value="{{ node.value }}"
+                        {% if node.checked|default(false) %}checked{% endif %}
+                        {% if node.disabled|default(false) %}disabled{% endif %}
+                    />
+                    <span class="{% if level == 0 %}fw-bold{% endif %}">{{ node.label }}</span>
+                </label>
+                {% if node.children|default([]) is not empty %}
+                    {{ _self.render_tree_node(node.children, name, tree_id, level + 1) }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

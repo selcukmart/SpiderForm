@@ -1,0 +1,1 @@
+<textarea placeholder="{$placeholder}" rows="{$row}" id="{$id}" name="{$name}" type="{$type}" class="form-control">{$content}</textarea>

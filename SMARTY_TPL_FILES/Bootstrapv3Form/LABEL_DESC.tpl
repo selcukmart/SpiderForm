@@ -1,0 +1,1 @@
+<small><em>{$label_desc}</em></small>

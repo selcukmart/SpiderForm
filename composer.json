@@ -1,0 +1,90 @@
+{
+  "name": "selcukmart/spider-form",
+  "description": "SpiderForm - Modern PHP Form Builder with Chain Pattern. Weaving perfect forms for Symfony & Laravel",
+  "keywords": [
+    "spiderform",
+    "spider-form",
+    "form-builder",
+    "php-forms",
+    "chain-pattern",
+    "symfony",
+    "laravel",
+    "web-forms",
+    "form",
+    "html",
+    "generate",
+    "form generator",
+    "twig",
+    "fluent interface",
+    "validation",
+    "laravel validation",
+    "form validation",
+    "server-side validation",
+    "validation rules",
+    "form events",
+    "event-driven",
+    "php8.1",
+    "modern php"
+  ],
+  "homepage": "https://github.com/selcukmart/SpiderForm",
+  "minimum-stability": "stable",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "selcukmart",
+      "email": "admin@hostingdevi.com"
+    }
+  ],
+  "replace": {
+    "selcukmart/form-generator": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "SpiderForm\\V1\\": "FormGenerator/",
+      "SpiderForm\\V2\\": "src/V2/",
+      "SpiderForm\\": "src/V1/"
+    },
+    "files": [
+      "Helpers/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SpiderForm\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=8.1",
+    "ext-mbstring": "*",
+    "ext-iconv": "*",
+    "ext-json": "*",
+    "twig/twig": "^3.0",
+    "smarty/smarty": "^4.0|^5.0",
+    "symfony/http-foundation": "^6.0|^7.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "phpunit/phpunit": "^10.0|^11.0",
+    "symfony/form": "^6.0|^7.0",
+    "doctrine/orm": "^2.0|^3.0",
+    "illuminate/support": "^10.0|^11.0",
+    "phpstan/phpstan": "^1.10",
+    "friendsofphp/php-cs-fixer": "^3.0"
+  },
+  "suggest": {
+    "symfony/form": "For Symfony Form integration",
+    "doctrine/orm": "For Doctrine ORM data provider",
+    "illuminate/database": "For Laravel Eloquent data provider"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "4.x-dev"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "preferred-install": "dist"
+  }
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache"
+         executionOrder="depends,defects"
+         requireCoverageMetadata="true"
+         beStrictAboutCoverageMetadata="true"
+         beStrictAboutOutputDuringTests="true"
+         failOnRisky="true"
+         failOnWarning="true">
+
+    <testsuites>
+        <!-- Legacy V1 tests -->
+        <testsuite name="V1">
+            <directory suffix="Test.php">./tests/InputTypesTests</directory>
+        </testsuite>
+
+        <!-- V2 Unit tests -->
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+
+        <!-- V2 Integration tests -->
+        <testsuite name="Integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+
+        <!-- V2 Feature tests -->
+        <testsuite name="Feature">
+            <directory>tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+
+    <source restrictDeprecations="true" restrictNotices="true" restrictWarnings="true">
+        <include>
+            <directory>src/V2</directory>
+        </include>
+        <exclude>
+            <directory>src/V2/Theme/templates</directory>
+            <file>src/V2/Integration/Symfony/FormGeneratorBundle.php</file>
+            <file>src/V2/Integration/Laravel/FormGeneratorServiceProvider.php</file>
+        </exclude>
+    </source>
+
+    <coverage includeUncoveredFiles="true"
+              pathCoverage="false"
+              ignoreDeprecatedCodeUnits="true"
+              disableCodeCoverageIgnore="true">
+        <report>
+            <html outputDirectory="coverage/html"/>
+            <text outputFile="coverage/coverage.txt"/>
+            <clover outputFile="coverage/clover.xml"/>
+        </report>
+    </coverage>
+
+    <php>
+        <ini name="display_errors" value="1"/>
+        <ini name="error_reporting" value="-1"/>
+        <env name="APP_ENV" value="testing"/>
+    </php>
+</phpunit>

@@ -1,0 +1,74 @@
+{# Bootstrap 5 Repeater Template #}
+<div class="{{ classes.wrapper }}" {{ wrapperAttributes|attributes|raw }}>
+    {% if label %}
+        <label class="{{ classes.label }}">
+            {{ label }}
+            {% if required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    {% if helpText %}
+        <div class="{{ classes.help }}">{{ helpText }}</div>
+    {% endif %}
+
+    <div data-repeater="{{ attributes.id }}">
+        {# Template row (hidden) #}
+        <div class="{{ classes['item'] }}" data-repeater-template style="display: none;">
+            <div class="{{ classes['item-header'] }}">
+                <span class="fw-bold" data-repeater-row-number></span>
+                <button type="button" class="{{ classes['remove-button'] }}" data-repeater-remove>
+                    <i class="bi bi-trash"></i> Remove
+                </button>
+            </div>
+            <div class="{{ classes['item-body'] }}">
+                {% if repeaterFields %}
+                    {% for field in repeaterFields.inputs %}
+                        {% if field.is_section %}
+                            {% for section_input in field.inputs %}
+                                {% include template_from_string(include(section_input.template)) with section_input %}
+                            {% endfor %}
+                        {% else %}
+                            {% include template_from_string(include(field.template)) with field %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        {# Initial rows (if any default data) #}
+        {% if value is iterable and value is not empty %}
+            {% for index, rowData in value %}
+                <div class="{{ classes['item'] }}" data-repeater-item>
+                    <div class="{{ classes['item-header'] }}">
+                        <span class="fw-bold" data-repeater-row-number>#{{ index + 1 }}</span>
+                        <button type="button" class="{{ classes['remove-button'] }}" data-repeater-remove>
+                            <i class="bi bi-trash"></i> Remove
+                        </button>
+                    </div>
+                    <div class="{{ classes['item-body'] }}">
+                        {% if repeaterFields %}
+                            {% for field in repeaterFields.inputs %}
+                                {% set fieldWithValue = field|merge({'value': rowData[field.name]|default('')}) %}
+                                {% if field.is_section %}
+                                    {% for section_input in field.inputs %}
+                                        {% set sectionFieldWithValue = section_input|merge({'value': rowData[section_input.name]|default('')}) %}
+                                        {% include template_from_string(include(section_input.template)) with sectionFieldWithValue %}
+                                    {% endfor %}
+                                {% else %}
+                                    {% include template_from_string(include(field.template)) with fieldWithValue %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {# Add button container #}
+        <div class="mt-3" data-repeater-add-container>
+            <button type="button" class="{{ classes['add-button'] }}" data-repeater-add>
+                <i class="bi bi-plus-circle"></i> Add Item
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+{# Bootstrap 5 Checkbox #}
+<div class="{{ classes.wrapper }}" {{ wrapperAttributes|attributes|raw }}>
+    <input
+        type="checkbox"
+        {{ attributes|attributes|raw }}
+        class="{{ classes.input }}"
+        {% if value %}checked{% endif %}
+    />
+    {% if label %}
+        <label for="{{ attributes.id }}" class="{{ classes.label }}">
+            {{ label }}
+            {% if required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    {% if helpText %}
+        <div class="{{ classes.help }}">{{ helpText }}</div>
+    {% endif %}
+</div>

@@ -1,0 +1,18 @@
+{# Bootstrap 5 Textarea #}
+<div class="{{ classes.wrapper }}" {{ wrapperAttributes|attributes|raw }}>
+    {% if label %}
+        <label for="{{ attributes.id }}" class="{{ classes.label }}">
+            {{ label }}
+            {% if required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    <textarea
+        {{ attributes|attributes|raw }}
+        class="{{ classes.input }}{% if required %} required{% endif %}"
+    >{{ value }}</textarea>
+
+    {% if helpText %}
+        <div class="{{ classes.help }}">{{ helpText }}</div>
+    {% endif %}
+</div>

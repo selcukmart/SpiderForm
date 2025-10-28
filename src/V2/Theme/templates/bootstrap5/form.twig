@@ -1,0 +1,63 @@
+{# Bootstrap 5 Form Template #}
+{% if stepper_enabled %}
+    {% include template_from_string(include('bootstrap5/form_stepper.twig')) %}
+{% else %}
+<form {{ form.attributes|attributes|raw }}>
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+
+    {% for input in inputs %}
+        {% if input.is_section %}
+            {# Render section with its inputs #}
+            {% if input.section %}
+                <div class="form-section mb-4 {{ input.section.classes|join(' ') }}" {% for attr, value in input.section.attributes %}{{ attr }}="{{ value }}" {% endfor %}>
+                    {% if input.section.collapsible %}
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="mb-0">
+                                    <button class="btn btn-link w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#section-{{ loop.index }}" aria-expanded="{{ not input.section.collapsed }}">
+                                        {{ input.section.title }}
+                                    </button>
+                                </h4>
+                            </div>
+                            <div id="section-{{ loop.index }}" class="collapse {{ not input.section.collapsed ? 'show' : '' }}">
+                                <div class="card-body">
+                                    {% if input.section.description %}
+                                        <p class="text-muted mb-3">{{ input.section.description|raw }}</p>
+                                    {% endif %}
+                                    {% if input.section.htmlContent %}
+                                        <div class="section-content mb-3">{{ input.section.htmlContent|raw }}</div>
+                                    {% endif %}
+                                    {% for section_input in input.inputs %}
+                                        {% include template_from_string(include(section_input.template)) %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <h3 class="form-section-title mb-2">{{ input.section.title }}</h3>
+                        {% if input.section.description %}
+                            <p class="text-muted mb-3">{{ input.section.description|raw }}</p>
+                        {% endif %}
+                        {% if input.section.htmlContent %}
+                            <div class="section-content mb-3">{{ input.section.htmlContent|raw }}</div>
+                        {% endif %}
+                        {% for section_input in input.inputs %}
+                            {% include template_from_string(include(section_input.template)) %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% else %}
+                {# Section is null - render inputs without section wrapper #}
+                {% for section_input in input.inputs %}
+                    {% include template_from_string(include(section_input.template)) %}
+                {% endfor %}
+            {% endif %}
+        {% else %}
+            {# Regular input (no sections used) #}
+            {% include template_from_string(include(input.template)) %}
+        {% endif %}
+    {% endfor %}
+</form>
+{% endif %}

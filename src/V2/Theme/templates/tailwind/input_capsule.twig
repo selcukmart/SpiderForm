@@ -1,0 +1,19 @@
+{# Bootstrap 5 Input Wrapper/Capsule #}
+<div class="{{ input.classes.wrapper }}">
+    {% if input.label and input.type not in ['checkbox', 'radio', 'hidden'] %}
+        <label for="{{ input.attributes.id }}" class="{{ input.classes.label }}">
+            {{ input.label }}
+            {% if input.required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    {{ input_content|raw }}
+
+    {% if input.helpText %}
+        <div class="{{ input.classes.help }}">{{ input.helpText }}</div>
+    {% endif %}
+
+    {% if input.error %}
+        <div class="{{ input.classes.error }}">{{ input.error }}</div>
+    {% endif %}
+</div>

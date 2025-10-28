@@ -1,0 +1,27 @@
+{# Bootstrap 5 Select Dropdown #}
+<div class="{{ classes.wrapper }}" {{ wrapperAttributes|attributes|raw }}>
+    {% if label %}
+        <label for="{{ attributes.id }}" class="{{ classes.label }}">
+            {{ label }}
+            {% if required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    <select
+        {{ attributes|attributes|raw }}
+        class="{{ classes.input }}{% if required %} required{% endif %}"
+    >
+        {% if placeholder %}
+            <option value="">{{ placeholder }}</option>
+        {% endif %}
+        {% for key, option_label in options %}
+            <option value="{{ key }}" {% if value == key %}selected{% endif %}>
+                {{ option_label }}
+            </option>
+        {% endfor %}
+    </select>
+
+    {% if helpText %}
+        <div class="{{ classes.help }}">{{ helpText }}</div>
+    {% endif %}
+</div>

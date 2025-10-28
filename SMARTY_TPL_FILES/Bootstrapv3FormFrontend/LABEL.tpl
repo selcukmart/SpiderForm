@@ -1,0 +1,1 @@
+<label class="control-label" {$label_attributes}>{$label}</label>

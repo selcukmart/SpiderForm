@@ -1,0 +1,42 @@
+{# Tailwind CSS Checkbox Tree Template #}
+<div class="mb-4 {{ classes.wrapper }}" {{ wrapperAttributes|attributes|raw }}>
+    {% if label %}
+        <label class="{{ classes.label }}">
+            {{ label }}
+            {% if required %}<span class="text-red-500 ml-1">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    {% if helpText %}
+        <div class="{{ classes.help }}">{{ helpText }}</div>
+    {% endif %}
+
+    <div class="checkbox-tree" data-checkbox-tree="{{ attributes.id }}" data-tree-mode="{{ treeMode }}">
+        {{ _self.render_tree_node(tree, attributes.name, attributes.id, 0) }}
+    </div>
+</div>
+
+{% macro render_tree_node(nodes, name, tree_id, level) %}
+    <ul class="space-y-1 {{ level > 0 ? 'pl-6' : '' }}">
+        {% for node in nodes %}
+            <li>
+                <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
+                    <input 
+                        type="checkbox" 
+                        class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" 
+                        name="{{ name }}[]" 
+                        value="{{ node.value }}"
+                        {% if node.checked|default(false) %}checked{% endif %}
+                        {% if node.disabled|default(false) %}disabled{% endif %}
+                    />
+                    <span class="{% if level == 0 %}font-semibold text-gray-900{% else %}text-gray-700{% endif %}">
+                        {{ node.label }}
+                    </span>
+                </label>
+                {% if node.children|default([]) is not empty %}
+                    {{ _self.render_tree_node(node.children, name, tree_id, level + 1) }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

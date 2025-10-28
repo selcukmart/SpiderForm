@@ -1,0 +1,127 @@
+{# templates/query_based_forms.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Query String Based Forms{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h1 class="mb-4">Query String Based Conditional Rendering</h1>
+    <p class="lead">Conditionally render form fields based on URL query parameters</p>
+
+    {# Current Query Parameters #}
+    <div class="alert alert-info mb-4">
+        <strong>Current Query Parameters:</strong><br>
+        mode = {{ query_params.mode|default('<em>not set</em>')|raw }}<br>
+        user_role = {{ query_params.user_role|default('<em>not set</em>')|raw }}<br>
+        country = {{ query_params.country|default('<em>not set</em>')|raw }}<br>
+        role = {{ query_params.role|default('<em>not set</em>')|raw }}<br>
+        feature = {{ query_params.feature|default('<em>not set</em>')|raw }}<br>
+        beta = {{ query_params.beta|default('<em>not set</em>')|raw }}<br>
+        strict = {{ query_params.strict|default('<em>not set</em>')|raw }}
+    </div>
+
+    {# Test Links #}
+    <div class="card mb-4">
+        <div class="card-header"><strong>Try These URLs:</strong></div>
+        <div class="card-body">
+            <ul class="mb-0">
+                <li><a href="{{ path('query_based_form', {mode: 'advanced'}) }}">?mode=advanced</a> - Show advanced settings</li>
+                <li><a href="{{ path('query_based_form', {user_role: 'admin'}) }}">?user_role=admin</a> - Show admin panel</li>
+                <li><a href="{{ path('query_based_form', {country: 'US', role: 'admin'}) }}">?country=US&role=admin</a> - Complex condition</li>
+                <li><a href="{{ path('query_based_form', {feature: 'new_ui'}) }}">?feature=new_ui</a> - Show new UI options</li>
+                <li><a href="{{ path('query_based_form', {beta: 'enabled'}) }}">?beta=enabled</a> - Show beta features</li>
+                <li><a href="{{ path('query_based_form', {strict: 'true'}) }}">?strict=true</a> - Enable strict validation</li>
+                <li><a href="{{ path('query_based_form') }}">Clear all parameters</a></li>
+            </ul>
+        </div>
+    </div>
+
+    {# Method 1: Hidden Field + dependsOn #}
+    <h2 class="mb-4">Method 1: Hidden Field + dependsOn</h2>
+    <div class="card mb-5">
+        <div class="card-body">
+            <p>Query parameters added as hidden fields with dependency chains:</p>
+            {{ form1|raw }}
+        </div>
+    </div>
+
+    {# Method 2: Server-Side Evaluation #}
+    <h2 class="mb-4">Method 2: Server-Side Evaluation</h2>
+    <div class="card mb-5">
+        <div class="card-body">
+            <p>Fields with unmet dependencies are NOT rendered in HTML (check page source):</p>
+            {% if query_params.mode == 'advanced' %}
+                <div class="alert alert-success">✓ Advanced mode active - field IS rendered</div>
+            {% else %}
+                <div class="alert alert-warning">✗ Advanced mode inactive - field NOT rendered</div>
+            {% endif %}
+            {{ form2|raw }}
+        </div>
+    </div>
+
+    {# Method 3: onPreRender Event #}
+    <h2 class="mb-4">Method 3: Custom Logic with onPreRender</h2>
+    <div class="card mb-5">
+        <div class="card-body">
+            <p>Event-based query string checking:</p>
+            {{ form3|raw }}
+        </div>
+    </div>
+
+    {# Method 4: Complex Conditions #}
+    <h2 class="mb-4">Method 4: Complex Conditions</h2>
+    <div class="card mb-5">
+        <div class="card-body">
+            <p>Multiple query parameters with custom dependency logic:</p>
+            {% if query_params.country == 'US' and query_params.role == 'admin' %}
+                <div class="alert alert-success">✓ Both conditions met: country=US AND role=admin</div>
+            {% else %}
+                <div class="alert alert-warning">Try <a href="{{ path('query_based_form', {country: 'US', role: 'admin'}) }}">?country=US&role=admin</a></div>
+            {% endif %}
+            {{ form4|raw }}
+        </div>
+    </div>
+
+    {# Method 5: Nested Dependencies #}
+    <h2 class="mb-4">Method 5: Nested Dependencies</h2>
+    <div class="card mb-5">
+        <div class="card-body">
+            <p>Query string triggers multi-level dependency chains:</p>
+            {{ form5|raw }}
+        </div>
+    </div>
+
+    {# Method 6: Validation #}
+    <h2 class="mb-4">Method 6: Dynamic Validation</h2>
+    <div class="card mb-5">
+        <div class="card-body">
+            <p>Query string affects validation rules:</p>
+            {% if query_params.strict == 'true' %}
+                <div class="alert alert-danger">⚠️ Strict mode enabled - stricter validation rules active</div>
+            {% endif %}
+            {{ form6|raw }}
+        </div>
+    </div>
+
+    {# Summary #}
+    <div class="alert alert-success mt-5">
+        <h4>Summary</h4>
+        <p><strong>Use Cases:</strong></p>
+        <ul>
+            <li><strong>Role-Based Forms</strong>: Show different fields for admin/user roles</li>
+            <li><strong>Feature Flags</strong>: Enable beta features via query params</li>
+            <li><strong>A/B Testing</strong>: Show variant A or B based on query param</li>
+            <li><strong>Pricing Plans</strong>: Different fields for each plan</li>
+            <li><strong>Localization</strong>: Country-specific fields</li>
+        </ul>
+
+        <p class="mt-3"><strong>Methods:</strong></p>
+        <ol>
+            <li><strong>Hidden Field + dependsOn</strong>: Simple client-side + server-side</li>
+            <li><strong>Server-Side Evaluation</strong>: Fields not in HTML if condition not met</li>
+            <li><strong>onPreRender Event</strong>: Custom logic before rendering</li>
+            <li><strong>onDependencyCheck</strong>: Complex multi-param conditions</li>
+        </ol>
+    </div>
+</div>
+{% endblock %}

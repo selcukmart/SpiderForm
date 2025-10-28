@@ -1,0 +1,5 @@
+.idea/*
+vendor/*
+.phpunit.result.cache
+SMARTY_TPL_FILES/template_compile
+composer.lock

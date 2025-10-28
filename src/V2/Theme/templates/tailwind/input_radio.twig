@@ -1,0 +1,30 @@
+{# Bootstrap 5 Radio Buttons #}
+<div class="mb-3" {{ wrapperAttributes|attributes|raw }}>
+    {% if label %}
+        <label class="form-label">
+            {{ label }}
+            {% if required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    {% for key, option_label in options %}
+        <div class="{{ classes.wrapper }}">
+            <input
+                type="radio"
+                name="{{ attributes.name }}"
+                id="{{ attributes.id }}_{{ key }}"
+                value="{{ key }}"
+                class="{{ classes.input }}"
+                {{ attributes|attributes|raw }}
+                {% if value == key %}checked{% endif %}
+            />
+            <label for="{{ attributes.id }}_{{ key }}" class="{{ classes.label }}">
+                {{ option_label }}
+            </label>
+        </div>
+    {% endfor %}
+
+    {% if helpText %}
+        <div class="{{ classes.help }}">{{ helpText }}</div>
+    {% endif %}
+</div>
