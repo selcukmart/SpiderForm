@@ -1,0 +1,23 @@
+{# Bootstrap 3 Radio #}
+<div class="{{ classes.wrapper }}{% if error %} has-error{% endif %}" {{ wrapperAttributes|attributes|raw }}>
+    <label>
+        <input
+            type="radio"
+            {{ attributes|attributes|raw }}
+            class="{{ classes.input }}"
+            {% if value %}checked{% endif %}
+        />
+        {% if label %}
+            {{ label }}
+            {% if required %}<span class="text-danger">*</span>{% endif %}
+        {% endif %}
+    </label>
+
+    {% if helpText %}
+        <span class="{{ classes.help }}">{{ helpText }}</span>
+    {% endif %}
+
+    {% if error %}
+        <span class="{{ classes.error }}">{{ error }}</span>
+    {% endif %}
+</div>

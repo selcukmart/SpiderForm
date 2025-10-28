@@ -1,0 +1,6 @@
+{# Bootstrap 3 Hidden Input #}
+<input
+    type="hidden"
+    {{ attributes|attributes|raw }}
+    {% if value %}value="{{ value }}"{% endif %}
+/>
