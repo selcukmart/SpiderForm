@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SpiderForm\V2\Integration\Blade\Components;
 
 use Illuminate\View\Component;
-use SpiderForm\V2\Integration\Blade\FormGeneratorBladeDirectives;
+use SpiderForm\V2\Integration\Blade\SpiderFormBladeDirectives;
 
 /**
  * Form Blade Component
@@ -46,11 +46,11 @@ class Form extends Component
             'method' => $this->method,
         ]) + $this->attributes;
 
-        FormGeneratorBladeDirectives::directiveFormStart($this->name, $options);
+        SpiderFormBladeDirectives::directiveFormStart($this->name, $options);
 
         return function (array $data) {
             // Slot content is rendered here
-            return FormGeneratorBladeDirectives::directiveFormEnd();
+            return SpiderFormBladeDirectives::directiveFormEnd();
         };
     }
 }

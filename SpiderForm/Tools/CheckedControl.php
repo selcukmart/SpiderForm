@@ -8,7 +8,7 @@
 namespace SpiderForm\Tools;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 
 class CheckedControl
 {
@@ -22,7 +22,7 @@ class CheckedControl
         $from,
         $formGenerator;
 
-    public function __construct(FormGeneratorDirector $formGenerator, array $control_array, $field, $row = null)
+    public function __construct(SpiderFormDirector $formGenerator, array $control_array, $field, $row = null)
     {
         $this->formGenerator = $formGenerator;
         $this->row = $row;

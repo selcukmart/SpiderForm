@@ -9,7 +9,7 @@ namespace Tests\InputTypesTests\ScopeAdd;
 
 
 use Examples\DBExamples\Libraries\Database\DB;
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 
 class SelectTest extends TestCase
@@ -45,7 +45,7 @@ class SelectTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<select name="iso" type="select" class="" __is_def="1" id="iso" ><option value="">...</option><option value="us" >USA</option><option value="gb" >United Kingdom</option><option value="de" >Germany</option></select>';
@@ -95,7 +95,7 @@ class SelectTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<select name="iso" type="select" class="" __is_def="1" id="iso" ><option value="">...</option><option value="gb" >UK</option><option value="us" >USA</option><option value="de" >Germany</option></select>';
@@ -134,7 +134,7 @@ class SelectTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<select name="iso" type="select" class="" __is_def="1" id="iso" ><option value="">...</option><option value="us" >USA</option><option value="gb" >UK</option><option value="de" >Germany</option></select>';
@@ -188,7 +188,7 @@ class SelectTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'add');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<select name="iso" type="select" class="" __is_def="1" id="iso" ><option value="">...</option><option value="us" >USA</option><option value="gb" >UK</option><option value="de" >Germany</option></select>';

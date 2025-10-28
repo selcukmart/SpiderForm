@@ -8,13 +8,13 @@
 namespace SpiderForm\Tools;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 
 class Filter
 {
     private $formGenerator;
 
-    public function __construct(FormGeneratorDirector $formGenerator)
+    public function __construct(SpiderFormDirector $formGenerator)
     {
         $this->formGenerator = $formGenerator;
     }

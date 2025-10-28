@@ -9,7 +9,7 @@ namespace Tests\InputTypesTests\ScopeEdit;
 
 
 use Examples\DBExamples\Libraries\Database\DB;
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 use Tests\FormDataAsRow;
 
@@ -49,7 +49,7 @@ class RadioTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'edit');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<label for="country-us"> <input type="radio" value="us" id="country-us" name="country" checked >USA</label><br>        <label for="country-gb"> <input type="radio" value="gb" id="country-gb" name="country"  >United Kingdom</label><br>        <label for="country-de"> <input type="radio" value="de" id="country-de" name="country"  >Germany</label><br>';
@@ -102,7 +102,7 @@ class RadioTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'edit');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<label for="country-us"> <input type="radio" value="us" id="country-us" name="country" checked >USA</label><br>        <label for="country-gb"> <input type="radio" value="gb" id="country-gb" name="country"  >UK</label><br>        <label for="country-de"> <input type="radio" value="de" id="country-de" name="country"  >Germany</label><br>';
@@ -144,7 +144,7 @@ class RadioTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'edit');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<label for="country-us"> <input type="radio" value="us" id="country-us" name="country" checked >USA</label><br>        <label for="country-gb"> <input type="radio" value="gb" id="country-gb" name="country"  >UK</label><br>        <label for="country-de"> <input type="radio" value="de" id="country-de" name="country"  >Germany</label><br>';
@@ -199,7 +199,7 @@ class RadioTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'edit');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = trim($form_generator->getHtmlOutput());
         $expected = '<label for="country-us"> <input type="radio" value="us" id="country-us" name="country" checked >USA</label><br>        <label for="country-gb"> <input type="radio" value="gb" id="country-gb" name="country"  >UK</label><br>        <label for="country-de"> <input type="radio" value="de" id="country-de" name="country"  >Germany</label><br>';

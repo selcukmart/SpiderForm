@@ -8,7 +8,7 @@
 namespace Tests\InputTypesTests\ScopeEdit;
 
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use PHPUnit\Framework\TestCase;
 use Tests\FormDataAsRow;
 
@@ -41,7 +41,7 @@ class TextareaTest extends TestCase
                 ]
             ]
         ];
-        $form_generator = new FormGeneratorDirector($form_generator_array, 'edit');
+        $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput();
         $expected = '<textarea placeholder="Nationality is Turkey Citizen" rows="3" id="nationality_tc_or_not" name="nationality_tc_or_not" type="textarea" class="form-control">1</textarea>';

@@ -2,7 +2,7 @@
 
 namespace SpiderForm\Render\RenderEngines;
 
-use SpiderForm\FormGeneratorDirector;
+use SpiderForm\SpiderFormDirector;
 use SpiderForm\Render\Render;
 use GlobalTraits\ErrorMessagesWithResultTrait;
 
@@ -24,18 +24,18 @@ abstract class AbstractRenderEngines
         $formGenerator,
         $render;
 
-    public function __construct(FormGeneratorDirector $formGenerator, Render $templateObject)
+    public function __construct(SpiderFormDirector $formGenerator, Render $templateObject)
     {
         $this->formGenerator = $formGenerator;
         $this->render = $templateObject;
     }
 
-    public static function getInstance(FormGeneratorDirector $formGenerator, $templateObject): AbstractRenderEngines
+    public static function getInstance(SpiderFormDirector $formGenerator, $templateObject): AbstractRenderEngines
     {
         $class = static::class;
-        if (!isset(self::$instances[FormGeneratorDirector::getInstanceCount()][$class])) {
-            self::$instances[FormGeneratorDirector::getInstanceCount()][$class] = new static($formGenerator, $templateObject);
+        if (!isset(self::$instances[SpiderFormDirector::getInstanceCount()][$class])) {
+            self::$instances[SpiderFormDirector::getInstanceCount()][$class] = new static($formGenerator, $templateObject);
         }
-        return self::$instances[FormGeneratorDirector::getInstanceCount()][$class];
+        return self::$instances[SpiderFormDirector::getInstanceCount()][$class];
     }
 }
