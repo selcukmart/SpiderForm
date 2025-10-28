@@ -257,6 +257,28 @@ $theme->enableFloatingLabels();
 $theme->enableHorizontalForm('col-md-3', 'col-md-9');
 ```
 
+### Bootstrap 3 (Included)
+
+```php
+use SpiderForm\V2\Theme\Bootstrap3Theme;
+
+$theme = new Bootstrap3Theme();
+
+// Enable inline form
+$theme->enableInlineForm();
+
+// Enable horizontal form
+$theme->enableHorizontalForm('col-sm-2', 'col-sm-10');
+```
+
+The Bootstrap 3 theme provides complete support for Bootstrap 3.4.1 with all form components, including:
+- All input types with proper Bootstrap 3 markup
+- Form groups with `form-group`, `control-label`, and `help-block` classes
+- Checkbox and radio inputs with proper Bootstrap 3 structure
+- Panel-based sections and collapsible forms
+- Repeater fields with panel styling
+- Multi-step forms with Bootstrap 3 stepper navigation
+
 ### Custom Theme
 
 ```php

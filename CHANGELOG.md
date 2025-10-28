@@ -5,6 +5,32 @@ All notable changes to SpiderForm V2 will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+**Bootstrap 3 Theme Support**
+- New `Bootstrap3Theme` class for Bootstrap 3.4.1 compatibility
+- Complete set of Bootstrap 3 Twig templates for all form components
+- Support for Bootstrap 3 specific features:
+  - Form groups with `form-group`, `control-label`, and `help-block` classes
+  - Panel-based sections and collapsible forms
+  - Inline and horizontal form layouts via `enableInlineForm()` and `enableHorizontalForm()`
+  - Checkbox and radio inputs with proper Bootstrap 3 markup
+  - Repeater fields with panel styling
+  - Multi-step forms with Bootstrap 3 stepper navigation
+- CDN links for Bootstrap 3.4.1 included in theme assets
+
+**Usage:**
+```php
+use SpiderForm\V2\Theme\Bootstrap3Theme;
+
+$theme = new Bootstrap3Theme();
+$form = FormBuilder::create('my_form')
+    ->setTheme($theme)
+    ->build();
+```
+
 ## [3.0.0] - 2025-10-27
 
 ### Added - Complete i18n & Auto CSRF Protection 🌍🔒
