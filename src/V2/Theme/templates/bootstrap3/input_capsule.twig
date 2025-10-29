@@ -1,0 +1,19 @@
+{# Bootstrap 3 Input Wrapper/Capsule #}
+<div class="{{ input.classes.wrapper }}{% if input.error %} has-error{% endif %}">
+    {% if input.label and input.type not in ['checkbox', 'radio', 'hidden'] %}
+        <label for="{{ input.attributes.id }}" class="{{ input.classes.label }}">
+            {{ input.label }}
+            {% if input.required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    {{ input_content|raw }}
+
+    {% if input.helpText %}
+        <span class="{{ input.classes.help }}">{{ input.helpText }}</span>
+    {% endif %}
+
+    {% if input.error %}
+        <span class="{{ input.classes.error }}">{{ input.error }}</span>
+    {% endif %}
+</div>

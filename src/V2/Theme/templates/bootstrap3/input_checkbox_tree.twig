@@ -1,0 +1,45 @@
+{# Bootstrap 3 Checkbox Tree Template #}
+<div class="{{ classes.wrapper }}{% if error %} has-error{% endif %}" {{ wrapperAttributes|attributes|raw }}>
+    {% if label %}
+        <label class="{{ classes.label }}">
+            {{ label }}
+            {% if required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    {% if helpText %}
+        <span class="{{ classes.help }}">{{ helpText }}</span>
+    {% endif %}
+
+    <div class="checkbox-tree" data-checkbox-tree="{{ attributes.id }}" data-tree-mode="{{ treeMode }}">
+        {{ _self.render_tree_node(tree, attributes.name, attributes.id, 0) }}
+    </div>
+
+    {% if error %}
+        <span class="{{ classes.error }}">{{ error }}</span>
+    {% endif %}
+</div>
+
+{% macro render_tree_node(nodes, name, tree_id, level) %}
+    <ul class="list-unstyled" style="padding-left: {{ level > 0 ? '20px' : '0' }};">
+        {% for node in nodes %}
+            <li style="margin-bottom: 5px;">
+                <div class="checkbox">
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="{{ name }}[]"
+                            value="{{ node.value }}"
+                            {% if node.checked|default(false) %}checked{% endif %}
+                            {% if node.disabled|default(false) %}disabled{% endif %}
+                        />
+                        <span {% if level == 0 %}style="font-weight: bold;"{% endif %}>{{ node.label }}</span>
+                    </label>
+                </div>
+                {% if node.children|default([]) is not empty %}
+                    {{ _self.render_tree_node(node.children, name, tree_id, level + 1) }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

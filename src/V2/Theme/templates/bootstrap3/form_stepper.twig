@@ -1,0 +1,246 @@
+{# Bootstrap 3 Form with Stepper Template #}
+<form {{ form.attributes|attributes|raw }}>
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+
+    {# Stepper Container #}
+    <div class="stepper stepper-{{ stepper_options.layout|default('horizontal') }}" data-stepper="{{ form.name }}">
+        {# Stepper Navigation #}
+        <div class="stepper-nav {% if stepper_options.layout == 'vertical' %}stepper-nav-vertical{% else %}stepper-nav-horizontal{% endif %}">
+            {% set step_index = 0 %}
+            {% for input in inputs %}
+                {% if input.is_section and input.section %}
+                    <div class="stepper-nav-item {% if step_index == stepper_options.startIndex|default(0) %}active{% endif %}" data-stepper-nav="{{ step_index }}">
+                        <div class="stepper-nav-step">
+                            <div class="stepper-nav-step-number">{{ step_index + 1 }}</div>
+                            <div class="stepper-nav-step-icon">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </div>
+                        </div>
+                        <div class="stepper-nav-label">
+                            <div class="stepper-nav-title">{{ input.section.title }}</div>
+                            {% if input.section.description %}
+                                <div class="stepper-nav-desc text-muted">{{ input.section.description|raw }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if not loop.last %}
+                        <div class="stepper-nav-line"></div>
+                    {% endif %}
+                    {% set step_index = step_index + 1 %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {# Stepper Steps Content #}
+        <div class="stepper-content">
+            {% set step_index = 0 %}
+            {% for input in inputs %}
+                {% if input.is_section %}
+                    {# Render section as a step #}
+                    {% if input.section %}
+                        <div class="stepper-step {% if step_index == stepper_options.startIndex|default(0) %}active{% endif %}" data-stepper-step="{{ step_index }}" style="display: {% if step_index == stepper_options.startIndex|default(0) %}block{% else %}none{% endif %};">
+                            <div style="margin-bottom: 20px;">
+                                <h3><strong>{{ input.section.title }}</strong></h3>
+                                {% if input.section.description %}
+                                    <p class="text-muted">{{ input.section.description|raw }}</p>
+                                {% endif %}
+                                {% if input.section.htmlContent %}
+                                    <div class="section-content">{{ input.section.htmlContent|raw }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="stepper-step-fields">
+                                {% for section_input in input.inputs %}
+                                    {% include template_from_string(include(section_input.template)) %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% set step_index = step_index + 1 %}
+                    {% else %}
+                        {# Section is null - render inputs without section wrapper #}
+                        <div class="stepper-step" data-stepper-step="0">
+                            {% for section_input in input.inputs %}
+                                {% include template_from_string(include(section_input.template)) %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% else %}
+                    {# Regular input (no sections used) - wrap in default step #}
+                    {% if loop.first %}
+                        <div class="stepper-step active" data-stepper-step="0">
+                    {% endif %}
+                    {% include template_from_string(include(input.template)) %}
+                    {% if loop.last %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {# Stepper Navigation Buttons #}
+        {% if stepper_options.showNavigationButtons|default(true) %}
+            <div class="stepper-actions clearfix" style="margin-top: 20px;">
+                <button type="button" class="btn btn-default pull-left" data-stepper-action="prev">
+                    <span class="glyphicon glyphicon-arrow-left"></span> Previous
+                </button>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" data-stepper-action="next">
+                        Next <span class="glyphicon glyphicon-arrow-right"></span>
+                    </button>
+                    <button type="submit" class="btn btn-success" data-stepper-action="finish" style="display: none;">
+                        <span class="glyphicon glyphicon-ok-circle"></span> Finish
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</form>
+
+<style>
+/* Stepper Base Styles */
+.stepper-nav {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.stepper-nav-item {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.stepper-nav-horizontal {
+    text-align: center;
+}
+
+.stepper-nav-horizontal .stepper-nav-item {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stepper-nav-horizontal .stepper-nav-label {
+    margin-top: 10px;
+}
+
+.stepper-nav-step {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eeeeee;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 2;
+    margin: 0 auto;
+}
+
+.stepper-nav-step-number {
+    font-weight: 600;
+    color: #777;
+}
+
+.stepper-nav-step-icon {
+    display: none;
+    color: #fff;
+}
+
+.stepper-nav-item.active .stepper-nav-step {
+    background: #337ab7;
+}
+
+.stepper-nav-item.active .stepper-nav-step-number {
+    color: #fff;
+}
+
+.stepper-nav-item.completed .stepper-nav-step {
+    background: #5cb85c;
+}
+
+.stepper-nav-item.completed .stepper-nav-step-number {
+    display: none;
+}
+
+.stepper-nav-item.completed .stepper-nav-step-icon {
+    display: block;
+}
+
+.stepper-nav-item.error .stepper-nav-step {
+    background: #d9534f;
+}
+
+.stepper-nav-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.stepper-nav-desc {
+    font-size: 12px;
+}
+
+.stepper-nav-line {
+    display: inline-block;
+    width: 60px;
+    height: 2px;
+    background: #eeeeee;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+/* Vertical Layout */
+.stepper-nav-vertical {
+    text-align: left;
+}
+
+.stepper-nav-vertical .stepper-nav-item {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.stepper-nav-vertical .stepper-nav-item::after {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 30px;
+    background: #eeeeee;
+    margin-left: 19px;
+}
+
+.stepper-nav-vertical .stepper-nav-item:last-child::after {
+    display: none;
+}
+
+.stepper-nav-vertical .stepper-nav-line {
+    display: none;
+}
+
+/* Step Content */
+.stepper-step {
+    transition: opacity 0.3s ease;
+}
+
+.stepper-step.active {
+    opacity: 1;
+}
+
+/* Clickable steps in non-linear mode */
+[data-stepper-nav] {
+    cursor: default;
+}
+
+.stepper[data-stepper].non-linear [data-stepper-nav] {
+    cursor: pointer;
+}
+
+.stepper[data-stepper].non-linear [data-stepper-nav]:hover .stepper-nav-step {
+    background: #337ab7;
+}
+
+.stepper[data-stepper].non-linear [data-stepper-nav]:hover .stepper-nav-step-number {
+    color: #fff;
+}
+</style>

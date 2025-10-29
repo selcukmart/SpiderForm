@@ -1,0 +1,22 @@
+{# Bootstrap 3 Textarea #}
+<div class="{{ classes.wrapper }}{% if error %} has-error{% endif %}" {{ wrapperAttributes|attributes|raw }}>
+    {% if label %}
+        <label for="{{ attributes.id }}" class="{{ classes.label }}">
+            {{ label }}
+            {% if required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    <textarea
+        {{ attributes|attributes|raw }}
+        class="{{ classes.input }}{% if required %} required{% endif %}"
+    >{% if value %}{{ value }}{% endif %}</textarea>
+
+    {% if helpText %}
+        <span class="{{ classes.help }}">{{ helpText }}</span>
+    {% endif %}
+
+    {% if error %}
+        <span class="{{ classes.error }}">{{ error }}</span>
+    {% endif %}
+</div>
