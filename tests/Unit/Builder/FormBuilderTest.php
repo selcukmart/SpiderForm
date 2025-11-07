@@ -24,7 +24,7 @@ class FormBuilderTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->formBuilder = new FormBuilder('test-form');
+        $this->formBuilder = FormBuilder::create('test-form');
     }
 
     #[Test]

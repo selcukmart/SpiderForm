@@ -59,7 +59,7 @@ class ButtonGroupTest extends TestCase
         $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput('buttons');
-        $expected = '<button name="btn1" type="button" class="btn btn-success">Button</button><button name="btn2" type="reset" class="btn btn-success">Reset</button><button name="btn3" type="submit" class="btn btn-success">Submit</button>';
+        $expected = '<button class="btn btn-success" name="btn1" type="button" >Button</button><button class="btn btn-success" name="btn2" type="reset" >Reset</button><button class="btn btn-success" name="btn3" type="submit" >Submit</button>';
         $this->assertSame($expected, $html);
     }
 }

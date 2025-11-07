@@ -94,6 +94,16 @@ class DateTimePickerManager
     ];
 
     /**
+     * Reset the rendered pickers tracking (useful for testing)
+     *
+     * @return void
+     */
+    public static function reset(): void
+    {
+        self::$renderedPickers = [];
+    }
+
+    /**
      * Generate datetime picker script
      *
      * @param string $inputId Input field ID

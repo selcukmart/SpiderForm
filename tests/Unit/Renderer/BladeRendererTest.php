@@ -43,8 +43,8 @@ class BladeRendererTest extends TestCase
 
     protected function tearDown(): void
     {
-        // Clean up temp directory
-        if (is_dir($this->tempDir)) {
+        // Clean up temp directory only if it was initialized
+        if (isset($this->tempDir) && is_dir($this->tempDir)) {
             $this->removeDirectory($this->tempDir);
         }
     }

@@ -558,6 +558,16 @@ class FormBuilder implements BuilderInterface
     }
 
     /**
+     * Get form data
+     *
+     * @return array
+     */
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
+    /**
      * Load data from provider by ID
      */
     public function loadData(mixed $id): self

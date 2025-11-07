@@ -12,6 +12,13 @@ use PHPUnit\Framework\Attributes\Test;
 #[CoversClass(TimePickerManager::class)]
 class TimePickerManagerTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        // Reset the static rendered pickers tracker before each test
+        TimePickerManager::reset();
+    }
+
     #[Test]
     public function it_has_english_locale_constant(): void
     {
