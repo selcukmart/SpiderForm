@@ -26,8 +26,19 @@ class SmartyRenderer implements RendererInterface
     ) {
         $this->smarty = $smarty ?? new Smarty();
 
+        // Get SpiderForm templates directory
+        $spiderFormTemplateDir = dirname(__DIR__) . '/Theme/templates/smarty';
+
+        // Configure template directories
         if ($templateDir !== null) {
-            $this->smarty->setTemplateDir($templateDir);
+            // Add both user's template directory and SpiderForm templates directory
+            $this->smarty->setTemplateDir([
+                $templateDir,
+                $spiderFormTemplateDir,
+            ]);
+        } else {
+            // Use only SpiderForm templates directory
+            $this->smarty->setTemplateDir($spiderFormTemplateDir);
         }
 
         if ($compileDir !== null) {
@@ -100,7 +111,18 @@ class SmartyRenderer implements RendererInterface
      */
     public function setTemplatePath(string|array $paths): void
     {
-        $this->smarty->setTemplateDir($paths);
+        // Get SpiderForm templates directory
+        $spiderFormTemplateDir = dirname(__DIR__) . '/Theme/templates/smarty';
+
+        // Ensure paths is an array
+        $pathsArray = is_array($paths) ? $paths : [$paths];
+
+        // Always include SpiderForm templates directory
+        if (!in_array($spiderFormTemplateDir, $pathsArray)) {
+            $pathsArray[] = $spiderFormTemplateDir;
+        }
+
+        $this->smarty->setTemplateDir($pathsArray);
     }
 
     /**
