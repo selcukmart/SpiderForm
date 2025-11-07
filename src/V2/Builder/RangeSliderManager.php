@@ -109,7 +109,7 @@ class RangeSliderManager
             $config['dual'] = true;
         }
 
-        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT);
+        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
 
         $script = self::generateRangeSliderJS($inputId, $configJson);
 

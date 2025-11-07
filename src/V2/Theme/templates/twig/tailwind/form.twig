@@ -25,7 +25,9 @@
                                     <div class="section-content mb-4">{{ input.section.htmlContent|raw }}</div>
                                 {% endif %}
                                 {% for section_input in input.inputs %}
-                                    {% include template_from_string(include(section_input.template)) %}
+                                    {% with section_input %}
+                                        {% include section_input.template %}
+                                    {% endwith %}
                                 {% endfor %}
                             </div>
                         </details>
@@ -39,7 +41,9 @@
                         {% endif %}
                         <div class="border-l-4 border-indigo-500 pl-4">
                             {% for section_input in input.inputs %}
-                                {% include template_from_string(include(section_input.template)) %}
+                                {% with section_input %}
+                                    {% include section_input.template %}
+                                {% endwith %}
                             {% endfor %}
                         </div>
                     {% endif %}
@@ -47,12 +51,16 @@
             {% else %}
                 {# Section is null - render inputs without section wrapper #}
                 {% for section_input in input.inputs %}
-                    {% include template_from_string(include(section_input.template)) %}
+                    {% with section_input %}
+                        {% include section_input.template %}
+                    {% endwith %}
                 {% endfor %}
             {% endif %}
         {% else %}
             {# Regular input (no sections used) #}
-            {% include template_from_string(include(input.template)) %}
+            {% with input %}
+                {% include input.template %}
+            {% endwith %}
         {% endif %}
     {% endfor %}
 </form>

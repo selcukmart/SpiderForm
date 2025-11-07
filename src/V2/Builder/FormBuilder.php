@@ -55,7 +55,7 @@ use SpiderForm\V2\Security\{CsrfProtection, CsrfTokenManager};
 class FormBuilder implements BuilderInterface
 {
     private string $name;
-    private string $method = 'POST';
+    private string $method = 'post';
     private string $action = '';
     private ScopeType $scope = ScopeType::ADD;
     private array $attributes = [];
@@ -182,7 +182,7 @@ class FormBuilder implements BuilderInterface
      */
     public function setMethod(string $method): self
     {
-        $this->method = strtoupper($method);
+        $this->method = strtolower($method);
         return $this;
     }
 
@@ -1754,6 +1754,11 @@ class FormBuilder implements BuilderInterface
             $inputData = $input->toArray();
             $inputData['template'] = $this->theme->getInputTemplate($input->getType());
             $inputData['classes'] = $this->theme->getInputClasses($input->getType());
+
+            // Apply form data to input value if available (supports populate() called after add())
+            if (isset($this->data[$inputData['name']]) && $inputData['value'] === null) {
+                $inputData['value'] = $this->data[$inputData['name']];
+            }
 
             // Apply data transformers (model -> view) before rendering
             if ($input->hasTransformers() && $inputData['value'] !== null) {
