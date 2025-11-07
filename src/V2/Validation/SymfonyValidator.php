@@ -130,16 +130,22 @@ class SymfonyValidator implements ValidatorInterface
     /**
      * Validate entire form data
      */
-    public function validateForm(array $data, array $fieldsRules): array
+    public function validateForm(array $data, array $fieldsRules): ValidationResult
     {
-        $results = [];
+        $allErrors = [];
 
         foreach ($fieldsRules as $fieldName => $rules) {
             $value = $data[$fieldName] ?? null;
-            $results[$fieldName] = $this->validate($value, $rules, $data);
+            $result = $this->validate($value, $rules, $data);
+
+            if (!$result->isValid()) {
+                $allErrors[$fieldName] = $result->getErrors();
+            }
         }
 
-        return $results;
+        return empty($allErrors)
+            ? ValidationResult::success()
+            : ValidationResult::failure($allErrors);
     }
 
     /**

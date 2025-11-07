@@ -20,7 +20,6 @@ class InfiniteLoopRenderTest extends TestCase
     #[Test]
     public function it_should_test_tostring_conversion(): void
     {
-        echo "\n=== Testing __toString() conversion (echo $form) ===\n";
 
         $form = FormBuilder::create('test-tostring')
             ->setAction('')
@@ -32,10 +31,8 @@ class InfiniteLoopRenderTest extends TestCase
         $form->addHidden('id', '1');
         $form->addSubmit('save', 'Submit');
 
-        echo "Building form object...\n";
         $formObj = $form->buildForm();
 
-        echo "Converting to string (this calls __toString)...\n";
         set_time_limit(5);
         $startTime = microtime(true);
 
@@ -43,12 +40,9 @@ class InfiniteLoopRenderTest extends TestCase
             $str = (string) $formObj;
             $endTime = microtime(true);
 
-            echo sprintf("Result: %s\n", $str);
-            echo sprintf("Time: %.4f seconds\n", $endTime - $startTime);
 
             $this->assertIsString($str);
         } catch (\Exception $e) {
-            echo "Expected error (no renderer set): " . $e->getMessage() . "\n";
             $this->assertTrue(true); // This is expected
         }
     }
@@ -56,7 +50,6 @@ class InfiniteLoopRenderTest extends TestCase
     #[Test]
     public function it_should_test_createview_recursion(): void
     {
-        echo "\n=== Testing createView() for recursion issues ===\n";
 
         $form = FormBuilder::create('test-createview')
             ->setAction('')
@@ -74,17 +67,14 @@ class InfiniteLoopRenderTest extends TestCase
         $form->addHidden('hidden1', 'value');
         $form->addSubmit('save', 'Submit');
 
-        echo "Building form object...\n";
         $formObj = $form->buildForm();
 
-        echo "Creating view (this should not loop)...\n";
         set_time_limit(5);
         $startTime = microtime(true);
 
         $view = $formObj->createView();
         $endTime = microtime(true);
 
-        echo sprintf("✓ View created in %.4f seconds\n", $endTime - $startTime);
 
         $this->assertNotNull($view);
         $this->assertLessThan(1, $endTime - $startTime, "createView took too long");
@@ -93,7 +83,6 @@ class InfiniteLoopRenderTest extends TestCase
     #[Test]
     public function it_should_test_nested_sections(): void
     {
-        echo "\n=== Testing deeply nested sections ===\n";
 
         $form = FormBuilder::create('test-nested')
             ->setAction('')
@@ -101,25 +90,21 @@ class InfiniteLoopRenderTest extends TestCase
 
         // Add 20 sections to test depth
         for ($i = 1; $i <= 20; $i++) {
-            echo "Adding section $i...\n";
             $form->addSection("Section $i", "Description $i");
             $form->addText("field_$i", "Field $i")->add();
         }
 
         $form->addSubmit('save', 'Submit');
 
-        echo "Building form object...\n";
         set_time_limit(10);
         $startTime = microtime(true);
 
         $formObj = $form->buildForm();
 
-        echo "Creating view...\n";
         $view = $formObj->createView();
 
         $endTime = microtime(true);
 
-        echo sprintf("✓ Form with 20 sections built in %.4f seconds\n", $endTime - $startTime);
 
         $this->assertNotNull($formObj);
         $this->assertNotNull($view);
@@ -129,7 +114,6 @@ class InfiniteLoopRenderTest extends TestCase
     #[Test]
     public function it_should_test_getData_recursion(): void
     {
-        echo "\n=== Testing getData() for recursion issues ===\n";
 
         $form = FormBuilder::create('test-getdata')
             ->setAction('')
@@ -144,25 +128,20 @@ class InfiniteLoopRenderTest extends TestCase
         $form->addHidden('id', '123');
         $form->addSubmit('save', 'Submit');
 
-        echo "Building form object...\n";
         $formObj = $form->buildForm();
 
-        echo "Setting data...\n";
         $formObj->setData([
             'name' => 'Test Name',
             'type' => 'a',
             'id' => '456'
         ]);
 
-        echo "Getting data (checking for recursion)...\n";
         set_time_limit(5);
         $startTime = microtime(true);
 
         $data = $formObj->getData();
         $endTime = microtime(true);
 
-        echo sprintf("✓ getData() completed in %.4f seconds\n", $endTime - $startTime);
-        echo "Data: " . json_encode($data) . "\n";
 
         $this->assertIsArray($data);
         $this->assertLessThan(1, $endTime - $startTime, "getData took too long");
@@ -171,7 +150,6 @@ class InfiniteLoopRenderTest extends TestCase
     #[Test]
     public function it_should_test_submit_and_validate(): void
     {
-        echo "\n=== Testing submit() and validate() for recursion ===\n";
 
         $form = FormBuilder::create('test-submit')
             ->setAction('')
@@ -191,10 +169,8 @@ class InfiniteLoopRenderTest extends TestCase
         $form->addHidden('user_id', '');
         $form->addSubmit('save', 'Submit');
 
-        echo "Building form object...\n";
         $formObj = $form->buildForm();
 
-        echo "Submitting data...\n";
         set_time_limit(5);
         $startTime = microtime(true);
 
@@ -204,14 +180,10 @@ class InfiniteLoopRenderTest extends TestCase
             'user_id' => '789'
         ]);
 
-        echo "Validating...\n";
         $errors = $formObj->validate();
 
         $endTime = microtime(true);
 
-        echo sprintf("✓ Submit and validate completed in %.4f seconds\n", $endTime - $startTime);
-        echo "Errors: " . json_encode($errors) . "\n";
-        echo "Is valid: " . ($formObj->isValid() ? 'Yes' : 'No') . "\n";
 
         $this->assertIsArray($errors);
         $this->assertLessThan(2, $endTime - $startTime, "Submit/validate took too long");
@@ -220,7 +192,6 @@ class InfiniteLoopRenderTest extends TestCase
     #[Test]
     public function it_should_check_circular_parent_child_references(): void
     {
-        echo "\n=== Testing for circular parent-child references ===\n";
 
         $form = FormBuilder::create('test-circular')
             ->setAction('')
@@ -229,7 +200,6 @@ class InfiniteLoopRenderTest extends TestCase
         $form->addText('field1', 'Field 1')->add();
         $formObj = $form->buildForm();
 
-        echo "Checking parent-child relationships...\n";
 
         // Check root
         $this->assertTrue($formObj->isRoot());
@@ -237,10 +207,8 @@ class InfiniteLoopRenderTest extends TestCase
 
         // Check children
         $children = $formObj->all();
-        echo "Number of children: " . count($children) . "\n";
 
         foreach ($children as $name => $child) {
-            echo "Checking child: $name\n";
             $parent = $child->getParent();
             $this->assertNotNull($parent);
             $this->assertEquals($formObj->getName(), $parent->getName());
@@ -254,6 +222,5 @@ class InfiniteLoopRenderTest extends TestCase
             $this->assertEquals($formObj->getName(), $root->getName());
         }
 
-        echo "✓ No circular references detected\n";
     }
 }

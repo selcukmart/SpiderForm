@@ -51,7 +51,7 @@ interface ValidatorInterface
      *
      * @param array<string, mixed> $data Form data
      * @param array<string, array<string, mixed>> $fieldsRules Fields and their rules
-     * @return array<string, ValidationResult>
+     * @return ValidationResult
      */
-    public function validateForm(array $data, array $fieldsRules): array;
+    public function validateForm(array $data, array $fieldsRules): ValidationResult;
 }

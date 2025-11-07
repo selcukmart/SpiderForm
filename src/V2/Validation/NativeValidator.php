@@ -111,16 +111,22 @@ class NativeValidator implements ValidatorInterface
     /**
      * Validate entire form data
      */
-    public function validateForm(array $data, array $fieldsRules): array
+    public function validateForm(array $data, array $fieldsRules): ValidationResult
     {
-        $results = [];
+        $allErrors = [];
 
         foreach ($fieldsRules as $fieldName => $rules) {
             $value = $data[$fieldName] ?? null;
-            $results[$fieldName] = $this->validate($value, $rules, $data);
+            $result = $this->validate($value, $rules, $data);
+
+            if (!$result->isValid()) {
+                $allErrors[$fieldName] = $result->getErrors();
+            }
         }
 
-        return $results;
+        return empty($allErrors)
+            ? ValidationResult::success()
+            : ValidationResult::failure($allErrors);
     }
 
     /**
@@ -257,7 +263,23 @@ class NativeValidator implements ValidatorInterface
         // Date
         $this->addRule('date', function ($value) {
             if (empty($value)) return true;
-            return strtotime((string) $value) !== false;
+            $valueStr = (string) $value;
+
+            // Try strtotime first
+            if (strtotime($valueStr) !== false) {
+                return true;
+            }
+
+            // Try common date formats with DateTime
+            $formats = ['Y-m-d', 'Y/m/d', 'd-m-Y', 'd/m/Y', 'm-d-Y', 'm/d/Y'];
+            foreach ($formats as $format) {
+                $date = \DateTime::createFromFormat($format, $valueStr);
+                if ($date && $date->format($format) === $valueStr) {
+                    return true;
+                }
+            }
+
+            return false;
         }, 'Please enter a valid date');
 
         $this->jsRules['date'] = fn() => "if (value && isNaN(Date.parse(value))) errors.push('Please enter a valid date');";

@@ -44,7 +44,6 @@ class InfiniteLoopDebugTest extends TestCase
             }
         } catch (\Exception $e) {
             // If Smarty setup fails, we'll skip renderer-dependent tests
-            echo "Warning: Could not set up Smarty renderer: " . $e->getMessage() . "\n";
         }
 
         $this->theme = new Bootstrap3Theme();
@@ -53,7 +52,6 @@ class InfiniteLoopDebugTest extends TestCase
     #[Test]
     public function it_should_build_simple_form_without_infinite_loop(): void
     {
-        echo "\n=== Testing simple form (no sections) ===\n";
 
         $form = FormBuilder::create('test-form-simple')
             ->setAction('')
@@ -74,17 +72,14 @@ class InfiniteLoopDebugTest extends TestCase
 
         $form->addSubmit('save', 'Submit');
 
-        echo "Building form object...\n";
         $formObj = $form->buildForm();
 
-        echo "✓ Form built successfully without infinite loop\n";
         $this->assertNotNull($formObj);
     }
 
     #[Test]
     public function it_should_build_form_with_section_without_infinite_loop(): void
     {
-        echo "\n=== Testing form WITH section (like user's example) ===\n";
 
         $form = FormBuilder::create('test-form-section')
             ->setAction('')
@@ -97,30 +92,24 @@ class InfiniteLoopDebugTest extends TestCase
             $form->setTheme($this->theme);
         }
 
-        echo "Adding section...\n";
         $form->addSection('Test Section', 'Test description');
 
-        echo "Adding text field...\n";
         $form->addText('name', 'Name')
             ->required()
             ->maxLength(128)
             ->placeholder('Enter name')
             ->add();
 
-        echo "Adding radio field...\n";
         $form->addRadio('type', 'Type')
             ->required()
             ->options(['type1' => 'Type 1', 'type2' => 'Type 2'])
             ->helpText('<div>Help text</div>')
             ->add();
 
-        echo "Adding hidden field...\n";
         $form->addHidden('hidden_field', 'hidden_value');
 
-        echo "Adding submit button...\n";
         $form->addSubmit('save', 'Submit');
 
-        echo "Building form object...\n";
 
         // Set a timeout to detect infinite loops
         set_time_limit(5); // 5 seconds max
@@ -130,7 +119,6 @@ class InfiniteLoopDebugTest extends TestCase
         $endTime = microtime(true);
 
         $executionTime = $endTime - $startTime;
-        echo sprintf("✓ Form built successfully in %.4f seconds\n", $executionTime);
 
         $this->assertNotNull($formObj);
         $this->assertLessThan(3, $executionTime, "Form building took too long, possible infinite loop");
@@ -139,7 +127,6 @@ class InfiniteLoopDebugTest extends TestCase
     #[Test]
     public function it_should_reproduce_user_example_form(): void
     {
-        echo "\n=== Testing exact user's example form structure ===\n";
 
         $form = FormBuilder::create('exam-insert')
             ->setAction('')
@@ -152,10 +139,8 @@ class InfiniteLoopDebugTest extends TestCase
             $form->setTheme($this->theme);
         }
 
-        echo "Adding section 'Optik Form Bilgileri'...\n";
         $form->addSection('Optik Form Bilgileri', 'Optik form bilgilerini giriniz');
 
-        echo "Adding 'name' field...\n";
         $form->addText('name', 'Optik Form Adı')
             ->required()
             ->maxLength(128)
@@ -163,14 +148,12 @@ class InfiniteLoopDebugTest extends TestCase
             ->addClass('omr-form-input-name')
             ->add();
 
-        echo "Adding 'photo' field...\n";
         $form->addText('photo', 'Optik Form Foto URL')
             ->maxLength(256)
             ->placeholder('Optik Form Foto URL')
             ->addClass('omr-form-input-photo')
             ->add();
 
-        echo "Adding 'type' radio field...\n";
         $form->addRadio('type', 'Optik Form Tipi')
             ->required()
             ->options(['type1' => 'Type 1', 'type2' => 'Type 2'])
@@ -181,13 +164,10 @@ class InfiniteLoopDebugTest extends TestCase
             ->addClass('omr-form-radio-type')
             ->add();
 
-        echo "Adding 'company_id_not_auto_selected' hidden field...\n";
         $form->addHidden('company_id_not_auto_selected', '123');
 
-        echo "Adding submit button...\n";
         $form->addSubmit('save', 'Kaydet');
 
-        echo "Building form object...\n";
 
         // Set a timeout to detect infinite loops
         set_time_limit(5); // 5 seconds max
@@ -199,13 +179,10 @@ class InfiniteLoopDebugTest extends TestCase
             $endTime = microtime(true);
 
             $executionTime = $endTime - $startTime;
-            echo sprintf("✓ Form built successfully in %.4f seconds\n", $executionTime);
 
             $this->assertNotNull($formObj);
             $this->assertLessThan(3, $executionTime, "Form building took too long, possible infinite loop");
         } catch (\Exception $e) {
-            echo "✗ Error during form building: " . $e->getMessage() . "\n";
-            echo "Stack trace:\n" . $e->getTraceAsString() . "\n";
             throw $e;
         }
     }
@@ -213,7 +190,6 @@ class InfiniteLoopDebugTest extends TestCase
     #[Test]
     public function it_should_test_buildAsHtml_method(): void
     {
-        echo "\n=== Testing buildAsHtml() method (alternative to buildForm()) ===\n";
 
         if (!$this->renderer || !$this->theme) {
             $this->markTestSkipped('Renderer or theme not available');
@@ -235,7 +211,6 @@ class InfiniteLoopDebugTest extends TestCase
 
         $form->addSubmit('save', 'Submit');
 
-        echo "Building as HTML...\n";
 
         set_time_limit(5);
         $startTime = microtime(true);
@@ -245,15 +220,11 @@ class InfiniteLoopDebugTest extends TestCase
             $endTime = microtime(true);
 
             $executionTime = $endTime - $startTime;
-            echo sprintf("✓ HTML built successfully in %.4f seconds\n", $executionTime);
-            echo sprintf("HTML length: %d characters\n", strlen($html));
 
             $this->assertIsString($html);
             $this->assertNotEmpty($html);
             $this->assertLessThan(3, $executionTime, "HTML building took too long, possible infinite loop");
         } catch (\Exception $e) {
-            echo "✗ Error during HTML building: " . $e->getMessage() . "\n";
-            echo "Stack trace:\n" . $e->getTraceAsString() . "\n";
             throw $e;
         }
     }
@@ -261,7 +232,6 @@ class InfiniteLoopDebugTest extends TestCase
     #[Test]
     public function it_should_detect_circular_reference_in_sections(): void
     {
-        echo "\n=== Testing potential circular reference detection ===\n";
 
         $form = FormBuilder::create('circular-test')
             ->setAction('')
@@ -275,25 +245,19 @@ class InfiniteLoopDebugTest extends TestCase
         }
 
         // Add multiple sections with inputs
-        echo "Adding Section 1...\n";
         $form->addSection('Section 1', 'First section');
         $form->addText('field1', 'Field 1')->add();
 
-        echo "Adding Section 2...\n";
         $form->addSection('Section 2', 'Second section');
         $form->addText('field2', 'Field 2')->add();
 
-        echo "Adding Section 3...\n";
         $form->addSection('Section 3', 'Third section');
         $form->addText('field3', 'Field 3')->add();
 
-        echo "Ending all sections...\n";
         $form->endSection();
 
-        echo "Adding submit...\n";
         $form->addSubmit('save', 'Submit');
 
-        echo "Building form...\n";
         set_time_limit(5);
         $startTime = microtime(true);
 
@@ -301,7 +265,6 @@ class InfiniteLoopDebugTest extends TestCase
         $endTime = microtime(true);
 
         $executionTime = $endTime - $startTime;
-        echo sprintf("✓ Form with multiple sections built in %.4f seconds\n", $executionTime);
 
         $this->assertNotNull($formObj);
         $this->assertLessThan(3, $executionTime);
