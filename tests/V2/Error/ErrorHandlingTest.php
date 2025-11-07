@@ -10,15 +10,15 @@ use SpiderForm\V2\Error\ErrorList;
 use SpiderForm\V2\Error\ErrorBubblingStrategy;
 use SpiderForm\V2\Form\Form;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Comprehensive unit tests for Error Handling (v2.9.0)
- *
- * @covers \SpiderForm\V2\Error\ErrorLevel
- * @covers \SpiderForm\V2\Error\FormError
- * @covers \SpiderForm\V2\Error\ErrorList
- * @covers \SpiderForm\V2\Error\ErrorBubblingStrategy
  */
+#[CoversClass(ErrorLevel::class)]
+#[CoversClass(FormError::class)]
+#[CoversClass(ErrorList::class)]
+#[CoversClass(ErrorBubblingStrategy::class)]
 class ErrorHandlingTest extends TestCase
 {
     // ===== ErrorLevel Tests =====

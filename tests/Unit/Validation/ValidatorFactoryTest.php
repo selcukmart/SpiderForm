@@ -6,10 +6,12 @@ namespace SpiderForm\Tests\Unit\Validation;
 
 use SpiderForm\V2\Validation\{Validator, ValidatorFactory, ValidationException};
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Test ValidatorFactory Class
  */
+#[CoversClass(ValidatorFactory::class)]
 class ValidatorFactoryTest extends TestCase
 {
     public function testMakeCreatesValidator(): void

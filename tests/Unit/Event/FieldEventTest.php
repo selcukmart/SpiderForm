@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SpiderForm\Tests\Unit\Event;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SpiderForm\V2\Builder\{FormBuilder, InputBuilder};
 use SpiderForm\V2\Contracts\InputType;
 use SpiderForm\V2\Event\{FieldEvent, FieldEvents};
@@ -17,6 +18,8 @@ use SpiderForm\V2\Theme\Bootstrap5Theme;
  * @author selcukmart
  * @since 2.3.0
  */
+#[CoversClass(FormBuilder::class)]
+#[CoversClass(FieldEvent::class)]
 class FieldEventTest extends TestCase
 {
     private FormBuilder $form;

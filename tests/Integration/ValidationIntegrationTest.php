@@ -7,10 +7,12 @@ namespace SpiderForm\Tests\Integration;
 use SpiderForm\V2\Builder\FormBuilder;
 use SpiderForm\V2\Validation\{ValidationException};
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Integration Tests for Validation System with FormBuilder
  */
+#[CoversClass(FormBuilder::class)]
 class ValidationIntegrationTest extends TestCase
 {
     public function testFormBuilderExtractsValidationRules(): void

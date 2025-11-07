@@ -7,12 +7,12 @@ namespace SpiderForm\Tests\V2\Validation\Constraints;
 use SpiderForm\V2\Validation\Constraints\Callback;
 use SpiderForm\V2\Validation\ExecutionContext;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for Callback constraint
- *
- * @covers \SpiderForm\V2\Validation\Constraints\Callback
  */
+#[CoversClass(Callback::class)]
 class CallbackTest extends TestCase
 {
     public function testConstructorStoresCallback(): void

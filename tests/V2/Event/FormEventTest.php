@@ -7,12 +7,12 @@ namespace SpiderForm\Tests\V2\Event;
 use SpiderForm\V2\Event\FormEvent;
 use SpiderForm\V2\Form\Form;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for FormEvent
- *
- * @covers \SpiderForm\V2\Event\FormEvent
  */
+#[CoversClass(FormEvent::class)]
 class FormEventTest extends TestCase
 {
     public function testConstructorStoresForm(): void

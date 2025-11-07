@@ -7,12 +7,12 @@ namespace SpiderForm\Tests\V2\DataMapper;
 use SpiderForm\V2\DataMapper\FormDataMapper;
 use SpiderForm\V2\Form\Form;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for FormDataMapper
- *
- * @covers \SpiderForm\V2\DataMapper\FormDataMapper
  */
+#[CoversClass(FormDataMapper::class)]
 class FormDataMapperTest extends TestCase
 {
     private FormDataMapper $mapper;

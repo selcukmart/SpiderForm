@@ -10,12 +10,12 @@ use SpiderForm\V2\Event\FormEvent;
 use SpiderForm\V2\Event\FormEvents;
 use SpiderForm\V2\Form\Form;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for EventDispatcher
- *
- * @covers \SpiderForm\V2\Event\EventDispatcher
  */
+#[CoversClass(EventDispatcher::class)]
 class EventDispatcherTest extends TestCase
 {
     private EventDispatcher $dispatcher;

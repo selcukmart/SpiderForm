@@ -6,10 +6,12 @@ namespace SpiderForm\Tests\Unit\Validation;
 
 use SpiderForm\V2\Validation\{Validator, ValidationException};
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Test Validator Class
  */
+#[CoversClass(Validator::class)]
 class ValidatorTest extends TestCase
 {
     public function testValidatorPassesWithValidData(): void

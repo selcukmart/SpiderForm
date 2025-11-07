@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SpiderForm\Tests\Unit\Renderer;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SpiderForm\V2\Renderer\TwigRenderer;
 use SpiderForm\V2\Renderer\SmartyRenderer;
 use SpiderForm\V2\Renderer\BladeRenderer;
@@ -14,11 +15,10 @@ use SpiderForm\V2\Renderer\BladeRenderer;
  *
  * Verifies that each renderer returns the correct template extension
  * for dynamic template resolution.
- *
- * @covers \SpiderForm\V2\Renderer\TwigRenderer::getTemplateExtension
- * @covers \SpiderForm\V2\Renderer\SmartyRenderer::getTemplateExtension
- * @covers \SpiderForm\V2\Renderer\BladeRenderer::getTemplateExtension
  */
+#[CoversClass(TwigRenderer::class)]
+#[CoversClass(SmartyRenderer::class)]
+#[CoversClass(BladeRenderer::class)]
 class RendererExtensionTest extends TestCase
 {
     private string $tempDir;

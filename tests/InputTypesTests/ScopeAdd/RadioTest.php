@@ -105,6 +105,11 @@ class RadioTest extends TestCase
     public function testQuery()
     {
         require_once __DIR__ . '/../../../Examples/DBExamples/Config/Db.php';
+        try {
+            DB::getInstance();
+        } catch (\PDOException $e) {
+            $this->markTestSkipped('Database connection not available: ' . $e->getMessage());
+        }
         $form_generator_array = [
             /**
              * Optional
@@ -144,6 +149,11 @@ class RadioTest extends TestCase
     public function testSQL()
     {
         require_once __DIR__ . '/../../../Examples/DBExamples/Config/Db.php';
+        try {
+            DB::getInstance();
+        } catch (\PDOException $e) {
+            $this->markTestSkipped('Database connection not available: ' . $e->getMessage());
+        }
         $form_generator_array = [
             'data' => [
                 'connection' => [

@@ -6,12 +6,12 @@ namespace SpiderForm\Tests\V2\Validation;
 
 use SpiderForm\V2\Validation\GroupedValidation;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for GroupedValidation
- *
- * @covers \SpiderForm\V2\Validation\GroupedValidation
  */
+#[CoversClass(GroupedValidation::class)]
 class GroupedValidationTest extends TestCase
 {
     private GroupedValidation $validation;

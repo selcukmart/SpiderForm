@@ -6,10 +6,12 @@ namespace SpiderForm\Tests\Unit\Validation;
 
 use SpiderForm\V2\Validation\Validator;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Test Database Validation Rules (Unique, Exists)
  */
+#[CoversClass(Validator::class)]
 class DatabaseValidationRulesTest extends TestCase
 {
     private function createMockPdo(int $count): \PDO

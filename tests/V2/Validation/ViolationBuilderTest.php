@@ -7,12 +7,12 @@ namespace SpiderForm\Tests\V2\Validation;
 use SpiderForm\V2\Validation\ExecutionContext;
 use SpiderForm\V2\Validation\ViolationBuilder;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for ViolationBuilder
- *
- * @covers \SpiderForm\V2\Validation\ViolationBuilder
  */
+#[CoversClass(ViolationBuilder::class)]
 class ViolationBuilderTest extends TestCase
 {
     private ExecutionContext $context;

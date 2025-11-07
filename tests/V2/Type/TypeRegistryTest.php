@@ -10,12 +10,12 @@ use SpiderForm\V2\Type\Types\TextType;
 use SpiderForm\V2\Type\Types\EmailType;
 use SpiderForm\V2\Builder\InputBuilder;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for TypeRegistry
- *
- * @covers \SpiderForm\V2\Type\TypeRegistry
  */
+#[CoversClass(TypeRegistry::class)]
 class TypeRegistryTest extends TestCase
 {
     protected function setUp(): void

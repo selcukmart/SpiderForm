@@ -13,16 +13,16 @@ use SpiderForm\V2\Type\OptionsResolver;
 use SpiderForm\V2\Builder\InputBuilder;
 use SpiderForm\V2\Contracts\InputType;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for built-in field types
- *
- * @covers \SpiderForm\V2\Type\Types\TextType
- * @covers \SpiderForm\V2\Type\Types\EmailType
- * @covers \SpiderForm\V2\Type\Types\SelectType
- * @covers \SpiderForm\V2\Type\Types\PasswordType
- * @covers \SpiderForm\V2\Type\Types\CheckboxType
  */
+#[CoversClass(TextType::class)]
+#[CoversClass(EmailType::class)]
+#[CoversClass(SelectType::class)]
+#[CoversClass(PasswordType::class)]
+#[CoversClass(CheckboxType::class)]
 class BuiltInTypesTest extends TestCase
 {
     // ===== TextType Tests =====

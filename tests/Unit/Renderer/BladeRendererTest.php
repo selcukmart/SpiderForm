@@ -6,11 +6,13 @@ namespace SpiderForm\Tests\Unit\Renderer;
 
 use SpiderForm\V2\Renderer\BladeRenderer;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Illuminate\Filesystem\Filesystem;
 
 /**
  * Test BladeRenderer Class
  */
+#[CoversClass(BladeRenderer::class)]
 class BladeRendererTest extends TestCase
 {
     private string $tempDir;
@@ -18,6 +20,11 @@ class BladeRendererTest extends TestCase
 
     protected function setUp(): void
     {
+        // Skip test if required Illuminate packages are not available
+        if (!class_exists(Filesystem::class)) {
+            $this->markTestSkipped('Illuminate packages (filesystem, view, events) are required for BladeRenderer tests');
+        }
+
         $this->tempDir = sys_get_temp_dir() . '/blade_test_' . uniqid();
         $viewsDir = $this->tempDir . '/views';
         $cacheDir = $this->tempDir . '/cache';

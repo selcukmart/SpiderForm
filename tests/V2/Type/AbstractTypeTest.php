@@ -8,12 +8,12 @@ use SpiderForm\V2\Type\AbstractType;
 use SpiderForm\V2\Type\OptionsResolver;
 use SpiderForm\V2\Builder\InputBuilder;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for AbstractType
- *
- * @covers \SpiderForm\V2\Type\AbstractType
  */
+#[CoversClass(AbstractType::class)]
 class AbstractTypeTest extends TestCase
 {
     public function testGetNameReturnsLowercaseNameWithoutTypeSuffix(): void

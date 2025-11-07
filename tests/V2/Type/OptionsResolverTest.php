@@ -6,12 +6,12 @@ namespace SpiderForm\Tests\V2\Type;
 
 use SpiderForm\V2\Type\OptionsResolver;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for OptionsResolver
- *
- * @covers \SpiderForm\V2\Type\OptionsResolver
  */
+#[CoversClass(OptionsResolver::class)]
 class OptionsResolverTest extends TestCase
 {
     private OptionsResolver $resolver;

@@ -6,12 +6,12 @@ namespace SpiderForm\Tests\V2\Form;
 
 use SpiderForm\V2\Form\{Form, FormConfig, FormState};
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for Form class
- *
- * @covers \SpiderForm\V2\Form\Form
  */
+#[CoversClass(Form::class)]
 class FormTest extends TestCase
 {
     private Form $form;

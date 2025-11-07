@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SpiderForm\Tests\Unit\Theme;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SpiderForm\V2\Builder\FormBuilder;
 use SpiderForm\V2\Contracts\InputType;
 use SpiderForm\V2\Renderer\TwigRenderer;
@@ -13,6 +14,7 @@ use SpiderForm\V2\Renderer\BladeRenderer;
 use SpiderForm\V2\Theme\Bootstrap3Theme;
 use SpiderForm\V2\Theme\Bootstrap5Theme;
 use SpiderForm\V2\Theme\TailwindTheme;
+use SpiderForm\V2\Theme\AbstractTheme;
 use SpiderForm\Tests\Unit\Renderer\MockRenderer;
 
 /**
@@ -20,10 +22,9 @@ use SpiderForm\Tests\Unit\Renderer\MockRenderer;
  *
  * This test ensures that themes work correctly with any renderer by
  * dynamically resolving template extensions based on the active renderer.
- *
- * @covers \SpiderForm\V2\Theme\AbstractTheme
- * @covers \SpiderForm\V2\Builder\FormBuilder
  */
+#[CoversClass(AbstractTheme::class)]
+#[CoversClass(FormBuilder::class)]
 class RendererThemeIntegrationTest extends TestCase
 {
     private string $tempDir;

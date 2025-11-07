@@ -7,12 +7,12 @@ namespace SpiderForm\Tests\V2\Security;
 use SpiderForm\V2\Security\{CsrfProtection, CsrfTokenManager, CsrfTokenException};
 use SpiderForm\V2\Form\Form;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for CsrfProtection
- *
- * @covers \SpiderForm\V2\Security\CsrfProtection
  */
+#[CoversClass(CsrfProtection::class)]
 class CsrfProtectionTest extends TestCase
 {
     private CsrfProtection $protection;
