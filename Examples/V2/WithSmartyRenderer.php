@@ -16,17 +16,18 @@ use SpiderForm\V2\Renderer\SmartyRenderer;
 use SpiderForm\V2\Theme\Bootstrap3Theme;
 use SpiderForm\V2\Security\SecurityManager;
 
-// IMPORTANT: SmartyRenderer requires the template directory to be specified
-// The templates are located in: src/V2/Theme/templates
+// IMPORTANT: SmartyRenderer requires the Smarty template directory to be specified
+// Smarty templates (.tpl files) are located in: src/V2/Theme/templates/smarty
+// Twig templates (.twig files) are in a separate directory: src/V2/Theme/templates/twig
 $renderer = new SmartyRenderer(
-    templateDir: __DIR__ . '/../../src/V2/Theme/templates',
+    templateDir: __DIR__ . '/../../src/V2/Theme/templates/smarty',
     compileDir: sys_get_temp_dir() . '/smarty_compile',
     cacheDir: sys_get_temp_dir() . '/smarty_cache'
 );
 
 // If you're using this from your application's vendor folder:
 // $renderer = new SmartyRenderer(
-//     templateDir: __DIR__ . '/../../vendor/selcukmart/spider-form/src/V2/Theme/templates'
+//     templateDir: __DIR__ . '/../../vendor/selcukmart/spider-form/src/V2/Theme/templates/smarty'
 // );
 
 $theme = new Bootstrap3Theme();

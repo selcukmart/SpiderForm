@@ -228,7 +228,10 @@ class SmartyRenderer implements RendererInterface
      * Normalize template name by converting .twig to .tpl extension
      *
      * This allows Smarty renderer to use the same theme configuration as Twig renderer
-     * while automatically loading the .tpl versions of templates
+     * while automatically loading the .tpl versions of templates from the smarty directory
+     *
+     * Note: Smarty templates should be stored in a separate directory from Twig templates
+     * to avoid confusion. Typically: templates/smarty/ for .tpl files
      */
     private function normalizeTemplateName(string $template): string
     {

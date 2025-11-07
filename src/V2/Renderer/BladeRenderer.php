@@ -92,6 +92,9 @@ class BladeRenderer implements RendererInterface
      */
     public function render(string $template, array $context = []): string
     {
+        // Normalize template name (convert .twig to .blade.php)
+        $template = $this->normalizeTemplateName($template);
+
         // Merge global variables with context
         $context = array_merge($this->globals, $context);
 
@@ -287,5 +290,29 @@ class BladeRenderer implements RendererInterface
             return $classes;
         }
         return implode(' ', array_filter($classes));
+    }
+
+    /**
+     * Normalize template name by converting .twig to .blade.php extension
+     *
+     * This allows Blade renderer to use the same theme configuration as Twig renderer
+     * while automatically loading the .blade.php versions of templates from the blade directory
+     *
+     * Note: Blade templates should be stored in a separate directory from Twig templates
+     * to avoid confusion. Typically: templates/blade/ for .blade.php files
+     */
+    private function normalizeTemplateName(string $template): string
+    {
+        // If template ends with .twig, replace it with .blade.php
+        if (str_ends_with($template, '.twig')) {
+            return substr($template, 0, -5) . '.blade.php';
+        }
+
+        // If template doesn't have .blade.php extension, add it
+        if (!str_ends_with($template, '.blade.php')) {
+            return $template . '.blade.php';
+        }
+
+        return $template;
     }
 }

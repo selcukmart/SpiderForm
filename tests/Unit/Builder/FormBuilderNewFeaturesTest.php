@@ -25,7 +25,7 @@ class FormBuilderNewFeaturesTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->renderer = new TwigRenderer(__DIR__ . '/../../../src/V2/Theme/templates');
+        $this->renderer = new TwigRenderer(__DIR__ . '/../../../src/V2/Theme/templates/twig');
         $this->theme = new Bootstrap5Theme();
         $this->formBuilder = FormBuilder::create('test-form')
             ->setRenderer($this->renderer)
