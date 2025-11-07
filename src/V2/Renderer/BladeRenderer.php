@@ -206,6 +206,14 @@ class BladeRenderer implements RendererInterface
     }
 
     /**
+     * Get template extension for this renderer
+     */
+    public function getTemplateExtension(): string
+    {
+        return 'blade.php';
+    }
+
+    /**
      * Get Blade compiler instance
      */
     public function getBladeCompiler(): BladeCompiler

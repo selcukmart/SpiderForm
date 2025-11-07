@@ -79,4 +79,11 @@ interface RendererInterface
      * Get renderer version
      */
     public function getVersion(): string;
+
+    /**
+     * Get template extension for this renderer
+     *
+     * @return string Template extension (e.g., 'tpl', 'twig', 'blade.php')
+     */
+    public function getTemplateExtension(): string;
 }

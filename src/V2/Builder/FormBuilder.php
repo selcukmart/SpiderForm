@@ -237,6 +237,12 @@ class FormBuilder implements BuilderInterface
     public function setRenderer(RendererInterface $renderer): self
     {
         $this->renderer = $renderer;
+
+        // If theme is already set, update its template extension
+        if ($this->theme !== null) {
+            $this->theme->setTemplateExtension($renderer->getTemplateExtension());
+        }
+
         return $this;
     }
 
@@ -246,6 +252,12 @@ class FormBuilder implements BuilderInterface
     public function setTheme(ThemeInterface $theme): self
     {
         $this->theme = $theme;
+
+        // If renderer is already set, update theme's template extension
+        if ($this->renderer !== null) {
+            $this->theme->setTemplateExtension($this->renderer->getTemplateExtension());
+        }
+
         return $this;
     }
 

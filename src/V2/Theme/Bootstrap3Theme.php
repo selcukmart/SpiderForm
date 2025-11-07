@@ -16,34 +16,34 @@ class Bootstrap3Theme extends AbstractTheme
 {
     protected function initialize(): void
     {
-        // Set template mappings
+        // Set template mappings (without extensions - will be added based on renderer)
         $this->templateMap = [
-            'text' => 'bootstrap3/input_text.tpl',
-            'email' => 'bootstrap3/input_text.tpl',
-            'password' => 'bootstrap3/input_text.tpl',
-            'number' => 'bootstrap3/input_text.tpl',
-            'tel' => 'bootstrap3/input_text.tpl',
-            'url' => 'bootstrap3/input_text.tpl',
-            'search' => 'bootstrap3/input_text.tpl',
-            'date' => 'bootstrap3/input_text.tpl',
-            'time' => 'bootstrap3/input_text.tpl',
-            'datetime-local' => 'bootstrap3/input_text.tpl',
-            'month' => 'bootstrap3/input_text.tpl',
-            'week' => 'bootstrap3/input_text.tpl',
-            'color' => 'bootstrap3/input_text.tpl',
-            'range' => 'bootstrap3/input_range.tpl',
-            'textarea' => 'bootstrap3/input_textarea.tpl',
-            'select' => 'bootstrap3/input_select.tpl',
-            'checkbox' => 'bootstrap3/input_checkbox.tpl',
-            'radio' => 'bootstrap3/input_radio.tpl',
-            'file' => 'bootstrap3/input_file.tpl',
-            'hidden' => 'bootstrap3/input_hidden.tpl',
-            'submit' => 'bootstrap3/button.tpl',
-            'reset' => 'bootstrap3/button.tpl',
-            'button' => 'bootstrap3/button.tpl',
-            'checkbox_tree' => 'bootstrap3/input_checkbox_tree.tpl',
-            'repeater' => 'bootstrap3/input_repeater.tpl',
-            'default' => 'bootstrap3/input_text.tpl',
+            'text' => 'bootstrap3/input_text',
+            'email' => 'bootstrap3/input_text',
+            'password' => 'bootstrap3/input_text',
+            'number' => 'bootstrap3/input_text',
+            'tel' => 'bootstrap3/input_text',
+            'url' => 'bootstrap3/input_text',
+            'search' => 'bootstrap3/input_text',
+            'date' => 'bootstrap3/input_text',
+            'time' => 'bootstrap3/input_text',
+            'datetime-local' => 'bootstrap3/input_text',
+            'month' => 'bootstrap3/input_text',
+            'week' => 'bootstrap3/input_text',
+            'color' => 'bootstrap3/input_text',
+            'range' => 'bootstrap3/input_range',
+            'textarea' => 'bootstrap3/input_textarea',
+            'select' => 'bootstrap3/input_select',
+            'checkbox' => 'bootstrap3/input_checkbox',
+            'radio' => 'bootstrap3/input_radio',
+            'file' => 'bootstrap3/input_file',
+            'hidden' => 'bootstrap3/input_hidden',
+            'submit' => 'bootstrap3/button',
+            'reset' => 'bootstrap3/button',
+            'button' => 'bootstrap3/button',
+            'checkbox_tree' => 'bootstrap3/input_checkbox_tree',
+            'repeater' => 'bootstrap3/input_repeater',
+            'default' => 'bootstrap3/input_text',
         ];
 
         // Set input CSS classes
@@ -174,8 +174,8 @@ class Bootstrap3Theme extends AbstractTheme
     protected function getDefaultConfig(): array
     {
         return [
-            'form_template' => 'bootstrap3/form.tpl',
-            'input_capsule_template' => 'bootstrap3/input_capsule.tpl',
+            'form_template' => 'bootstrap3/form',
+            'input_capsule_template' => 'bootstrap3/input_capsule',
             'inline_forms' => false,
             'horizontal_forms' => false,
             'validation_feedback' => true,

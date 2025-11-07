@@ -16,34 +16,34 @@ class Bootstrap5Theme extends AbstractTheme
 {
     protected function initialize(): void
     {
-        // Set template mappings
+        // Set template mappings (without extensions - will be added based on renderer)
         $this->templateMap = [
-            'text' => 'bootstrap5/input_text.tpl',
-            'email' => 'bootstrap5/input_text.tpl',
-            'password' => 'bootstrap5/input_text.tpl',
-            'number' => 'bootstrap5/input_text.tpl',
-            'tel' => 'bootstrap5/input_text.tpl',
-            'url' => 'bootstrap5/input_text.tpl',
-            'search' => 'bootstrap5/input_text.tpl',
-            'date' => 'bootstrap5/input_text.tpl',
-            'time' => 'bootstrap5/input_text.tpl',
-            'datetime-local' => 'bootstrap5/input_text.tpl',
-            'month' => 'bootstrap5/input_text.tpl',
-            'week' => 'bootstrap5/input_text.tpl',
-            'color' => 'bootstrap5/input_text.tpl',
-            'range' => 'bootstrap5/input_range.tpl',
-            'textarea' => 'bootstrap5/input_textarea.tpl',
-            'select' => 'bootstrap5/input_select.tpl',
-            'checkbox' => 'bootstrap5/input_checkbox.tpl',
-            'radio' => 'bootstrap5/input_radio.tpl',
-            'file' => 'bootstrap5/input_file.tpl',
-            'hidden' => 'bootstrap5/input_hidden.tpl',
-            'submit' => 'bootstrap5/button.tpl',
-            'reset' => 'bootstrap5/button.tpl',
-            'button' => 'bootstrap5/button.tpl',
-            'checkbox_tree' => 'bootstrap5/input_checkbox_tree.tpl',
-            'repeater' => 'bootstrap5/input_repeater.tpl',
-            'default' => 'bootstrap5/input_text.tpl',
+            'text' => 'bootstrap5/input_text',
+            'email' => 'bootstrap5/input_text',
+            'password' => 'bootstrap5/input_text',
+            'number' => 'bootstrap5/input_text',
+            'tel' => 'bootstrap5/input_text',
+            'url' => 'bootstrap5/input_text',
+            'search' => 'bootstrap5/input_text',
+            'date' => 'bootstrap5/input_text',
+            'time' => 'bootstrap5/input_text',
+            'datetime-local' => 'bootstrap5/input_text',
+            'month' => 'bootstrap5/input_text',
+            'week' => 'bootstrap5/input_text',
+            'color' => 'bootstrap5/input_text',
+            'range' => 'bootstrap5/input_range',
+            'textarea' => 'bootstrap5/input_textarea',
+            'select' => 'bootstrap5/input_select',
+            'checkbox' => 'bootstrap5/input_checkbox',
+            'radio' => 'bootstrap5/input_radio',
+            'file' => 'bootstrap5/input_file',
+            'hidden' => 'bootstrap5/input_hidden',
+            'submit' => 'bootstrap5/button',
+            'reset' => 'bootstrap5/button',
+            'button' => 'bootstrap5/button',
+            'checkbox_tree' => 'bootstrap5/input_checkbox_tree',
+            'repeater' => 'bootstrap5/input_repeater',
+            'default' => 'bootstrap5/input_text',
         ];
 
         // Set input CSS classes
@@ -173,8 +173,8 @@ class Bootstrap5Theme extends AbstractTheme
     protected function getDefaultConfig(): array
     {
         return [
-            'form_template' => 'bootstrap5/form.tpl',
-            'input_capsule_template' => 'bootstrap5/input_capsule.tpl',
+            'form_template' => 'bootstrap5/form',
+            'input_capsule_template' => 'bootstrap5/input_capsule',
             'floating_labels' => false,
             'inline_forms' => false,
             'horizontal_forms' => false,

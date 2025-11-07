@@ -79,4 +79,12 @@ interface ThemeInterface
      * Check if theme supports given input type
      */
     public function supports(InputType $inputType): bool;
+
+    /**
+     * Set template extension based on renderer
+     * This allows themes to work with any renderer (Twig, Smarty, Blade, etc.)
+     *
+     * @param string $extension Template extension (e.g., 'tpl', 'twig', 'blade.php')
+     */
+    public function setTemplateExtension(string $extension): void;
 }
