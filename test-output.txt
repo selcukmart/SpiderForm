@@ -1,0 +1,203 @@
+PHPUnit 11.5.43 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.14
+Configuration: /home/user/SpiderForm/phpunit.xml
+
+EREEEREEEERREERREERREERREERREERRFFFFFFRRRRRRRRRRRRRRRRRRRRRRRRR  63 / 470 ( 13%)
+RRRRRRRRRRRRRRREEEEEEEEEEEEEEEE..............EEEEEEEEEEEEEEEEEE 126 / 470 ( 26%)
+EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRREEEEEEEEEEE... 189 / 470 ( 40%)
+E..................EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 252 / 470 ( 53%)
+EEEEEEEEEEEEEEFFFFFFFFFFFF......F.F..F.FFFFFFFFFFF...F.F....... 315 / 470 ( 67%)
+..FFFFFFFFFFFFFF.....F...FFFFFFFFFFFF......F.FFFFRRRRRRRRRRRRRR 378 / 470 ( 80%)
+RRRR
+=== Testing exact user's example form structure ===
+Adding section 'Optik Form Bilgileri'...
+Adding 'name' field...
+Adding 'photo' field...
+Adding 'type' radio field...
+Adding 'company_id_not_auto_selected' hidden field...
+Adding submit button...
+Building form object...
+✓ Form built successfully in 0.0028 seconds
+R
+=== Testing potential circular reference detection ===
+Adding Section 1...
+Adding Section 2...
+Adding Section 3...
+Ending all sections...
+Adding submit...
+Building form...
+✓ Form with multiple sections built in 0.0000 seconds
+R
+=== Testing form WITH section (like user's example) ===
+Adding section...
+Adding text field...
+Adding radio field...
+Adding hidden field...
+Adding submit button...
+Building form object...
+✓ Form built successfully in 0.0000 seconds
+R
+=== Testing simple form (no sections) ===
+Building form object...
+✓ Form built successfully without infinite loop
+R
+=== Testing buildAsHtml() method (alternative to buildForm()) ===
+Building as HTML...
+✓ HTML built successfully in 0.0043 seconds
+HTML length: 5030 characters
+R
+=== Testing __toString() conversion (echo ) ===
+Building form object...
+Converting to string (this calls __toString)...
+Result: Error rendering form: No renderer set for form. Call setRenderer() or pass renderer to render().
+Time: 0.0000 seconds
+R
+=== Testing getData() for recursion issues ===
+Building form object...
+Setting data...
+Getting data (checking for recursion)...
+✓ getData() completed in 0.0000 seconds
+Data: {"name":"Test Name","type":"a","id":"456"}
+R
+=== Testing submit() and validate() for recursion ===
+Building form object...
+Submitting data...
+Validating...
+✓ Submit and validate completed in 0.0000 seconds
+Errors: []
+Is valid: Yes
+R
+=== Testing createView() for recursion issues ===
+Building form object...
+Creating view (this should not loop)...
+✓ View created in 0.0004 seconds
+R
+=== Testing for circular parent-child references ===
+Checking parent-child relationships...
+Number of children: 1
+Checking child: field1
+✓ No circular references detected
+R
+=== Testing deeply nested sections ===
+Adding section 1...
+Adding section 2...
+Adding section 3...
+Adding section 4...
+Adding section 5...
+Adding section 6...
+Adding section 7...
+Adding section 8...
+Adding section 9...
+Adding section 10...
+Adding section 11...
+Adding section 12...
+Adding section 13...
+Adding section 14...
+Adding section 15...
+Adding section 16...
+Adding section 17...
+Adding section 18...
+Adding section 19...
+Adding section 20...
+Building form object...
+Creating view...
+✓ Form with 20 sections built in 0.0001 seconds
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR.. 441 / 470 ( 93%)
+................EEEEEEEEEEEEF                                   470 / 470 (100%)
+
+Time: 00:00.506, Memory: 28.00 MB
+
+Blade Renderer (SpiderForm\Tests\Unit\Renderer\BladeRenderer)
+ ✘ Renderer name
+   │
+   │ Error: Class "Illuminate\Filesystem\Filesystem" not found
+   │
+   │ /home/user/SpiderForm/src/V2/Renderer/BladeRenderer.php:47
+   │ /home/user/SpiderForm/tests/Unit/Renderer/BladeRendererTest.php:34
+   │
+ ✘ Render template
+   │
+   │ Error: Class "Illuminate\Filesystem\Filesystem" not found
+   │
+   │ /home/user/SpiderForm/src/V2/Renderer/BladeRenderer.php:47
+   │ /home/user/SpiderForm/tests/Unit/Renderer/BladeRendererTest.php:34
+   │
+ ✘ Template exists
+   │
+   │ Error: Class "Illuminate\Filesystem\Filesystem" not found
+   │
+   │ /home/user/SpiderForm/src/V2/Renderer/BladeRenderer.php:47
+   │ /home/user/SpiderForm/tests/Unit/Renderer/BladeRendererTest.php:34
+   │
+ ✘ Add global
+   │
+   │ Error: Class "Illuminate\Filesystem\Filesystem" not found
+   │
+   │ /home/user/SpiderForm/src/V2/Renderer/BladeRenderer.php:47
+   │ /home/user/SpiderForm/tests/Unit/Renderer/BladeRendererTest.php:34
+   │
+ ✘ Get template paths
+   │
+   │ Error: Class "Illuminate\Filesystem\Filesystem" not found
+   │
+   │ /home/user/SpiderForm/src/V2/Renderer/BladeRenderer.php:47
+   │ /home/user/SpiderForm/tests/Unit/Renderer/BladeRendererTest.php:34
+   │
+ ✘ Render attributes helper
+   │
+   │ Error: Class "Illuminate\Filesystem\Filesystem" not found
+   │
+   │ /home/user/SpiderForm/src/V2/Renderer/BladeRenderer.php:47
+   │ /home/user/SpiderForm/tests/Unit/Renderer/BladeRendererTest.php:34
+   │
+ ✘ Render classes helper with array
+   │
+   │ Error: Class "Illuminate\Filesystem\Filesystem" not found
+   │
+   │ /home/user/SpiderForm/src/V2/Renderer/BladeRenderer.php:47
+   │ /home/user/SpiderForm/tests/Unit/Renderer/BladeRendererTest.php:34
+   │
+ ✘ Render classes helper with string
+   │
+   │ Error: Class "Illuminate\Filesystem\Filesystem" not found
+   │
+   │ /home/user/SpiderForm/src/V2/Renderer/BladeRenderer.php:47
+   │ /home/user/SpiderForm/tests/Unit/Renderer/BladeRendererTest.php:34
+   │
+ ✘ Clear cache
+   │
+   │ Error: Class "Illuminate\Filesystem\Filesystem" not found
+   │
+   │ /home/user/SpiderForm/src/V2/Renderer/BladeRenderer.php:47
+   │ /home/user/SpiderForm/tests/Unit/Renderer/BladeRendererTest.php:34
+   │
+
+Button (Tests\InputTypesTests\ScopeAdd\Button)
+ ✘ 
+   │
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'<button name="test" type="button" class="">Button in Inputs</button>'
+   │ +'<button name="test" value="" class="" placeholder="" __is_def="1" type="button" id="test" ></button>'
+   │
+   │ /home/user/SpiderForm/tests/InputTypesTests/ScopeAdd/ButtonTest.php:44
+   │
+
+Button (Tests\InputTypesTests\ScopeEdit\Button)
+ ✘ 
+   │
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'<button name="nationality_tc_or_not" type="button" class="">Nationality is Turkey Citizen</button>'
+   │ +'<button name="nationality_tc_or_not" value="1" class="" placeholder="" __is_def="1" type="button" id="nationality_tc_or_not" ></button>'
+   │
+   │ /home/user/SpiderForm/tests/InputTypesTests/ScopeEdit/ButtonTest.php:48
+   │
+
+Button Group (Tests\InputTypesTests\ScopeAdd\ButtonGroup)
+ ✘ 

@@ -176,7 +176,12 @@ class NativeValidator implements ValidatorInterface
         // Pattern
         $this->addRule('pattern', function ($value, $pattern) {
             if (empty($value)) return true;
-            return preg_match($pattern['regex'] ?? $pattern, (string) $value) === 1;
+            $regex = $pattern['regex'] ?? $pattern;
+            // Ensure pattern has delimiters
+            if (!empty($regex) && !preg_match('/^[\/\#\~\@\%\+].*[\/\#\~\@\%\+][imsxeADSUXJu]*$/', $regex)) {
+                $regex = '/' . $regex . '/';
+            }
+            return preg_match($regex, (string) $value) === 1;
         }, 'Invalid format');
 
         $this->jsRules['pattern'] = function ($pattern) {

@@ -40,7 +40,7 @@ class ButtonTest extends TestCase
         $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput();
-        $expected = '<button name="test" type="button" class="">Button in Inputs</button>';
+        $expected = '<button name="test" class="" type="button" >Button in Inputs</button>';
         $this->assertSame($expected, $html);
     }
 }

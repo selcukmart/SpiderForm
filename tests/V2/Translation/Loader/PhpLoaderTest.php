@@ -6,12 +6,12 @@ namespace SpiderForm\Tests\V2\Translation\Loader;
 
 use SpiderForm\V2\Translation\Loader\PhpLoader;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for PhpLoader
- *
- * @covers \SpiderForm\V2\Translation\Loader\PhpLoader
  */
+#[CoversClass(PhpLoader::class)]
 class PhpLoaderTest extends TestCase
 {
     private PhpLoader $loader;

@@ -44,7 +44,7 @@ class ButtonTest extends TestCase
         $form_generator = new SpiderFormDirector($form_generator_array, 'edit');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput();
-        $expected = '<button name="nationality_tc_or_not" type="button" class="">Nationality is Turkey Citizen</button>';
+        $expected = '<button name="nationality_tc_or_not" class="" type="button" >Nationality is Turkey Citizen</button>';
         $this->assertSame($expected, $html);
     }
 }

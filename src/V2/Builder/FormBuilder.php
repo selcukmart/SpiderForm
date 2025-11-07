@@ -1512,11 +1512,15 @@ class FormBuilder implements BuilderInterface
             // Add validation rules
             if (!empty($inputData['validationRules'])) {
                 $rulesNode = $inputNode->addChild('validation_rules');
-                foreach ($inputData['validationRules'] as $rule) {
+                foreach ($inputData['validationRules'] as $ruleType => $ruleValue) {
                     $ruleNode = $rulesNode->addChild('rule');
-                    $ruleNode->addAttribute('type', $rule['type']);
-                    if (isset($rule['value'])) {
-                        $ruleNode->addAttribute('value', (string)$rule['value']);
+                    $ruleNode->addAttribute('type', $ruleType);
+                    if ($ruleValue !== true && $ruleValue !== null) {
+                        if (is_array($ruleValue)) {
+                            $ruleNode->addAttribute('value', json_encode($ruleValue));
+                        } else {
+                            $ruleNode->addAttribute('value', (string)$ruleValue);
+                        }
                     }
                 }
             }

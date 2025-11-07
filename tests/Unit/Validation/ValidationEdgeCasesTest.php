@@ -6,10 +6,12 @@ namespace SpiderForm\Tests\Unit\Validation;
 
 use SpiderForm\V2\Validation\{Validator, ValidationException};
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Test Edge Cases and Complex Scenarios
  */
+#[CoversClass(Validator::class)]
 class ValidationEdgeCasesTest extends TestCase
 {
     public function testEmptyDataWithNoRules(): void

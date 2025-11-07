@@ -10,12 +10,12 @@ use SpiderForm\V2\Type\AbstractTypeExtension;
 use SpiderForm\V2\Type\OptionsResolver;
 use SpiderForm\V2\Builder\InputBuilder;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for TypeExtensionRegistry
- *
- * @covers \SpiderForm\V2\Type\TypeExtensionRegistry
  */
+#[CoversClass(TypeExtensionRegistry::class)]
 class TypeExtensionRegistryTest extends TestCase
 {
     protected function setUp(): void

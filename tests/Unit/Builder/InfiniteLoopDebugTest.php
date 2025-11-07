@@ -9,12 +9,14 @@ use SpiderForm\V2\Builder\FormBuilder;
 use SpiderForm\V2\Renderer\SmartyRenderer;
 use SpiderForm\V2\Theme\Bootstrap3Theme;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Test to debug infinite loop issue in form generation
  *
  * This test reproduces the issue from the user's example form
  */
+#[CoversClass(FormBuilder::class)]
 class InfiniteLoopDebugTest extends TestCase
 {
     private ?SmartyRenderer $renderer = null;

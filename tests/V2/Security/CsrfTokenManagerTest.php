@@ -6,12 +6,12 @@ namespace SpiderForm\Tests\V2\Security;
 
 use SpiderForm\V2\Security\CsrfTokenManager;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for CsrfTokenManager
- *
- * @covers \SpiderForm\V2\Security\CsrfTokenManager
  */
+#[CoversClass(CsrfTokenManager::class)]
 class CsrfTokenManagerTest extends TestCase
 {
     private CsrfTokenManager $manager;

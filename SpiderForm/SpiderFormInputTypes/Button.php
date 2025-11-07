@@ -10,6 +10,16 @@ namespace SpiderForm\SpiderFormInputTypes;
 
 class Button extends AbstractInputTypes implements InputTypeInterface
 {
+    protected
+        $unnecessary_attributes = [
+        'content',
+        'label',
+        'value',
+        'placeholder',
+        '__is_def',
+        'id'
+    ];
+
     private
         $default_generator_arr = [
         'default_value' => '',
@@ -18,7 +28,7 @@ class Button extends AbstractInputTypes implements InputTypeInterface
             'class' => '',
             'placeholder' => ''
         ],
-        'dont_set_id' => false,
+        'dont_set_id' => true,
         'value_callback' => ''
     ];
 
@@ -47,7 +57,7 @@ class Button extends AbstractInputTypes implements InputTypeInterface
         $input_dom_array = [
             'element' => 'button',
             'attributes' => $this->item['attributes'],
-            'content' => ''
+            'content' => $this->item['label'] ?? ''
         ];
 
         /**

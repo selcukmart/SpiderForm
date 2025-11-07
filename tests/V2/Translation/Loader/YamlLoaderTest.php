@@ -6,12 +6,12 @@ namespace SpiderForm\Tests\V2\Translation\Loader;
 
 use SpiderForm\V2\Translation\Loader\YamlLoader;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for YamlLoader
- *
- * @covers \SpiderForm\V2\Translation\Loader\YamlLoader
  */
+#[CoversClass(YamlLoader::class)]
 class YamlLoaderTest extends TestCase
 {
     private YamlLoader $loader;

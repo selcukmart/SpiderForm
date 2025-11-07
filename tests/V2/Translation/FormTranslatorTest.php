@@ -7,12 +7,12 @@ namespace SpiderForm\Tests\V2\Translation;
 use SpiderForm\V2\Translation\FormTranslator;
 use SpiderForm\V2\Translation\Loader\PhpLoader;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Unit tests for FormTranslator
- *
- * @covers \SpiderForm\V2\Translation\FormTranslator
  */
+#[CoversClass(FormTranslator::class)]
 class FormTranslatorTest extends TestCase
 {
     private FormTranslator $translator;
