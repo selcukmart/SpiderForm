@@ -12,6 +12,13 @@ use PHPUnit\Framework\Attributes\Test;
 #[CoversClass(DatePickerManager::class)]
 class DatePickerManagerTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        // Reset the static rendered pickers tracker before each test
+        DatePickerManager::reset();
+    }
+
     #[Test]
     public function it_has_english_locale_constant(): void
     {

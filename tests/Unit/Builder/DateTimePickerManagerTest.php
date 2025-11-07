@@ -12,6 +12,13 @@ use PHPUnit\Framework\Attributes\Test;
 #[CoversClass(DateTimePickerManager::class)]
 class DateTimePickerManagerTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        // Reset the static rendered pickers tracker before each test
+        DateTimePickerManager::reset();
+    }
+
     #[Test]
     public function it_has_english_locale_constant(): void
     {
@@ -20,8 +27,10 @@ class DateTimePickerManagerTest extends TestCase
         $this->assertIsArray($locale);
         $this->assertArrayHasKey('months', $locale);
         $this->assertArrayHasKey('weekdays', $locale);
-        $this->assertArrayHasKey('hours', $locale);
-        $this->assertArrayHasKey('minutes', $locale);
+        $this->assertArrayHasKey('selectDate', $locale);
+        $this->assertArrayHasKey('selectTime', $locale);
+        $this->assertArrayHasKey('am', $locale);
+        $this->assertArrayHasKey('pm', $locale);
     }
 
     #[Test]
@@ -31,7 +40,8 @@ class DateTimePickerManagerTest extends TestCase
 
         $this->assertIsArray($locale);
         $this->assertSame('Ocak', $locale['months'][0]);
-        $this->assertSame('Saat', $locale['hours']);
+        $this->assertSame('Tarih Seç', $locale['selectDate']);
+        $this->assertSame('Saat Seç', $locale['selectTime']);
     }
 
     #[Test]
