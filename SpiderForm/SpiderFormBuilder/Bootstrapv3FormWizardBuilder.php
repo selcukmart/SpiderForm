@@ -22,6 +22,12 @@ class Bootstrapv3FormWizardBuilder extends AbstractSpiderFormBuilder implements 
             $inputs = $this->formGeneratorDirector->getInputs();
         }
 
+        // Prevent infinite recursion
+        if ($this->recursion_depth >= self::MAX_RECURSION_DEPTH) {
+            error_log('SpiderForm: Maximum recursion depth reached in FormWizard. Possible infinite loop in form structure.');
+            return;
+        }
+
         foreach ($inputs as $group => $item) {
             if (!is_null($parent_group)) {
                 $item['group'] = $parent_group;
@@ -49,8 +55,15 @@ class Bootstrapv3FormWizardBuilder extends AbstractSpiderFormBuilder implements 
     protected function sendDataForRender($input, $group):void
     {
         if ($this->is_string_group) {
+            // Check if $input is an array before recursing
+            if (!is_array($input)) {
+                return;
+            }
+
             unset($input['input-id']);
+            $this->recursion_depth++;
             $this->buildHtmlOutput($input, $group);
+            $this->recursion_depth--;
             return;
         }
 
