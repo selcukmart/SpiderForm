@@ -17,7 +17,8 @@ abstract class AbstractSpiderFormBuilder
 
     const
         DEFAULT_TEMPLATE_CAPSULE_TPL = 'INPUT_CAPSULE',
-        DEFAULT_FORM_CAPSULE_TPL = 'FORM_CAPSULE';
+        DEFAULT_FORM_CAPSULE_TPL = 'FORM_CAPSULE',
+        MAX_RECURSION_DEPTH = 10;
     protected
         $input_capsule,
         $form_capsule,
@@ -27,6 +28,7 @@ abstract class AbstractSpiderFormBuilder
         $input_parts,
         $template,
         $filter,
+        $recursion_depth = 0,
         $without_help_block = [
         'hidden',
         'static_text',
@@ -56,6 +58,12 @@ abstract class AbstractSpiderFormBuilder
     {
         if (is_null($inputs)) {
             $inputs = $this->formGeneratorDirector->getInputs();
+        }
+
+        // Prevent infinite recursion
+        if ($this->recursion_depth >= self::MAX_RECURSION_DEPTH) {
+            error_log('SpiderForm: Maximum recursion depth reached. Possible infinite loop in form structure.');
+            return;
         }
 
         foreach ($inputs as $group => $input) {
@@ -110,8 +118,15 @@ abstract class AbstractSpiderFormBuilder
     protected function sendDataForRender($input, $group): void
     {
         if (!empty($group) && !is_numeric($group) && is_string($group)) {
+            // Check if $input is an array before recursing
+            if (!is_array($input)) {
+                return;
+            }
+
             unset($input['input-id']);
+            $this->recursion_depth++;
             $this->buildHtmlOutput($input, $group);
+            $this->recursion_depth--;
             return;
         }
         $this->prepareInputParts($input);
