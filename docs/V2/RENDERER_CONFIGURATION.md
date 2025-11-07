@@ -19,9 +19,10 @@ This guide explains how to properly configure renderers in SpiderForm V2 to avoi
 
 **Solution**: Configure the correct template directory path when instantiating the renderer.
 
-**Important**: As of v2.x, Twig and Smarty templates are separated:
+**Important**: As of v2.x, templates for different renderers are separated:
 - Twig templates (`.twig`) are in: `src/V2/Theme/templates/twig/`
 - Smarty templates (`.tpl`) are in: `src/V2/Theme/templates/smarty/`
+- Blade templates (`.blade.php`) are in: `src/V2/Theme/templates/blade/`
 
 ```php
 // ❌ WRONG - No template path specified
@@ -136,15 +137,34 @@ composer require illuminate/view
 ```php
 use SpiderForm\V2\Renderer\BladeRenderer;
 
+// IMPORTANT: Point to the 'blade' subdirectory for .blade.php templates
 $renderer = new BladeRenderer(
-    viewPaths: '/path/to/spider-form/src/V2/Theme/templates',
+    templatePaths: '/path/to/spider-form/src/V2/Theme/templates/blade',
     cachePath: sys_get_temp_dir() . '/blade_cache'
 );
 ```
 
 **Parameters**:
-- `viewPaths` (required): Path(s) to view directories (string or array)
+- `templatePaths` (required): Path(s) to Blade template directories (`.blade.php` files, string or array)
 - `cachePath` (required): Directory for compiled views
+
+**Example - From Project Root**:
+
+```php
+$renderer = new BladeRenderer(
+    templatePaths: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates/blade',
+    cachePath: sys_get_temp_dir() . '/blade_cache'
+);
+```
+
+**Example - From Package Root**:
+
+```php
+$renderer = new BladeRenderer(
+    templatePaths: __DIR__ . '/src/V2/Theme/templates/blade',
+    cachePath: sys_get_temp_dir() . '/blade_cache'
+);
+```
 
 ---
 
@@ -243,9 +263,15 @@ $renderer = new TwigRenderer(
 $renderer = new SmartyRenderer(
     templateDir: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates/smarty'
 );
+
+// BladeRenderer uses .blade.php templates from the blade/ subdirectory
+$renderer = new BladeRenderer(
+    templatePaths: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates/blade',
+    cachePath: sys_get_temp_dir() . '/blade_cache'
+);
 ```
 
-**Note**: Themes reference templates with `.twig` extensions, but SmartyRenderer automatically converts these to `.tpl` when looking for files. This allows the same theme configuration to work with different renderers.
+**Note**: Themes reference templates with `.twig` extensions, but SmartyRenderer and BladeRenderer automatically convert these to their respective formats (`.tpl` for Smarty, `.blade.php` for Blade) when looking for files. This allows the same theme configuration to work with different renderers.
 
 ---
 
