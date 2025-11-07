@@ -960,6 +960,25 @@ class InputBuilder
     }
 
     /**
+     * Add submit button (convenience method)
+     *
+     * This method allows you to add a submit button directly from an InputBuilder chain.
+     * It first adds the current input, then adds the submit button.
+     *
+     * @param string $name Submit button name
+     * @param string|null $label Submit button label
+     * @return FormBuilder Returns FormBuilder for further chaining
+     */
+    public function addSubmit(string $name = 'submit', ?string $label = null): FormBuilder
+    {
+        // First add the current input
+        $this->formBuilder->addInputBuilder($this);
+
+        // Then add the submit button
+        return $this->formBuilder->addSubmit($name, $label);
+    }
+
+    /**
      * Finish building this input and return to FormBuilder
      */
     public function add(): FormBuilder
