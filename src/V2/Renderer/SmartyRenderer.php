@@ -209,7 +209,11 @@ class SmartyRenderer implements RendererInterface
     private function registerCustomModifiers(): void
     {
         // Attributes modifier: converts array to HTML attributes string
-        $this->registerModifier('attributes', function (array $attributes): string {
+        $this->registerModifier('attributes', function (?array $attributes = null): string {
+            if ($attributes === null) {
+                return '';
+            }
+
             $parts = [];
             foreach ($attributes as $key => $value) {
                 if (is_bool($value)) {
@@ -228,7 +232,10 @@ class SmartyRenderer implements RendererInterface
         });
 
         // Classes modifier: converts array to CSS classes string
-        $this->registerModifier('classes', function (array|string $classes): string {
+        $this->registerModifier('classes', function (array|string|null $classes = null): string {
+            if ($classes === null) {
+                return '';
+            }
             if (is_string($classes)) {
                 return $classes;
             }
