@@ -19,7 +19,11 @@ class InputBuilderTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->formBuilder = new FormBuilder('test-form');
+        $renderer = new \SpiderForm\V2\Renderer\TwigRenderer(__DIR__ . '/../../../src/V2/Theme/templates/twig');
+        $theme = new \SpiderForm\V2\Theme\Bootstrap5Theme();
+        $this->formBuilder = FormBuilder::create('test-form')
+            ->setRenderer($renderer)
+            ->setTheme($theme);
     }
 
     #[Test]

@@ -19,7 +19,29 @@ class Date implements RuleInterface
             return true; // Unix timestamp
         }
 
-        return strtotime($value) !== false;
+        // Try strtotime first
+        if (strtotime($value) !== false) {
+            return true;
+        }
+
+        // Try common date formats that strtotime might not handle
+        $commonFormats = [
+            'd/m/Y',  // 15/01/2024
+            'm/d/Y',  // 01/15/2024
+            'd-m-Y',  // 15-01-2024
+            'm-d-Y',  // 01-15-2024
+            'Y-m-d',  // 2024-01-15
+            'd.m.Y',  // 15.01.2024
+        ];
+
+        foreach ($commonFormats as $format) {
+            $date = \DateTime::createFromFormat($format, $value);
+            if ($date && $date->format($format) === $value) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function message(): string

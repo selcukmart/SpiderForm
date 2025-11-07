@@ -57,7 +57,7 @@ class CheckboxTreeManager
     /**
      * Reset rendered trees tracker (useful for testing)
      */
-    public static function reset(): void
+    public static function resetCache(): void
     {
         self::$renderedTrees = [];
     }

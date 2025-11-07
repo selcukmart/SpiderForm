@@ -16,7 +16,7 @@ class DependencyManagerTest extends TestCase
     {
         parent::setUp();
         // Reset static state
-        DependencyManager::reset();
+        DependencyManager::resetCache();
     }
 
     #[Test]
@@ -42,11 +42,11 @@ class DependencyManagerTest extends TestCase
     #[Test]
     public function it_generates_unique_namespace_per_form(): void
     {
-        DependencyManager::reset();
-        
+        DependencyManager::resetCache();
+
         $js1 = DependencyManager::generateScript('form1');
         $js2 = DependencyManager::generateScript('form2');
-        
+
         $this->assertStringContainsString('FormGen_form1', $js1);
         $this->assertStringContainsString('FormGen_form2', $js2);
         $this->assertStringNotContainsString('FormGen_form2', $js1);

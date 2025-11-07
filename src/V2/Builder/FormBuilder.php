@@ -434,10 +434,17 @@ class FormBuilder implements BuilderInterface
 
     /**
      * Enable/disable CSRF protection
+     *
+     * @param bool|SecurityInterface $enable Enable CSRF or pass SecurityManager directly
      */
-    public function enableCsrf(bool $enable = true): self
+    public function enableCsrf(bool|SecurityInterface $enable = true): self
     {
-        $this->enableCsrf = $enable;
+        if ($enable instanceof SecurityInterface) {
+            $this->security = $enable;
+            $this->enableCsrf = true;
+        } else {
+            $this->enableCsrf = $enable;
+        }
         return $this;
     }
 
@@ -565,6 +572,17 @@ class FormBuilder implements BuilderInterface
     public function getData(): array
     {
         return $this->data;
+    }
+
+    /**
+     * Populate form with data (alias for setData())
+     *
+     * @param array $data Form data
+     * @return self
+     */
+    public function populate(array $data): self
+    {
+        return $this->setData($data);
     }
 
     /**
@@ -879,6 +897,28 @@ class FormBuilder implements BuilderInterface
     {
         $this->attributes = array_merge($this->attributes, $attributes);
         return $this;
+    }
+
+    /**
+     * Set HTML attributes (alias for attributes())
+     *
+     * @param array $attributes HTML attributes
+     * @return self
+     */
+    public function setAttributes(array $attributes): self
+    {
+        return $this->attributes($attributes);
+    }
+
+    /**
+     * Set CSS classes for the form element
+     *
+     * @param array $classes CSS class names
+     * @return self
+     */
+    public function setClasses(array $classes): self
+    {
+        return $this->attributes(['class' => implode(' ', $classes)]);
     }
 
     /**

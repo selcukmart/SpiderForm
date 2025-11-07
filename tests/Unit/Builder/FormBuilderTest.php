@@ -13,6 +13,7 @@ use SpiderForm\V2\Theme\TailwindTheme;
 use SpiderForm\V2\Validation\NativeValidator;
 use SpiderForm\V2\DataProvider\ArrayDataProvider;
 use SpiderForm\V2\Security\SecurityManager;
+use SpiderForm\V2\Renderer\TwigRenderer;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -25,6 +26,12 @@ class FormBuilderTest extends TestCase
     {
         parent::setUp();
         $this->formBuilder = FormBuilder::create('test-form');
+        // Set default theme and renderer for tests
+        $renderer = new TwigRenderer(__DIR__ . '/../../../src/V2/Theme/templates/twig');
+        $theme = new Bootstrap5Theme();
+        $this->formBuilder
+            ->setRenderer($renderer)
+            ->setTheme($theme);
     }
 
     #[Test]
@@ -431,12 +438,19 @@ class FormBuilderTest extends TestCase
     #[Test]
     public function it_generates_unique_form_id(): void
     {
-        $form1 = new FormBuilder('form1');
-        $form2 = new FormBuilder('form2');
-        
+        $renderer = new TwigRenderer(__DIR__ . '/../../../src/V2/Theme/templates/twig');
+        $theme = new Bootstrap5Theme();
+
+        $form1 = FormBuilder::create('form1')
+            ->setRenderer($renderer)
+            ->setTheme($theme);
+        $form2 = FormBuilder::create('form2')
+            ->setRenderer($renderer)
+            ->setTheme($theme);
+
         $html1 = $form1->build();
         $html2 = $form2->build();
-        
+
         $this->assertStringContainsString('form1', $html1);
         $this->assertStringContainsString('form2', $html2);
         $this->assertStringNotContainsString('form2', $html1);
