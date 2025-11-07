@@ -176,6 +176,86 @@ class InputBuilder
     }
 
     /**
+     * Set CSS classes (array form)
+     *
+     * @param array $classes Array of CSS class names
+     * @return self
+     */
+    public function classes(array $classes): self
+    {
+        $this->attributes['class'] = implode(' ', $classes);
+        return $this;
+    }
+
+    /**
+     * Mark checkbox/radio as checked
+     *
+     * @param bool $checked Whether to check the input
+     * @return self
+     */
+    public function checked(bool $checked = true): self
+    {
+        if ($checked) {
+            $this->attributes['checked'] = 'checked';
+        } else {
+            unset($this->attributes['checked']);
+        }
+        return $this;
+    }
+
+    /**
+     * Set rows attribute for textarea
+     *
+     * @param int $rows Number of rows
+     * @return self
+     */
+    public function rows(int $rows): self
+    {
+        $this->attributes['rows'] = $rows;
+        return $this;
+    }
+
+    /**
+     * Set cols attribute for textarea
+     *
+     * @param int $cols Number of columns
+     * @return self
+     */
+    public function cols(int $cols): self
+    {
+        $this->attributes['cols'] = $cols;
+        return $this;
+    }
+
+    /**
+     * Set accept attribute for file inputs
+     *
+     * @param string $accept MIME types or file extensions (e.g., 'image/*', '.pdf,.doc')
+     * @return self
+     */
+    public function accept(string $accept): self
+    {
+        $this->attributes['accept'] = $accept;
+        return $this;
+    }
+
+    /**
+     * Mark file input as multiple
+     *
+     * @param bool $multiple Whether to allow multiple files
+     * @return self
+     */
+    public function multiple(bool $multiple = true): self
+    {
+        if ($multiple) {
+            $this->attributes['multiple'] = 'multiple';
+        } else {
+            unset($this->attributes['multiple']);
+        }
+        return $this;
+    }
+
+    /**
      * Set options for select/radio/checkbox
      */
     public function options(array $options): self
@@ -417,6 +497,7 @@ class InputBuilder
     public function minLength(int $length): self
     {
         $this->validationRules['minLength'] = $length;
+        $this->attributes['minlength'] = $length;
         return $this;
     }
 
@@ -721,6 +802,43 @@ class InputBuilder
     public function regex(string $regex, ?string $message = null): self
     {
         return $this->pattern($regex, $message);
+    }
+
+    /**
+     * Add validation rule by name
+     *
+     * Generic method to add any validation rule to this field.
+     * This is a convenience method for adding validation rules dynamically.
+     *
+     * @param string $fieldName The field name (for backwards compatibility, can be ignored)
+     * @param string $ruleName The validation rule name (e.g., 'required', 'email', 'min', etc.)
+     * @param mixed $ruleValue Optional rule value/parameters
+     * @return self
+     */
+    public function addValidation(string $fieldName, string $ruleName, mixed $ruleValue = true): self
+    {
+        // Note: $fieldName is ignored in this implementation since we're adding
+        // validation to the current field. It's kept for backwards compatibility.
+
+        // Add the validation rule directly to validationRules array
+        $this->validationRules[$ruleName] = $ruleValue;
+
+        // Also call the corresponding method if it exists for side effects
+        // (e.g., required() also sets $this->required = true)
+        switch ($ruleName) {
+            case 'required':
+                if ($ruleValue) {
+                    $this->required = true;
+                }
+                break;
+            case 'email':
+                if ($ruleValue) {
+                    $this->type = InputType::EMAIL;
+                }
+                break;
+        }
+
+        return $this;
     }
 
     // ========== CheckboxTree Methods ==========

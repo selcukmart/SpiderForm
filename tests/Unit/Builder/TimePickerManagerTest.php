@@ -16,7 +16,7 @@ class TimePickerManagerTest extends TestCase
     {
         parent::setUp();
         // Reset the static rendered pickers tracker before each test
-        TimePickerManager::reset();
+        TimePickerManager::resetCache();
     }
 
     #[Test]

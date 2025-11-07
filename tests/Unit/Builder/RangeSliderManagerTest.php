@@ -12,6 +12,12 @@ use PHPUnit\Framework\Attributes\Test;
 #[CoversClass(RangeSliderManager::class)]
 class RangeSliderManagerTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        RangeSliderManager::resetCache();
+    }
+
     #[Test]
     public function it_has_english_locale_constant(): void
     {

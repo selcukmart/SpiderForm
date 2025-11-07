@@ -16,7 +16,7 @@ class DateTimePickerManagerTest extends TestCase
     {
         parent::setUp();
         // Reset the static rendered pickers tracker before each test
-        DateTimePickerManager::reset();
+        DateTimePickerManager::resetCache();
     }
 
     #[Test]

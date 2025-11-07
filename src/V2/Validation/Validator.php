@@ -137,6 +137,14 @@ class Validator
         // Parse rules
         $parsedRules = $this->parseRules($rules);
 
+        // Check if field is required
+        $isRequired = isset($parsedRules['required']);
+
+        // Skip validation if value is null and field is not required
+        if ($value === null && !$isRequired) {
+            return;
+        }
+
         foreach ($parsedRules as $rule => $parameters) {
             $passed = $this->validateRule($attribute, $value, $rule, $parameters);
 
@@ -221,7 +229,15 @@ class Validator
         foreach ($ruleParts as $rule) {
             if (str_contains($rule, ':')) {
                 [$ruleName, $params] = explode(':', $rule, 2);
-                $parsed[$ruleName] = explode(',', $params);
+                $parameters = explode(',', $params);
+                // Convert numeric strings to their actual types for strict comparison
+                $parameters = array_map(function ($param) {
+                    if (is_numeric($param)) {
+                        return $param + 0; // Converts to int or float as appropriate
+                    }
+                    return $param;
+                }, $parameters);
+                $parsed[$ruleName] = $parameters;
             } else {
                 $parsed[$rule] = [];
             }

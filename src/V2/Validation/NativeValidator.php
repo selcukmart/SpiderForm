@@ -69,10 +69,34 @@ class NativeValidator implements ValidatorInterface
     }
 
     /**
-     * Get JavaScript validation code for rules
+     * Set custom error message for a validation rule
+     *
+     * @param string $ruleName The name of the validation rule
+     * @param string $message The custom error message
+     * @return void
      */
-    public function getJavaScriptCode(array $rules): string
+    public function setMessage(string $ruleName, string $message): void
     {
+        $this->messages[$ruleName] = $message;
+    }
+
+    /**
+     * Get JavaScript validation code for rules
+     *
+     * @param string|array $fieldNameOrRules Field name or rules array (for backwards compatibility)
+     * @param array|null $rules Rules array (if first param is field name)
+     */
+    public function getJavaScriptCode(string|array $fieldNameOrRules, ?array $rules = null): string
+    {
+        // Handle both old signature (array only) and new signature (string, array)
+        if (is_array($fieldNameOrRules) && $rules === null) {
+            // Old signature: getJavaScriptCode($rules)
+            $rules = $fieldNameOrRules;
+        } elseif (is_string($fieldNameOrRules)) {
+            // New signature: getJavaScriptCode($fieldName, $rules)
+            // $fieldName is available in $fieldNameOrRules if needed
+        }
+
         $jsCode = [];
 
         foreach ($rules as $ruleName => $params) {

@@ -108,7 +108,7 @@ class TimePickerManager
      *
      * @return void
      */
-    public static function reset(): void
+    public static function resetCache(): void
     {
         self::$renderedPickers = [];
     }

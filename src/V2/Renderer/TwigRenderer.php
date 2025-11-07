@@ -177,7 +177,10 @@ class TwigRenderer implements RendererInterface
     private function registerCustomFilters(): void
     {
         // Attributes filter: converts array to HTML attributes string
-        $this->addFilter('attributes', function (array $attributes): string {
+        $this->addFilter('attributes', function (?array $attributes): string {
+            if ($attributes === null) {
+                return '';
+            }
             $parts = [];
             foreach ($attributes as $key => $value) {
                 if (is_bool($value)) {

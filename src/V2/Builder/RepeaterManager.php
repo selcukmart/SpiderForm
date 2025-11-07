@@ -59,7 +59,7 @@ class RepeaterManager
     /**
      * Reset rendered repeaters tracker (useful for testing)
      */
-    public static function reset(): void
+    public static function resetCache(): void
     {
         self::$renderedRepeaters = [];
     }

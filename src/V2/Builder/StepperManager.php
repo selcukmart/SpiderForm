@@ -63,7 +63,7 @@ class StepperManager
     /**
      * Reset rendered steppers tracker
      */
-    public static function reset(): void
+    public static function resetCache(): void
     {
         self::$renderedSteppers = [];
     }

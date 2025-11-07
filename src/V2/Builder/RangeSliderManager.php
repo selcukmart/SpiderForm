@@ -24,6 +24,14 @@ class RangeSliderManager
     private static array $renderedSliders = [];
 
     /**
+     * Reset rendered sliders cache (useful for testing)
+     */
+    public static function resetCache(): void
+    {
+        self::$renderedSliders = [];
+    }
+
+    /**
      * Default locales for common languages
      */
     public const LOCALE_EN = [
