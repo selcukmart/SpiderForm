@@ -1,0 +1,3 @@
+<div class="input-wrapper">
+  {{input_content}}
+</div>
