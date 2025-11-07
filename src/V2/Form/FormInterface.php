@@ -124,8 +124,10 @@ interface FormInterface
 
     /**
      * Create form view for rendering
+     *
+     * @param FormView|null $parentView Parent view (used internally to prevent infinite recursion)
      */
-    public function createView(): FormView;
+    public function createView(?FormView $parentView = null): FormView;
 
     /**
      * Render form as string

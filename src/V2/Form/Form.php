@@ -522,9 +522,10 @@ class Form implements FormInterface
         return $this;
     }
 
-    public function createView(): FormView
+    public function createView(?FormView $parentView = null): FormView
     {
-        $view = new FormView($this->parent?->createView());
+        // Use provided parent view or null (don't create parent view recursively)
+        $view = new FormView($parentView);
 
         // Set view variables from metadata and form state
         $view->setVars([
@@ -543,9 +544,9 @@ class Form implements FormInterface
             'action' => $this->config->getAction(),
         ]);
 
-        // Create views for children
+        // Create views for children - pass current view as parent to avoid infinite recursion
         foreach ($this->children as $name => $child) {
-            $view->addChild($name, $child->createView());
+            $view->addChild($name, $child->createView($view));
         }
 
         return $view;
