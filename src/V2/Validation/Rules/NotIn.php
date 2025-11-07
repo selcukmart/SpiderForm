@@ -15,6 +15,8 @@ class NotIn implements RuleInterface
             return true;
         }
 
+        // Use strict comparison for not_in
+        // This ensures '0' !== 0 (string vs int)
         return !in_array($value, $parameters, true);
     }
 

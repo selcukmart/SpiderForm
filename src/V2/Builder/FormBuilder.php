@@ -725,7 +725,10 @@ class FormBuilder implements BuilderInterface
     {
         $rules = [];
 
-        foreach ($this->inputs as $input) {
+        foreach ($this->inputs as $inputData) {
+            // Extract the InputBuilder from the array structure
+            $input = is_array($inputData) ? $inputData['input'] : $inputData;
+
             $inputRules = $input->getValidationRules();
 
             if (empty($inputRules)) {

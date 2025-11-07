@@ -15,12 +15,13 @@ class AlphaNumeric implements RuleInterface
             return false;
         }
 
-        return ctype_alnum($value);
+        // Allow letters, numbers, and underscores (common for usernames)
+        return preg_match('/^[A-Za-z0-9_]+$/', $value) === 1;
     }
 
     public function message(): string
     {
-        return 'The :attribute must contain only letters and numbers.';
+        return 'The :attribute must contain only letters, numbers, and underscores.';
     }
 
     public function name(): string

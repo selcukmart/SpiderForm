@@ -15,7 +15,14 @@ class In implements RuleInterface
             return false;
         }
 
-        return in_array($value, $parameters, true);
+        // Check with strict comparison first
+        if (in_array($value, $parameters, true)) {
+            return true;
+        }
+
+        // Also check with loose comparison to handle string/int variations
+        // This allows '1' to match 1 and vice versa
+        return in_array($value, $parameters, false);
     }
 
     public function message(): string
