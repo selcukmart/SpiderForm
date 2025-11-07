@@ -13,9 +13,9 @@ use SpiderForm\V2\Form\{FormCollection, FormConfig};
  *
  * Usage:
  * ```php
- * $form->addCollection('items', 'Items', function($item) {
+ * $form->addCollection('items', function($item) {
  *     $item->addText('name')->add();
- * })
+ * }, 'Items')
  * ->allowAdd()
  * ->allowDelete()
  * ->min(1)
@@ -36,8 +36,8 @@ class CollectionBuilder
     public function __construct(
         private readonly FormBuilder $formBuilder,
         private readonly string $name,
-        private readonly ?string $label,
-        private readonly \Closure $prototypeBuilder
+        private readonly \Closure $prototypeBuilder,
+        private readonly ?string $label = null
     ) {
     }
 
