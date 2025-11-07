@@ -568,7 +568,17 @@ class Form implements FormInterface
         $view = $this->createView();
         $template = $theme->getFormTemplate();
 
-        return $renderer->render($template, ['form' => $view]);
+        // Generate CSRF token if CSRF protection is enabled
+        $csrfToken = null;
+        if ($this->config->hasCsrfProtection()) {
+            $csrfProtection = new \SpiderForm\V2\Security\CsrfProtection();
+            $csrfToken = $csrfProtection->generateToken($this->getName());
+        }
+
+        return $renderer->render($template, [
+            'form' => $view,
+            'csrf_token' => $csrfToken,
+        ]);
     }
 
     /**

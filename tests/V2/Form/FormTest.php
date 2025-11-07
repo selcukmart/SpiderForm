@@ -280,4 +280,83 @@ class FormTest extends TestCase
 
         $this->assertEquals($metadata, $this->form->getMetadata());
     }
+
+    public function testRenderIncludesCsrfTokenWhenCsrfProtectionEnabled(): void
+    {
+        // Create form with CSRF protection enabled
+        $config = new FormConfig(
+            name: 'test_form',
+            type: 'form',
+            compound: true,
+            csrfProtection: true
+        );
+
+        $form = new Form('test_form', $config);
+
+        // Create a mock renderer
+        $renderer = $this->createMock(\SpiderForm\V2\Contracts\RendererInterface::class);
+
+        // Create a mock theme
+        $theme = $this->createMock(\SpiderForm\V2\Contracts\ThemeInterface::class);
+        $theme->method('getFormTemplate')->willReturn('form.twig');
+
+        // Configure renderer to capture the context
+        $capturedContext = null;
+        $renderer->method('render')
+            ->willReturnCallback(function ($template, $context) use (&$capturedContext) {
+                $capturedContext = $context;
+                return '<form></form>';
+            });
+
+        // Set renderer and theme
+        $form->setRenderer($renderer);
+        $form->setTheme($theme);
+
+        // Render the form
+        $form->render();
+
+        // Assert that csrf_token is included in the context
+        $this->assertArrayHasKey('csrf_token', $capturedContext);
+        $this->assertNotNull($capturedContext['csrf_token']);
+        $this->assertIsString($capturedContext['csrf_token']);
+    }
+
+    public function testRenderIncludesNullCsrfTokenWhenCsrfProtectionDisabled(): void
+    {
+        // Create form with CSRF protection disabled
+        $config = new FormConfig(
+            name: 'test_form',
+            type: 'form',
+            compound: true,
+            csrfProtection: false
+        );
+
+        $form = new Form('test_form', $config);
+
+        // Create a mock renderer
+        $renderer = $this->createMock(\SpiderForm\V2\Contracts\RendererInterface::class);
+
+        // Create a mock theme
+        $theme = $this->createMock(\SpiderForm\V2\Contracts\ThemeInterface::class);
+        $theme->method('getFormTemplate')->willReturn('form.twig');
+
+        // Configure renderer to capture the context
+        $capturedContext = null;
+        $renderer->method('render')
+            ->willReturnCallback(function ($template, $context) use (&$capturedContext) {
+                $capturedContext = $context;
+                return '<form></form>';
+            });
+
+        // Set renderer and theme
+        $form->setRenderer($renderer);
+        $form->setTheme($theme);
+
+        // Render the form
+        $form->render();
+
+        // Assert that csrf_token is null when CSRF protection is disabled
+        $this->assertArrayHasKey('csrf_token', $capturedContext);
+        $this->assertNull($capturedContext['csrf_token']);
+    }
 }
