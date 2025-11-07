@@ -115,6 +115,134 @@ class DatePickerManager
     }
 
     /**
+     * Generate CSS styles for date picker
+     *
+     * @param bool $rtl Whether to include RTL styles
+     * @return string Generated CSS
+     */
+    private static function generateCSS(bool $rtl = false): string
+    {
+        $css = <<<CSS
+.datepicker-calendar {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 8px;
+    min-width: 280px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.datepicker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.datepicker-prev,
+.datepicker-next {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: #666;
+}
+.datepicker-prev:hover,
+.datepicker-next:hover {
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+.datepicker-title {
+    font-weight: 600;
+    font-size: 14px;
+}
+.datepicker-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 4px;
+}
+.datepicker-weekday {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    padding: 4px;
+}
+.datepicker-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+.datepicker-day {
+    border: none;
+    background: none;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.datepicker-day:hover:not(:disabled) {
+    background: #f0f0f0;
+}
+.datepicker-day-today {
+    font-weight: 700;
+    color: #0d6efd;
+}
+.datepicker-day-selected {
+    background: #0d6efd;
+    color: #fff;
+}
+.datepicker-day-selected:hover {
+    background: #0b5ed7;
+}
+.datepicker-day-other {
+    color: #ccc;
+}
+.datepicker-day-disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+.datepicker-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+.datepicker-today,
+.datepicker-clear {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.datepicker-today:hover,
+.datepicker-clear:hover {
+    background: #f0f0f0;
+}
+CSS;
+
+        if ($rtl) {
+            $css .= <<<CSS
+
+/* RTL Support */
+.datepicker-calendar.rtl {
+    direction: rtl;
+}
+.datepicker-calendar.rtl .datepicker-header {
+    flex-direction: row-reverse;
+}
+CSS;
+        }
+
+        return $css;
+    }
+
+    /**
      * Generate date picker script
      *
      * @param string $inputId Input field ID
@@ -145,12 +273,13 @@ class DatePickerManager
         ];
 
         $config = array_merge($defaultOptions, $options);
-        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
+        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
+        $css = self::generateCSS($config['rtl']);
         $script = self::generateDatePickerJS($inputId, $configJson);
 
         if ($includeScript) {
-            return "<script>\n{$script}\n</script>";
+            return "<style>\n{$css}\n</style>\n<script>\n{$script}\n</script>";
         }
 
         return $script;

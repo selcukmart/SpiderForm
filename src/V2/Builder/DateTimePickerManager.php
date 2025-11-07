@@ -104,6 +104,167 @@ class DateTimePickerManager
     }
 
     /**
+     * Generate CSS styles for datetime picker
+     *
+     * @param bool $rtl Whether to include RTL styles
+     * @return string Generated CSS
+     */
+    private static function generateCSS(bool $rtl = false): string
+    {
+        $css = <<<CSS
+.datetimepicker-popup {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    min-width: 320px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.datetimepicker-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+.datetimepicker-tab {
+    flex: 1;
+    padding: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+}
+.datetimepicker-tab.active {
+    color: #0d6efd;
+    border-bottom: 2px solid #0d6efd;
+}
+.datetimepicker-content {
+    padding: 12px;
+}
+.datetimepicker-pane {
+    display: none;
+}
+.datetimepicker-pane.active {
+    display: block;
+}
+.datetimepicker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.datetimepicker-prev,
+.datetimepicker-next {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: #666;
+}
+.datetimepicker-title {
+    font-weight: 600;
+    font-size: 14px;
+}
+.datetimepicker-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 4px;
+}
+.datetimepicker-weekday {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    padding: 4px;
+}
+.datetimepicker-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+.datetimepicker-day {
+    border: none;
+    background: none;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.datetimepicker-day:hover:not(:disabled) {
+    background: #f0f0f0;
+}
+.datetimepicker-day-today {
+    font-weight: 700;
+    color: #0d6efd;
+}
+.datetimepicker-day-selected {
+    background: #0d6efd;
+    color: #fff;
+}
+.datetimepicker-day-other {
+    color: #ccc;
+}
+.datetimepicker-time-selectors {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+.datetimepicker-time-column {
+    flex: 1;
+}
+.datetimepicker-time-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.datetimepicker-time-item {
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+.datetimepicker-time-item:hover {
+    background: #f0f0f0;
+}
+.datetimepicker-time-item.selected {
+    background: #0d6efd;
+    color: #fff;
+    font-weight: 600;
+}
+.datetimepicker-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border-top: 1px solid #eee;
+}
+.datetimepicker-now,
+.datetimepicker-clear {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+CSS;
+
+        if ($rtl) {
+            $css .= <<<CSS
+
+/* RTL Support */
+.datetimepicker-popup.rtl {
+    direction: rtl;
+}
+CSS;
+        }
+
+        return $css;
+    }
+
+    /**
      * Generate datetime picker script
      *
      * @param string $inputId Input field ID
@@ -135,12 +296,13 @@ class DateTimePickerManager
         ];
 
         $config = array_merge($defaultOptions, $options);
-        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
+        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
+        $css = self::generateCSS($config['rtl']);
         $script = self::generateDateTimePickerJS($inputId, $configJson);
 
         if ($includeScript) {
-            return "<script>\n{$script}\n</script>";
+            return "<style>\n{$css}\n</style>\n<script>\n{$script}\n</script>";
         }
 
         return $script;

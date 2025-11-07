@@ -114,6 +114,102 @@ class TimePickerManager
     }
 
     /**
+     * Generate CSS styles for time picker
+     *
+     * @param bool $rtl Whether to include RTL styles
+     * @return string Generated CSS
+     */
+    private static function generateCSS(bool $rtl = false): string
+    {
+        $css = <<<CSS
+.timepicker-popup {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.timepicker-selectors {
+    display: flex;
+    gap: 8px;
+}
+.timepicker-column {
+    display: flex;
+    flex-direction: column;
+}
+.timepicker-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #666;
+}
+.timepicker-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 60px;
+}
+.timepicker-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.timepicker-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+.timepicker-item {
+    padding: 8px 12px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+.timepicker-item:hover {
+    background: #f0f0f0;
+}
+.timepicker-item.selected {
+    background: #0d6efd;
+    color: #fff;
+    font-weight: 600;
+}
+.timepicker-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+}
+.timepicker-now,
+.timepicker-clear {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.timepicker-now:hover,
+.timepicker-clear:hover {
+    background: #f0f0f0;
+}
+CSS;
+
+        if ($rtl) {
+            $css .= <<<CSS
+
+/* RTL Support */
+.timepicker-popup.rtl {
+    direction: rtl;
+}
+CSS;
+        }
+
+        return $css;
+    }
+
+    /**
      * Generate time picker script
      *
      * @param string $inputId Input field ID
@@ -142,12 +238,13 @@ class TimePickerManager
         ];
 
         $config = array_merge($defaultOptions, $options);
-        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
+        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
+        $css = self::generateCSS($config['rtl']);
         $script = self::generateTimePickerJS($inputId, $configJson);
 
         if ($includeScript) {
-            return "<script>\n{$script}\n</script>";
+            return "<style>\n{$css}\n</style>\n<script>\n{$script}\n</script>";
         }
 
         return $script;

@@ -182,7 +182,7 @@ class FormBuilder implements BuilderInterface
      */
     public function setMethod(string $method): self
     {
-        $this->method = strtolower($method);
+        $this->method = strtoupper($method);
         return $this;
     }
 
@@ -1681,7 +1681,7 @@ class FormBuilder implements BuilderInterface
         $attributes = array_merge([
             'name' => $this->name,
             'id' => $this->name,
-            'method' => $this->method,
+            'method' => strtolower($this->method),
             'action' => $this->action,
         ], $this->attributes);
 

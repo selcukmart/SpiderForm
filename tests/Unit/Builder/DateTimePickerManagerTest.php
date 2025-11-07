@@ -148,7 +148,7 @@ class DateTimePickerManagerTest extends TestCase
 
         $this->assertStringContainsString('<style>', $script);
         $this->assertStringContainsString('</style>', $script);
-        $this->assertStringContainsString('.datetimepicker-container', $script);
+        $this->assertStringContainsString('.datetimepicker-popup', $script);
     }
 
     #[Test]

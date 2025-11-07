@@ -32,6 +32,124 @@ class RangeSliderManager
     }
 
     /**
+     * Generate CSS styles for range slider
+     *
+     * @param bool $rtl Whether to include RTL styles
+     * @return string Generated CSS
+     */
+    private static function generateCSS(bool $rtl = false): string
+    {
+        $css = <<<CSS
+.range-slider {
+    padding: 20px 0;
+}
+.range-slider-values {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.range-slider-track {
+    position: relative;
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.range-slider-range {
+    position: absolute;
+    height: 100%;
+    background: #0d6efd;
+    border-radius: 3px;
+    pointer-events: none;
+}
+.range-slider-handle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #0d6efd;
+    border-radius: 50%;
+    cursor: grab;
+    transition: box-shadow 0.2s;
+}
+.range-slider-handle:hover,
+.range-slider-handle:focus {
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.25);
+    outline: none;
+}
+.range-slider-handle.active {
+    cursor: grabbing;
+    box-shadow: 0 0 0 6px rgba(13, 110, 253, 0.25);
+}
+.range-slider-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    background: #333;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.range-slider-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: #333;
+}
+.range-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666;
+}
+/* Vertical slider */
+.range-slider-vertical {
+    display: inline-block;
+    padding: 0 20px;
+}
+.range-slider-vertical .range-slider-track {
+    width: 6px;
+    height: 200px;
+}
+.range-slider-vertical .range-slider-range {
+    width: 100%;
+    height: auto;
+    bottom: 0;
+}
+.range-slider-vertical .range-slider-handle {
+    left: 50%;
+    top: auto;
+    transform: translate(-50%, 50%);
+}
+CSS;
+
+        if ($rtl) {
+            $css .= <<<CSS
+
+/* RTL Support */
+.range-slider.rtl {
+    direction: rtl;
+}
+CSS;
+        }
+
+        return $css;
+    }
+
+    /**
      * Default locales for common languages
      */
     public const LOCALE_EN = [
@@ -109,12 +227,13 @@ class RangeSliderManager
             $config['dual'] = true;
         }
 
-        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
+        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
+        $css = self::generateCSS($config['rtl']);
         $script = self::generateRangeSliderJS($inputId, $configJson);
 
         if ($includeScript) {
-            return "<script>\n{$script}\n</script>";
+            return "<style>\n{$css}\n</style>\n<script>\n{$script}\n</script>";
         }
 
         return $script;

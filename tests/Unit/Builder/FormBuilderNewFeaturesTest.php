@@ -9,6 +9,7 @@ use SpiderForm\V2\Builder\FormBuilder;
 use SpiderForm\V2\Builder\DatePickerManager;
 use SpiderForm\V2\Builder\TimePickerManager;
 use SpiderForm\V2\Builder\DateTimePickerManager;
+use SpiderForm\V2\Builder\DependencyManager;
 use SpiderForm\V2\Contracts\{TextDirection, OutputFormat};
 use SpiderForm\V2\Theme\Bootstrap5Theme;
 use SpiderForm\V2\Renderer\TwigRenderer;
@@ -25,6 +26,12 @@ class FormBuilderNewFeaturesTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        // Reset all manager caches to prevent test interference
+        DatePickerManager::resetCache();
+        TimePickerManager::resetCache();
+        DateTimePickerManager::resetCache();
+        DependencyManager::resetCache();
+
         $this->renderer = new TwigRenderer(__DIR__ . '/../../../src/V2/Theme/templates/twig');
         $this->theme = new Bootstrap5Theme();
         $this->formBuilder = FormBuilder::create('test-form')
