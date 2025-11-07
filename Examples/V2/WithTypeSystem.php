@@ -13,6 +13,8 @@
  * @since 2.5.0
  */
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use SpiderForm\V2\Builder\FormBuilder;
@@ -35,7 +37,10 @@ use SpiderForm\V2\Theme\Bootstrap5Theme;
 echo "<h2>Example 1: Built-in Types</h2>\n\n";
 
 $form1 = FormBuilder::create('user_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+))
     ->setTheme(new Bootstrap5Theme())
 
     // Using type system instead of addText(), addEmail(), etc.
@@ -147,7 +152,10 @@ FormBuilder::registerType('phone', PhoneType::class);
 
 // Use the custom type
 $form2 = FormBuilder::create('contact_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+))
     ->setTheme(new Bootstrap5Theme())
 
     ->addField('name', 'text', ['label' => 'Name', 'required' => true])
@@ -257,7 +265,10 @@ FormBuilder::registerType('money', MoneyType::class);
 
 // Use MoneyType
 $form3 = FormBuilder::create('product_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+))
     ->setTheme(new Bootstrap5Theme())
 
     ->addField('product_name', 'text', ['label' => 'Product', 'required' => true])
@@ -362,7 +373,10 @@ FormBuilder::registerTypeExtension(new TooltipExtension());
 
 // Use extended types
 $form4 = FormBuilder::create('enhanced_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+))
     ->setTheme(new Bootstrap5Theme())
 
     ->addField('username', 'text', [

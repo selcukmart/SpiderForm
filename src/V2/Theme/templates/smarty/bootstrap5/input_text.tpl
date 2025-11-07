@@ -8,12 +8,14 @@
     {/if}
 
     <input
-        type="{$type}"
-        {$attributes|attributes nofilter}
-        class="{$classes.input}{if $required} required{/if}"
-        {if $value}value="{$value}"{/if}
+            type="{$type}"
+            {$attributes|attributes nofilter}
+            class="{$classes.input}{if $required} required{/if}"
+            {if $value and !is_array($value) }value="{$value}"
+            {/if}
     />
-
+{*    <pre> {$attributes|var_dump}</pre>*}
+{*    <pre> {$value|var_dump}</pre>*}
     {if $helpText}
         <div class="{$classes.help}">{$helpText}</div>
     {/if}

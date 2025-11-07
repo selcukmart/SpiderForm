@@ -46,7 +46,7 @@ use SpiderForm\V2\Security\{CsrfProtection, CsrfTokenManager};
  *     ->addEmail('email')->required()->add()
  *     ->addSelect('country')->options($countries)->add()
  *     ->addSubmit('save', 'Save User')
- *     ->build();
+ *     ->buildForm();
  * </code>
  *
  * @author selcukmart

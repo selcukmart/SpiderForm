@@ -13,6 +13,8 @@
  * @since 2.4.0
  */
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use SpiderForm\V2\Builder\FormBuilder;
@@ -42,7 +44,10 @@ $userData = [
 $userForm = FormBuilder::create('user_form')
     ->setAction('/users/save')
     ->setMethod('POST')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+))
     ->setTheme(new Bootstrap5Theme())
     ->setData($userData)
 
@@ -120,7 +125,10 @@ $invoiceData = [
 
 $invoiceForm = FormBuilder::create('invoice_form')
     ->setAction('/invoices/save')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+))
     ->setTheme(new Bootstrap5Theme())
     ->setData($invoiceData)
 
@@ -209,7 +217,10 @@ $companyData = [
 ];
 
 $companyForm = FormBuilder::create('company_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+))
     ->setTheme(new Bootstrap5Theme())
     ->setData($companyData)
 
@@ -282,7 +293,10 @@ echo "</pre>\n\n";
 echo "<h2>Example 4: Stateful Form Operations</h2>\n\n";
 
 $form = FormBuilder::create('demo_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+))
     ->setTheme(new Bootstrap5Theme())
 
     ->addText('username', 'Username')
@@ -315,7 +329,10 @@ echo "\n";
 
 // Submit with invalid data
 $form2 = FormBuilder::create('demo_form2')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+))
     ->setTheme(new Bootstrap5Theme())
     ->addText('username')->required()->minLength(3)->add()
     ->buildForm();
@@ -334,7 +351,10 @@ echo "\n";
 echo "<h2>Example 5: FormView - Data vs Presentation</h2>\n\n";
 
 $profileForm = FormBuilder::create('profile')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+))
     ->setTheme(new Bootstrap5Theme())
     ->setData(['name' => 'John', 'bio' => 'Developer'])
 

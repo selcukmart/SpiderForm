@@ -6,6 +6,8 @@
  * Demonstrates built-in validation with both PHP and JavaScript
  */
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use SpiderForm\V2\Builder\FormBuilder;

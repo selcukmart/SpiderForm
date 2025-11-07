@@ -32,7 +32,7 @@ class InputBuilder
     private bool $required = false;
     private bool $disabled = false;
     private bool $readonly = false;
-    private ?string $defaultValue = null;
+    private mixed $defaultValue = null;
     private array $tree = [];
     private string $treeMode = CheckboxTreeManager::MODE_CASCADE;
     private ?FormBuilder $repeaterFields = null;

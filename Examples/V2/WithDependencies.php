@@ -7,6 +7,8 @@
  * where inputs show/hide based on other input values
  */
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use SpiderForm\V2\Builder\FormBuilder;

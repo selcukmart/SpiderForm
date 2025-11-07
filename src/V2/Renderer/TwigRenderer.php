@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SpiderForm\V2\Renderer;
 
+use RuntimeException;
 use SpiderForm\V2\Contracts\RendererInterface;
 use Twig\Environment;
+use Twig\Error\Error;
 use Twig\Extension\StringLoaderExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
@@ -25,9 +27,12 @@ class TwigRenderer implements RendererInterface
 
     public function __construct(
         string|array $templatePaths,
-        ?string $cacheDir = null,
-        bool $debug = false
-    ) {
+        ?string      $cacheDir = null,
+        bool         $debug = false
+    )
+    {
+        //twig
+        $templatePaths .= '/twig';
         $paths = is_array($templatePaths) ? $templatePaths : [$templatePaths];
         $this->loader = new FilesystemLoader($paths);
 
@@ -55,8 +60,8 @@ class TwigRenderer implements RendererInterface
 
         try {
             return $this->twig->render($template, $context);
-        } catch (\Twig\Error\Error $e) {
-            throw new \RuntimeException(
+        } catch (Error $e) {
+            throw new RuntimeException(
                 sprintf('Failed to render template "%s": %s', $template, $e->getMessage()),
                 0,
                 $e
@@ -191,7 +196,7 @@ class TwigRenderer implements RendererInterface
                     $parts[] = sprintf(
                         '%s="%s"',
                         htmlspecialchars($key, ENT_QUOTES, 'UTF-8'),
-                        htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8')
+                        htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8')
                     );
                 }
             }

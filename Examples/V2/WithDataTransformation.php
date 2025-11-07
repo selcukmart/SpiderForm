@@ -18,6 +18,8 @@ declare(strict_types=1);
  * @since 2.3.1
  */
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use SpiderForm\V2\Builder\FormBuilder;
@@ -28,29 +30,28 @@ use SpiderForm\V2\DataTransformer\BooleanToStringTransformer;
 use SpiderForm\V2\DataTransformer\CallbackTransformer;
 use SpiderForm\V2\Renderer\TwigRenderer;
 use SpiderForm\V2\Theme\Bootstrap5Theme;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 // ========== Setup ==========
 
-$twig = new \Twig\Environment(
-    new \Twig\Loader\FilesystemLoader(__DIR__ . '/../../templates'),
-    ['cache' => false]
-);
 
-$renderer = new TwigRenderer($twig);
+$renderer = new TwigRenderer(templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+        cacheDir: sys_get_temp_dir() . '/form_generator_cache');
 $theme = new Bootstrap5Theme();
 
 // ========== Sample Model Data ==========
 
 // Simulate data from database/model with proper types
 $userData = [
-    'name' => 'John Doe',
-    'email' => 'john@example.com',
-    'birthday' => new \DateTime('1990-05-15'),  // DateTime object
-    'tags' => ['php', 'symfony', 'laravel'],    // Array
-    'salary' => 75000.50,                        // Float
-    'is_active' => true,                         // Boolean
-    'join_date' => new \DateTime('2020-01-10'),  // DateTime object
-    'bio' => 'Software Developer',
+        'name' => 'John Doe',
+        'email' => 'john@example.com',
+        'birthday' => new DateTime('1990-05-15'),  // DateTime object
+        'tags' => ['php', 'symfony', 'laravel'],    // Array
+        'salary' => 75000.50,                        // Float
+        'is_active' => true,                         // Boolean
+        'join_date' => new DateTime('2020-01-10'),  // DateTime object
+        'bio' => 'Software Developer',
 ];
 
 // ========== Example 1: Basic Data Transformation ==========
@@ -58,59 +59,59 @@ $userData = [
 echo "<h2>Example 1: Form with Data Transformers</h2>\n";
 
 $form = FormBuilder::create('user_form')
-    ->setRenderer($renderer)
-    ->setTheme($theme)
-    ->setAction('/users/save')
-    ->setData($userData);
+        ->setRenderer($renderer)
+        ->setTheme($theme)
+        ->setAction('/users/save')
+        ->setData($userData);
 
 // Text input (no transformation needed)
 $form->addText('name', 'Full Name')
-    ->required()
-    ->minLength(3)
-    ->add();
+        ->required()
+        ->minLength(3)
+        ->add();
 
 $form->addEmail('email', 'Email')
-    ->required()
-    ->add();
+        ->required()
+        ->add();
 
 // DateTime -> String transformation
 // Model: DateTime object -> View: 'Y-m-d' string
 $form->addDate('birthday', 'Birthday')
-    ->addTransformer(new DateTimeToStringTransformer('Y-m-d'))
-    ->required()
-    ->add();
+        ->addTransformer(new DateTimeToStringTransformer('Y-m-d'))
+        ->required()
+        ->add();
 
 // DateTime -> String with custom format
 $form->addDate('join_date', 'Join Date')
-    ->addTransformer(new DateTimeToStringTransformer('d/m/Y'))
-    ->add();
+        ->addTransformer(new DateTimeToStringTransformer('d/m/Y'))
+        ->add();
 
 // Array -> String transformation
 // Model: ['php', 'symfony', 'laravel'] -> View: 'php, symfony, laravel'
 $form->addText('tags', 'Skills (comma-separated)')
-    ->addTransformer(new StringToArrayTransformer(', '))
-    ->helpText('Enter skills separated by commas')
-    ->add();
+        ->addTransformer(new StringToArrayTransformer(', '))
+        ->helpText('Enter skills separated by commas')
+        ->add();
 
 // Number -> Localized String
 // Model: 75000.50 -> View: '75,000.50'
 $form->addText('salary', 'Salary')
-    ->addTransformer(new NumberToLocalizedStringTransformer(
-        precision: 2,
-        decimalSeparator: '.',
-        thousandsSeparator: ','
-    ))
-    ->add();
+        ->addTransformer(new NumberToLocalizedStringTransformer(
+                precision: 2,
+                decimalSeparator: '.',
+                thousandsSeparator: ','
+        ))
+        ->add();
 
 // Boolean -> String transformation
 // Model: true/false -> View: 'yes'/'no'
 $form->addRadio('is_active', 'Account Status')
-    ->options(['yes' => 'Active', 'no' => 'Inactive'])
-    ->addTransformer(new BooleanToStringTransformer('yes', 'no'))
-    ->add();
+        ->options(['yes' => 'Active', 'no' => 'Inactive'])
+        ->addTransformer(new BooleanToStringTransformer('yes', 'no'))
+        ->add();
 
 $form->addTextarea('bio', 'Biography')
-    ->add();
+        ->add();
 
 $form->addSubmit('save', 'Save User');
 
@@ -123,38 +124,38 @@ echo "\n<hr>\n\n";
 echo "<h2>Example 2: Custom Transformation with Callbacks</h2>\n";
 
 $productData = [
-    'name' => 'Premium Package',
-    'code' => 'PKG-001',
-    'price' => 99.99,
+        'name' => 'Premium Package',
+        'code' => 'PKG-001',
+        'price' => 99.99,
 ];
 
 $form2 = FormBuilder::create('product_form')
-    ->setRenderer($renderer)
-    ->setTheme($theme)
-    ->setAction('/products/save')
-    ->setData($productData);
+        ->setRenderer($renderer)
+        ->setTheme($theme)
+        ->setAction('/products/save')
+        ->setData($productData);
 
 $form2->addText('name', 'Product Name')
-    ->required()
-    ->add();
+        ->required()
+        ->add();
 
 // Transform: Uppercase for display, lowercase for storage
 $form2->addText('code', 'Product Code')
-    ->addTransformer(new CallbackTransformer(
-        transform: fn($value) => strtoupper($value),
-        reverseTransform: fn($value) => strtolower($value)
-    ))
-    ->helpText('Code will be stored in lowercase')
-    ->required()
-    ->add();
+        ->addTransformer(new CallbackTransformer(
+                fn($value) => strtoupper($value),
+                fn($value) => strtolower($value)
+        ))
+        ->helpText('Code will be stored in lowercase')
+        ->required()
+        ->add();
 
 // Transform: Add currency symbol for display
 $form2->addText('price', 'Price')
-    ->addTransformer(new CallbackTransformer(
-        transform: fn($value) => '$' . number_format($value, 2),
-        reverseTransform: fn($value) => (float)str_replace(['$', ','], '', $value)
-    ))
-    ->add();
+        ->addTransformer(new CallbackTransformer(
+                fn($value) => '$' . number_format($value, 2),
+                fn($value) => (float)str_replace(['$', ','], '', $value)
+        ))
+        ->add();
 
 $form2->addSubmit('save', 'Save Product');
 
@@ -168,14 +169,14 @@ echo "<h2>Example 3: Processing Submitted Data</h2>\n";
 
 // Simulate form submission
 $_POST = [
-    'name' => 'Jane Smith',
-    'email' => 'jane@example.com',
-    'birthday' => '1995-08-20',           // String from form
-    'join_date' => '15/03/2021',          // String from form
-    'tags' => 'javascript, react, nodejs', // String from form
-    'salary' => '85,000.00',               // String from form
-    'is_active' => 'yes',                  // String from form
-    'bio' => 'Frontend Developer',
+        'name' => 'Jane Smith',
+        'email' => 'jane@example.com',
+        'birthday' => '1995-08-20',           // String from form
+        'join_date' => '15/03/2021',          // String from form
+        'tags' => 'javascript, react, nodejs', // String from form
+        'salary' => '85,000.00',               // String from form
+        'is_active' => 'yes',                  // String from form
+        'bio' => 'Frontend Developer',
 ];
 
 echo "<h3>Submitted Data (View Format):</h3>\n";
@@ -206,22 +207,22 @@ echo "\n<hr>\n";
 echo "<h2>Example 4: Chaining Multiple Transformers</h2>\n";
 
 $form3 = FormBuilder::create('advanced_form')
-    ->setRenderer($renderer)
-    ->setTheme($theme);
+        ->setRenderer($renderer)
+        ->setTheme($theme);
 
 // Multiple transformers are applied in order
 $form3->addText('special_field', 'Special Field')
-    ->addTransformer(new CallbackTransformer(
-        fn($value) => strtoupper($value),
-        fn($value) => strtolower($value)
-    ))
-    ->addTransformer(new CallbackTransformer(
-        fn($value) => "PREFIX_{$value}",
-        fn($value) => str_replace('PREFIX_', '', $value)
-    ))
-    ->value('example')  // Will be displayed as "PREFIX_EXAMPLE"
-    ->helpText('Demonstrates chaining transformers')
-    ->add();
+        ->addTransformer(new CallbackTransformer(
+                fn($value) => strtoupper($value),
+                fn($value) => strtolower($value)
+        ))
+        ->addTransformer(new CallbackTransformer(
+                fn($value) => "PREFIX_{$value}",
+                fn($value) => str_replace('PREFIX_', '', $value)
+        ))
+        ->value('example')  // Will be displayed as "PREFIX_EXAMPLE"
+        ->helpText('Demonstrates chaining transformers')
+        ->add();
 
 $form3->addSubmit('save');
 
@@ -265,7 +266,7 @@ echo "\n<hr>\n\n";
         background: white;
         padding: 30px;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin: 20px 0;
     }
 

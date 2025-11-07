@@ -5,7 +5,7 @@
     {/if}
 
     {foreach $inputs as $input}
-        {if $input.is_section}
+        {if isset($input.section) and $input.section}
             {* Render section with its inputs *}
             {if $input.section}
                 <div class="form-section {$input.section.classes|classes}" {foreach $input.section.attributes as $attr => $attr_value}{$attr}="{$attr_value}" {/foreach}>

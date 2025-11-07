@@ -16,6 +16,8 @@ declare(strict_types=1);
  * @since 3.0.0
  */
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use SpiderForm\V2\Builder\FormBuilder;
