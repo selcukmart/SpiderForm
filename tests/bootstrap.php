@@ -11,6 +11,11 @@ declare(strict_types=1);
 // Load Composer autoloader
 $autoloader = require __DIR__ . '/../vendor/autoload.php';
 
+// Create class alias for Smarty v5 compatibility with legacy code
+if (class_exists('Smarty\Smarty')) {
+    class_alias('Smarty\Smarty', 'Smarty');
+}
+
 // Set error reporting for tests
 error_reporting(E_ALL);
 ini_set('display_errors', '1');

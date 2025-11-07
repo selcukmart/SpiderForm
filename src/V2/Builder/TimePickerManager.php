@@ -81,6 +81,28 @@ class TimePickerManager
         'close' => 'Cerrar',
     ];
 
+    public const LOCALE_AR = [
+        'hours' => 'ساعات',
+        'minutes' => 'دقائق',
+        'seconds' => 'ثواني',
+        'am' => 'ص',
+        'pm' => 'م',
+        'now' => 'الآن',
+        'clear' => 'مسح',
+        'close' => 'إغلاق',
+    ];
+
+    public const LOCALE_HE = [
+        'hours' => 'שעות',
+        'minutes' => 'דקות',
+        'seconds' => 'שניות',
+        'am' => 'AM',
+        'pm' => 'PM',
+        'now' => 'עכשיו',
+        'clear' => 'נקה',
+        'close' => 'סגור',
+    ];
+
     /**
      * Generate time picker script
      *
