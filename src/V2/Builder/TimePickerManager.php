@@ -142,7 +142,7 @@ class TimePickerManager
         ];
 
         $config = array_merge($defaultOptions, $options);
-        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT);
+        $configJson = json_encode($config, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
 
         $script = self::generateTimePickerJS($inputId, $configJson);
 
