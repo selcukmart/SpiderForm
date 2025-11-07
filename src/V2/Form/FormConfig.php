@@ -10,19 +10,19 @@ namespace SpiderForm\V2\Form;
  * @author selcukmart
  * @since 2.4.0
  */
-readonly class FormConfig implements FormConfigInterface
+class FormConfig implements FormConfigInterface
 {
     public function __construct(
-        private string $name,
-        private string $type,
-        private array $options = [],
-        private string $method = 'POST',
-        private string $action = '',
-        private array $attributes = [],
-        private bool $compound = false,
-        private bool $csrfProtection = true,
-        private bool $validation = true,
-        private bool $errorBubbling = false,
+        private readonly string $name,
+        private readonly string $type,
+        private readonly array $options = [],
+        private readonly string $method = 'POST',
+        private readonly string $action = '',
+        private readonly array $attributes = [],
+        private readonly bool $compound = false,
+        private readonly bool $csrfProtection = true,
+        private readonly bool $validation = true,
+        private readonly bool $errorBubbling = false,
     ) {
     }
 
