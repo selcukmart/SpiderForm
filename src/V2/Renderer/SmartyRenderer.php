@@ -5,7 +5,15 @@ declare(strict_types=1);
 namespace SpiderForm\V2\Renderer;
 
 use SpiderForm\V2\Contracts\RendererInterface;
-use Smarty;
+
+// Support both Smarty v4 (global namespace) and v5 (namespaced)
+if (class_exists('\Smarty\Smarty')) {
+    class_alias('\Smarty\Smarty', 'SpiderForm\V2\Renderer\SmartyCompat');
+} elseif (class_exists('\Smarty')) {
+    class_alias('\Smarty', 'SpiderForm\V2\Renderer\SmartyCompat');
+} else {
+    throw new \RuntimeException('Smarty library not found. Please install smarty/smarty package.');
+}
 
 /**
  * Smarty Renderer Implementation
@@ -15,16 +23,16 @@ use Smarty;
  */
 class SmartyRenderer implements RendererInterface
 {
-    private Smarty $smarty;
+    private SmartyCompat $smarty;
     private array $globals = [];
 
     public function __construct(
-        ?Smarty $smarty = null,
+        ?SmartyCompat $smarty = null,
         ?string $templateDir = null,
         ?string $compileDir = null,
         ?string $cacheDir = null
     ) {
-        $this->smarty = $smarty ?? new Smarty();
+        $this->smarty = $smarty ?? new SmartyCompat();
 
         // Get SpiderForm templates directory
         $spiderFormTemplateDir = dirname(__DIR__) . '/Theme/templates/smarty';
@@ -54,7 +62,7 @@ class SmartyRenderer implements RendererInterface
         }
 
         // Disable caching by default
-        $this->smarty->setCaching(Smarty::CACHING_OFF);
+        $this->smarty->setCaching(SmartyCompat::CACHING_OFF);
 
         $this->registerCustomModifiers();
         $this->registerCustomFunctions();
@@ -139,7 +147,7 @@ class SmartyRenderer implements RendererInterface
      */
     public function setCaching(bool $enabled, ?string $cacheDir = null): void
     {
-        $this->smarty->setCaching($enabled ? Smarty::CACHING_LIFETIME_CURRENT : Smarty::CACHING_OFF);
+        $this->smarty->setCaching($enabled ? SmartyCompat::CACHING_LIFETIME_CURRENT : SmartyCompat::CACHING_OFF);
 
         if ($cacheDir !== null) {
             $this->smarty->setCacheDir($cacheDir);
@@ -168,7 +176,7 @@ class SmartyRenderer implements RendererInterface
      */
     public function getVersion(): string
     {
-        return Smarty::SMARTY_VERSION;
+        return SmartyCompat::SMARTY_VERSION;
     }
 
     /**
@@ -182,7 +190,7 @@ class SmartyRenderer implements RendererInterface
     /**
      * Get Smarty instance
      */
-    public function getSmarty(): Smarty
+    public function getSmarty(): SmartyCompat
     {
         return $this->smarty;
     }
@@ -209,7 +217,11 @@ class SmartyRenderer implements RendererInterface
     private function registerCustomModifiers(): void
     {
         // Attributes modifier: converts array to HTML attributes string
-        $this->registerModifier('attributes', function (array $attributes): string {
+        $this->registerModifier('attributes', function (?array $attributes = null): string {
+            if ($attributes === null) {
+                return '';
+            }
+
             $parts = [];
             foreach ($attributes as $key => $value) {
                 if (is_bool($value)) {
@@ -228,7 +240,10 @@ class SmartyRenderer implements RendererInterface
         });
 
         // Classes modifier: converts array to CSS classes string
-        $this->registerModifier('classes', function (array|string $classes): string {
+        $this->registerModifier('classes', function (array|string|null $classes = null): string {
+            if ($classes === null) {
+                return '';
+            }
             if (is_string($classes)) {
                 return $classes;
             }
@@ -242,7 +257,7 @@ class SmartyRenderer implements RendererInterface
     private function registerCustomFunctions(): void
     {
         // CSRF token function
-        $this->registerFunction('csrf_token', function (array $params, Smarty $smarty): string {
+        $this->registerFunction('csrf_token', function (array $params, $smarty): string {
             $formName = $params['form'] ?? 'default';
             return sprintf('<input type="hidden" name="_csrf_token" value="%s" />', $formName);
         });
