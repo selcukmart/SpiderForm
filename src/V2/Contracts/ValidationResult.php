@@ -52,7 +52,11 @@ class ValidationResult
      */
     public function getFirstError(): ?string
     {
-        return !empty($this->errors) ? reset($this->errors) : null;
+        if (empty($this->errors)) {
+            return null;
+        }
+        $values = array_values($this->errors);
+        return $values[0] ?? null;
     }
 
     /**

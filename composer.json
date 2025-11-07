@@ -79,6 +79,8 @@
     "symfony/form": "^6.0|^7.0",
     "doctrine/orm": "^2.0|^3.0",
     "illuminate/support": "^10.0|^11.0",
+    "illuminate/view": "^10.0|^11.0",
+    "illuminate/filesystem": "^10.0|^11.0",
     "phpstan/phpstan": "^1.10",
     "friendsofphp/php-cs-fixer": "^3.0"
   },

@@ -414,8 +414,8 @@ class NativeValidatorTest extends TestCase
         $this->validator->setMessage('required', 'Custom required message');
 
         $result = $this->validator->validate('', ['required' => true]);
-        
-        $this->assertStringContainsString('Custom required message', $result->getErrors()[0]);
+
+        $this->assertStringContainsString('Custom required message', $result->getFirstError());
     }
 
     #[Test]

@@ -37,6 +37,7 @@ class BladeRenderer implements RendererInterface
     private Filesystem $filesystem;
     private array $globals = [];
     private array $viewPaths = [];
+    private string $cachePath;
 
     public function __construct(
         string|array $templatePaths,
@@ -48,13 +49,13 @@ class BladeRenderer implements RendererInterface
         $this->viewPaths = is_array($templatePaths) ? $templatePaths : [$templatePaths];
 
         // Set up cache directory
-        $cachePath = $cachePath ?? sys_get_temp_dir() . '/blade_cache';
-        if (!is_dir($cachePath)) {
-            $this->filesystem->makeDirectory($cachePath, 0755, true);
+        $this->cachePath = $cachePath ?? sys_get_temp_dir() . '/blade_cache';
+        if (!is_dir($this->cachePath)) {
+            $this->filesystem->makeDirectory($this->cachePath, 0755, true);
         }
 
         // Create Blade compiler
-        $this->blade = new BladeCompiler($this->filesystem, $cachePath);
+        $this->blade = new BladeCompiler($this->filesystem, $this->cachePath);
 
         // Create engine resolver
         $resolver = new EngineResolver();
@@ -71,6 +72,7 @@ class BladeRenderer implements RendererInterface
 
         // Create view finder
         $finder = new \Illuminate\View\FileViewFinder($this->filesystem, $this->viewPaths);
+        $finder->addExtension('blade.php');
 
         // Create view factory
         $this->factory = new Factory(
@@ -174,10 +176,8 @@ class BladeRenderer implements RendererInterface
      */
     public function clearCache(): void
     {
-        $cachePath = $this->blade->getCachePath();
-
-        if (is_dir($cachePath)) {
-            $files = $this->filesystem->files($cachePath);
+        if (is_dir($this->cachePath)) {
+            $files = $this->filesystem->files($this->cachePath);
             foreach ($files as $file) {
                 $this->filesystem->delete($file);
             }
@@ -301,7 +301,7 @@ class BladeRenderer implements RendererInterface
     }
 
     /**
-     * Normalize template name by converting .twig to .blade.php extension
+     * Normalize template name by converting .twig to blade template name
      *
      * This allows Blade renderer to use the same theme configuration as Twig renderer
      * while automatically loading the .blade.php versions of templates from the blade directory
@@ -311,16 +311,17 @@ class BladeRenderer implements RendererInterface
      */
     private function normalizeTemplateName(string $template): string
     {
-        // If template ends with .twig, replace it with .blade.php
+        // If template ends with .twig, remove it (Laravel will find .blade.php)
         if (str_ends_with($template, '.twig')) {
-            return substr($template, 0, -5) . '.blade.php';
+            return substr($template, 0, -5);
         }
 
-        // If template doesn't have .blade.php extension, add it
-        if (!str_ends_with($template, '.blade.php')) {
-            return $template . '.blade.php';
+        // If template ends with .blade.php, remove it (Laravel will add it back)
+        if (str_ends_with($template, '.blade.php')) {
+            return substr($template, 0, -10);
         }
 
+        // Return template name as-is (Laravel will find .blade.php file)
         return $template;
     }
 }
