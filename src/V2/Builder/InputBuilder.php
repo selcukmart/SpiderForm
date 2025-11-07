@@ -1215,4 +1215,12 @@ class InputBuilder
     {
         return $this->value;
     }
+
+    /**
+     * Get validation rules
+     */
+    public function getValidationRules(): array
+    {
+        return $this->validationRules;
+    }
 }

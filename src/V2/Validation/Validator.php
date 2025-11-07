@@ -140,8 +140,12 @@ class Validator
         // Check if field is required
         $isRequired = isset($parsedRules['required']);
 
-        // Skip validation if value is null and field is not required
-        if ($value === null && !$isRequired) {
+        // Type-specific rules that should validate even null values
+        $typeRules = ['boolean', 'integer', 'numeric', 'string', 'array'];
+        $hasTypeRule = !empty(array_intersect(array_keys($parsedRules), $typeRules));
+
+        // Skip validation if value is null, field is not required, and no type-specific rules
+        if ($value === null && !$isRequired && !$hasTypeRule) {
             return;
         }
 

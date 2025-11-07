@@ -25,8 +25,7 @@ class ValidationIntegrationTest extends TestCase
             ->addText('name', 'Name')
                 ->required()
                 ->minLength(3)
-                ->add()
-            ->build();
+                ->add();
 
         // Validate valid data
         $validData = [
@@ -46,8 +45,7 @@ class ValidationIntegrationTest extends TestCase
             ->addEmail('email', 'Email')
                 ->required()
                 ->email()
-                ->add()
-            ->build();
+                ->add();
 
         $form->validateData(['email' => 'invalid-email']);
     }
@@ -77,8 +75,7 @@ class ValidationIntegrationTest extends TestCase
                 ->required()
                 ->in(['user', 'admin'])
                 ->options(['user' => 'User', 'admin' => 'Admin'])
-                ->add()
-            ->build();
+                ->add();
 
         // Test valid registration
         $validData = [
@@ -127,8 +124,7 @@ class ValidationIntegrationTest extends TestCase
                 ->add()
             ->addPassword('password_confirmation', 'Confirm Password')
                 ->required()
-                ->add()
-            ->build();
+                ->add();
 
         // Test matching passwords
         $validData = [
@@ -162,8 +158,7 @@ class ValidationIntegrationTest extends TestCase
                 ->string()
                 ->minLength(10)
                 ->maxLength(500)
-                ->add()
-            ->build();
+                ->add();
 
         // Valid data
         $validData = ['bio' => 'This is a long enough biography that meets the minimum requirements.'];
@@ -195,8 +190,7 @@ class ValidationIntegrationTest extends TestCase
                 ->required()
                 ->date()
                 ->after('today')
-                ->add()
-            ->build();
+                ->add();
 
         // Future date should pass
         $futureDate = date('Y-m-d', strtotime('+7 days'));
@@ -219,8 +213,7 @@ class ValidationIntegrationTest extends TestCase
             ->addEmail('email', 'Email')
                 ->required()
                 ->email()
-                ->add()
-            ->build();
+                ->add();
 
         $customMessages = [
             'email.required' => 'Please provide your email address',
@@ -250,8 +243,7 @@ class ValidationIntegrationTest extends TestCase
                 ->add()
             ->addText('ip_address', 'IP Address')
                 ->ip()
-                ->add()
-            ->build();
+                ->add();
 
         // Valid data
         $validData = [
@@ -294,8 +286,7 @@ class ValidationIntegrationTest extends TestCase
             ->addEmail('email', 'Email')
                 ->required()
                 ->email()
-                ->add()
-            ->build();
+                ->add();
 
         $data = [
             'name' => 'John Doe',
@@ -322,8 +313,7 @@ class ValidationIntegrationTest extends TestCase
                 ->add()
             ->addText('alphanumeric', 'Alphanumeric')
                 ->alphaNumeric()
-                ->add()
-            ->build();
+                ->add();
 
         // Valid data
         $validData = [
@@ -363,8 +353,7 @@ class ValidationIntegrationTest extends TestCase
             ->addText('pin', 'PIN')
                 ->required()
                 ->digits(4)
-                ->add()
-            ->build();
+                ->add();
 
         // Valid 4-digit PIN
         $validated = $form->validateData(['pin' => '1234']);
@@ -393,8 +382,7 @@ class ValidationIntegrationTest extends TestCase
             ->addText('code', 'Code')
                 ->required()
                 ->regex('/^[A-Z]{3}-[0-9]{4}$/', 'Code must be in format ABC-1234')
-                ->add()
-            ->build();
+                ->add();
 
         // Valid format
         $validated = $form->validateData(['code' => 'ABC-1234']);
@@ -416,8 +404,7 @@ class ValidationIntegrationTest extends TestCase
         $form = FormBuilder::create('laravel_form')
             ->addText('email', 'Email')
                 ->rules('required|email|min:5|max:255')
-                ->add()
-            ->build();
+                ->add();
 
         // Valid data
         $validated = $form->validateData(['email' => 'test@example.com']);
