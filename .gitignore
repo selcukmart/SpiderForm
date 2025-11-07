@@ -1,5 +1,6 @@
 .idea/*
 vendor/*
 .phpunit.result.cache
+.phpunit.cache/
 SMARTY_TPL_FILES/template_compile
 composer.lock
