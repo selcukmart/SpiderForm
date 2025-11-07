@@ -136,6 +136,14 @@ class TwigRenderer implements RendererInterface
     }
 
     /**
+     * Get template extension for this renderer
+     */
+    public function getTemplateExtension(): string
+    {
+        return 'twig';
+    }
+
+    /**
      * Get Twig environment instance
      */
     public function getTwig(): Environment

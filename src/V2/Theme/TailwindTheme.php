@@ -16,34 +16,34 @@ class TailwindTheme extends AbstractTheme
 {
     protected function initialize(): void
     {
-        // Set template mappings (reuse Bootstrap5 templates with Tailwind classes)
+        // Set template mappings (without extensions - will be added based on renderer)
         $this->templateMap = [
-            'text' => 'tailwind/input_text.tpl',
-            'email' => 'tailwind/input_text.tpl',
-            'password' => 'tailwind/input_text.tpl',
-            'number' => 'tailwind/input_text.tpl',
-            'tel' => 'tailwind/input_text.tpl',
-            'url' => 'tailwind/input_text.tpl',
-            'search' => 'tailwind/input_text.tpl',
-            'date' => 'tailwind/input_text.tpl',
-            'time' => 'tailwind/input_text.tpl',
-            'datetime-local' => 'tailwind/input_text.tpl',
-            'month' => 'tailwind/input_text.tpl',
-            'week' => 'tailwind/input_text.tpl',
-            'color' => 'tailwind/input_text.tpl',
-            'range' => 'tailwind/input_range.tpl',
-            'textarea' => 'tailwind/input_textarea.tpl',
-            'select' => 'tailwind/input_select.tpl',
-            'checkbox' => 'tailwind/input_checkbox.tpl',
-            'radio' => 'tailwind/input_radio.tpl',
-            'file' => 'tailwind/input_file.tpl',
-            'hidden' => 'tailwind/input_hidden.tpl',
-            'submit' => 'tailwind/button.tpl',
-            'reset' => 'tailwind/button.tpl',
-            'button' => 'tailwind/button.tpl',
-            'checkbox_tree' => 'tailwind/input_checkbox_tree.tpl',
-            'repeater' => 'tailwind/input_repeater.tpl',
-            'default' => 'tailwind/input_text.tpl',
+            'text' => 'tailwind/input_text',
+            'email' => 'tailwind/input_text',
+            'password' => 'tailwind/input_text',
+            'number' => 'tailwind/input_text',
+            'tel' => 'tailwind/input_text',
+            'url' => 'tailwind/input_text',
+            'search' => 'tailwind/input_text',
+            'date' => 'tailwind/input_text',
+            'time' => 'tailwind/input_text',
+            'datetime-local' => 'tailwind/input_text',
+            'month' => 'tailwind/input_text',
+            'week' => 'tailwind/input_text',
+            'color' => 'tailwind/input_text',
+            'range' => 'tailwind/input_range',
+            'textarea' => 'tailwind/input_textarea',
+            'select' => 'tailwind/input_select',
+            'checkbox' => 'tailwind/input_checkbox',
+            'radio' => 'tailwind/input_radio',
+            'file' => 'tailwind/input_file',
+            'hidden' => 'tailwind/input_hidden',
+            'submit' => 'tailwind/button',
+            'reset' => 'tailwind/button',
+            'button' => 'tailwind/button',
+            'checkbox_tree' => 'tailwind/input_checkbox_tree',
+            'repeater' => 'tailwind/input_repeater',
+            'default' => 'tailwind/input_text',
         ];
 
         // Set Tailwind CSS classes
@@ -147,8 +147,8 @@ class TailwindTheme extends AbstractTheme
     protected function getDefaultConfig(): array
     {
         return [
-            'form_template' => 'tailwind/form.tpl',
-            'input_capsule_template' => 'tailwind/input_capsule.tpl',
+            'form_template' => 'tailwind/form',
+            'input_capsule_template' => 'tailwind/input_capsule',
             'color_scheme' => 'indigo', // indigo, blue, green, red, etc.
         ];
     }

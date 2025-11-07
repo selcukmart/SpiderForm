@@ -19,11 +19,21 @@ abstract class AbstractTheme implements ThemeInterface
     protected array $inputClasses = [];
     protected array $formClasses = [];
     protected array $assets = ['css' => [], 'js' => []];
+    protected ?string $templateExtension = null;
 
     public function __construct(array $config = [])
     {
         $this->config = array_merge($this->getDefaultConfig(), $config);
         $this->initialize();
+    }
+
+    /**
+     * Set template extension based on renderer
+     * This is called by FormBuilder when renderer is set
+     */
+    public function setTemplateExtension(string $extension): void
+    {
+        $this->templateExtension = $extension;
     }
 
     /**
@@ -51,7 +61,8 @@ abstract class AbstractTheme implements ThemeInterface
      */
     public function getInputTemplate(InputType $inputType): string
     {
-        return $this->templateMap[$inputType->value] ?? $this->templateMap['default'] ?? 'input.twig';
+        $template = $this->templateMap[$inputType->value] ?? $this->templateMap['default'] ?? 'input';
+        return $this->addExtensionIfNeeded($template);
     }
 
     /**
@@ -59,7 +70,8 @@ abstract class AbstractTheme implements ThemeInterface
      */
     public function getFormTemplate(): string
     {
-        return $this->config['form_template'] ?? 'form.twig';
+        $template = $this->config['form_template'] ?? 'form';
+        return $this->addExtensionIfNeeded($template);
     }
 
     /**
@@ -67,7 +79,27 @@ abstract class AbstractTheme implements ThemeInterface
      */
     public function getInputCapsuleTemplate(): string
     {
-        return $this->config['input_capsule_template'] ?? 'input_capsule.twig';
+        $template = $this->config['input_capsule_template'] ?? 'input_capsule';
+        return $this->addExtensionIfNeeded($template);
+    }
+
+    /**
+     * Add template extension if not already present
+     */
+    protected function addExtensionIfNeeded(string $template): string
+    {
+        // If no extension is set yet, return template as-is (backward compatibility)
+        if ($this->templateExtension === null) {
+            return $template;
+        }
+
+        // If template already has an extension, return as-is
+        if (str_contains($template, '.')) {
+            return $template;
+        }
+
+        // Add the renderer's extension
+        return $template . '.' . $this->templateExtension;
     }
 
     /**

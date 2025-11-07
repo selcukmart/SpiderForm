@@ -172,6 +172,14 @@ class SmartyRenderer implements RendererInterface
     }
 
     /**
+     * Get template extension for this renderer
+     */
+    public function getTemplateExtension(): string
+    {
+        return 'tpl';
+    }
+
+    /**
      * Get Smarty instance
      */
     public function getSmarty(): Smarty
