@@ -486,7 +486,7 @@ class FormBuilder implements BuilderInterface
      *
      * @param string $locale Locale code (e.g., 'en_US', 'tr_TR')
      */
-    public function setLocale(string $locale): self
+    public function setFormLocale(string $locale): self
     {
         $this->formLocale = $locale;
 
