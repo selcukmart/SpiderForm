@@ -7,7 +7,7 @@ namespace SpiderForm\V2\Validation\Rules;
 /**
  * Boolean Rule - Value must be a boolean
  */
-class Boolean implements RuleInterface
+class BooleanRule implements RuleInterface
 {
     public function passes(string $attribute, mixed $value, array $parameters = []): bool
     {

@@ -327,7 +327,7 @@ class DependencyManager
             if (this.animationConfig.type === 'fade') {
                 element.style.display = '';
                 element.style.opacity = '0';
-                element.style.transition = `opacity ${duration}ms ${easing}`;
+                element.style.transition = `opacity \${duration}ms \${easing}`;
 
                 setTimeout(() => {
                     element.style.opacity = '1';
@@ -337,7 +337,7 @@ class DependencyManager
                 element.style.maxHeight = '0';
                 element.style.overflow = 'hidden';
                 element.style.opacity = '0';
-                element.style.transition = `max-height ${duration}ms ${easing}, opacity ${duration}ms ${easing}`;
+                element.style.transition = `max-height \${duration}ms \${easing}, opacity \${duration}ms \${easing}`;
 
                 // Calculate the natural height
                 const naturalHeight = element.scrollHeight;
@@ -371,7 +371,7 @@ class DependencyManager
 
             if (this.animationConfig.type === 'fade') {
                 element.style.opacity = '0';
-                element.style.transition = `opacity ${duration}ms ${easing}`;
+                element.style.transition = `opacity \${duration}ms \${easing}`;
 
                 setTimeout(() => {
                     element.style.display = 'none';
@@ -381,7 +381,7 @@ class DependencyManager
                 const currentHeight = element.scrollHeight;
                 element.style.maxHeight = currentHeight + 'px';
                 element.style.overflow = 'hidden';
-                element.style.transition = `max-height ${duration}ms ${easing}, opacity ${duration}ms ${easing}`;
+                element.style.transition = `max-height \${duration}ms \${easing}, opacity \${duration}ms \${easing}`;
 
                 setTimeout(() => {
                     element.style.maxHeight = '0';

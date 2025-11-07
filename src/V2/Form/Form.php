@@ -561,9 +561,14 @@ class Form implements FormInterface
             throw new \RuntimeException('No renderer set for form. Call setRenderer() or pass renderer to render().');
         }
 
-        $view = $this->createView();
+        if ($theme === null) {
+            throw new \RuntimeException('No theme set for form. Call setTheme() or pass theme to render().');
+        }
 
-        return $renderer->render($view, $theme);
+        $view = $this->createView();
+        $template = $theme->getFormTemplate();
+
+        return $renderer->render($template, ['form' => $view]);
     }
 
     /**

@@ -7,7 +7,7 @@ namespace SpiderForm\V2\Validation\Rules;
 /**
  * String Rule - Value must be a string
  */
-class String implements RuleInterface
+class StringRule implements RuleInterface
 {
     public function passes(string $attribute, mixed $value, array $parameters = []): bool
     {
