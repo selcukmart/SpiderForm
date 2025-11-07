@@ -6,6 +6,7 @@ namespace SpiderForm\V2\Renderer;
 
 use SpiderForm\V2\Contracts\RendererInterface;
 use Twig\Environment;
+use Twig\Extension\StringLoaderExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -36,6 +37,9 @@ class TwigRenderer implements RendererInterface
             'autoescape' => 'html',
             'strict_variables' => false,
         ]);
+
+        // Add StringLoader extension for template_from_string function
+        $this->twig->addExtension(new StringLoaderExtension());
 
         $this->registerCustomFilters();
         $this->registerCustomFunctions();

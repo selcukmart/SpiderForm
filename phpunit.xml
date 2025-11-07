@@ -26,11 +26,6 @@
         <testsuite name="Integration">
             <directory>tests/Integration</directory>
         </testsuite>
-
-        <!-- V2 Feature tests -->
-        <testsuite name="Feature">
-            <directory>tests/Feature</directory>
-        </testsuite>
     </testsuites>
 
     <source restrictDeprecations="true" restrictNotices="true" restrictWarnings="true">

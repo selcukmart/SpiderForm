@@ -45,6 +45,12 @@
       "SpiderForm\\V2\\": "src/V2/",
       "SpiderForm\\": "src/V1/"
     },
+    "classmap": [
+      "SpiderForm/",
+      "GlobalTraits/",
+      "Examples/",
+      "Helpers/"
+    ],
     "files": [
       "Helpers/helpers.php"
     ]
@@ -52,7 +58,11 @@
   "autoload-dev": {
     "psr-4": {
       "SpiderForm\\Tests\\": "tests/"
-    }
+    },
+    "classmap": [
+      "tests/FormDataAsRow.php",
+      "tests/SmartyForTests.php"
+    ]
   },
   "require": {
     "php": ">=8.1",

@@ -4,3 +4,7 @@ vendor/*
 .phpunit.cache/
 SMARTY_TPL_FILES/template_compile
 composer.lock
+test_output.log
+test_results*.log
+tests/cache/
+coverage/
