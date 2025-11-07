@@ -340,8 +340,9 @@ class FormBuilderTest extends TestCase
             ->addValidation('email', 'email')
             ->add()
             ->build();
-        
-        $this->assertStringContainsString('<script>', $html);
+
+        $this->assertStringContainsString('<script', $html);
+        $this->assertStringContainsString('</script>', $html);
         $this->assertStringContainsString('FormValidator_', $html);
     }
 

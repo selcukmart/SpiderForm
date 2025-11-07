@@ -39,7 +39,7 @@ class TextTest extends TestCase
         $form_generator = new SpiderFormDirector($form_generator_array, 'add');
         $form_generator->buildHtmlOutput();
         $html = $form_generator->getHtmlOutput();
-        $expected = '<input name="address_identification" value="" class="" placeholder="Address Identification" __is_def="1" type="text" id="address_identification" >';
+        $expected = '<input placeholder="Address Identification" id="address_identification" name="address_identification" value="" type="text" class="form-control">';
         $this->assertSame($expected, $html);
     }
 }

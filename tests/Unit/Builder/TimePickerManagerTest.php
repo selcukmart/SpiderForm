@@ -177,7 +177,7 @@ class TimePickerManagerTest extends TestCase
 
         $this->assertStringContainsString('<style>', $script);
         $this->assertStringContainsString('</style>', $script);
-        $this->assertStringContainsString('.timepicker-dropdown', $script);
+        $this->assertStringContainsString('.timepicker-popup', $script);
     }
 
     #[Test]

@@ -23,9 +23,10 @@ class DependencyManagerTest extends TestCase
     public function it_generates_javascript_code(): void
     {
         $js = DependencyManager::generateScript('test-form');
-        
+
         $this->assertIsJavaScript($js);
-        $this->assertStringContainsString('<script>', $js);
+        $this->assertStringContainsString('<script', $js);
+        $this->assertStringContainsString('</script>', $js);
         $this->assertStringContainsString('FormGen_test_form', $js);
     }
 
