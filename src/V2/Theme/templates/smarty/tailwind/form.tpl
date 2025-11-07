@@ -25,6 +25,11 @@
                                     <div class="section-content mb-4">{$input.section.htmlContent nofilter}</div>
                                 {/if}
                                 {foreach $input.inputs as $section_input}
+                                    {foreach $section_input as $key => $value}
+                                        {if $key != 'template'}
+                                            {assign var=$key value=$value}
+                                        {/if}
+                                    {/foreach}
                                     {include file=$section_input.template}
                                 {/foreach}
                             </div>
@@ -39,6 +44,11 @@
                         {/if}
                         <div class="border-l-4 border-indigo-500 pl-4">
                             {foreach $input.inputs as $section_input}
+                                {foreach $section_input as $key => $value}
+                                    {if $key != 'template'}
+                                        {assign var=$key value=$value}
+                                    {/if}
+                                {/foreach}
                                 {include file=$section_input.template}
                             {/foreach}
                         </div>
@@ -47,11 +57,21 @@
             {else}
                 {* Section is null - render inputs without section wrapper *}
                 {foreach $input.inputs as $section_input}
+                    {foreach $section_input as $key => $value}
+                        {if $key != 'template'}
+                            {assign var=$key value=$value}
+                        {/if}
+                    {/foreach}
                     {include file=$section_input.template}
                 {/foreach}
             {/if}
         {else}
             {* Regular input (no sections used) *}
+            {foreach $input as $key => $value}
+                {if $key != 'template'}
+                    {assign var=$key value=$value}
+                {/if}
+            {/foreach}
             {include file=$input.template}
         {/if}
     {/foreach}

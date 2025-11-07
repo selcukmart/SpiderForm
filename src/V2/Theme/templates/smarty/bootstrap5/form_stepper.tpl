@@ -54,6 +54,11 @@
                             </div>
                             <div class="stepper-step-fields">
                                 {foreach $input.inputs as $section_input}
+                                    {foreach $section_input as $key => $value}
+                                        {if $key != 'template'}
+                                            {assign var=$key value=$value}
+                                        {/if}
+                                    {/foreach}
                                     {include file=$section_input.template}
                                 {/foreach}
                             </div>
@@ -63,6 +68,11 @@
                         {* Section is null - render inputs without section wrapper *}
                         <div class="stepper-step" data-stepper-step="0">
                             {foreach $input.inputs as $section_input}
+                                {foreach $section_input as $key => $value}
+                                    {if $key != 'template'}
+                                        {assign var=$key value=$value}
+                                    {/if}
+                                {/foreach}
                                 {include file=$section_input.template}
                             {/foreach}
                         </div>
@@ -72,6 +82,11 @@
                     {if $smarty.foreach.inputs@first}
                         <div class="stepper-step active" data-stepper-step="0">
                     {/if}
+                    {foreach $input as $key => $value}
+                        {if $key != 'template'}
+                            {assign var=$key value=$value}
+                        {/if}
+                    {/foreach}
                     {include file=$input.template}
                     {if $smarty.foreach.inputs@last}
                         </div>

@@ -28,9 +28,19 @@
                     {foreach $repeaterFields.inputs as $field}
                         {if $field.is_section}
                             {foreach $field.inputs as $section_input}
+                                {foreach $section_input as $key => $value}
+                                    {if $key != 'template'}
+                                        {assign var=$key value=$value}
+                                    {/if}
+                                {/foreach}
                                 {include file=$section_input.template}
                             {/foreach}
                         {else}
+                            {foreach $field as $key => $value}
+                                {if $key != 'template'}
+                                    {assign var=$key value=$value}
+                                {/if}
+                            {/foreach}
                             {include file=$field.template}
                         {/if}
                     {/foreach}
@@ -56,9 +66,19 @@
                             {foreach $repeaterFields.inputs as $field}
                                 {if $field.is_section}
                                     {foreach $field.inputs as $section_input}
+                                        {foreach $section_input as $key => $value}
+                                            {if $key != 'template'}
+                                                {assign var=$key value=$value}
+                                            {/if}
+                                        {/foreach}
                                         {include file=$section_input.template}
                                     {/foreach}
                                 {else}
+                                    {foreach $field as $key => $value}
+                                        {if $key != 'template'}
+                                            {assign var=$key value=$value}
+                                        {/if}
+                                    {/foreach}
                                     {include file=$field.template}
                                 {/if}
                             {/foreach}
