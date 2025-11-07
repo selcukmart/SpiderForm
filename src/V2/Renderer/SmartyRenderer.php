@@ -54,6 +54,9 @@ class SmartyRenderer implements RendererInterface
      */
     public function render(string $template, array $context = []): string
     {
+        // Convert .twig extension to .tpl for Smarty compatibility
+        $template = $this->normalizeTemplateName($template);
+
         // Merge global variables with context
         $context = array_merge($this->globals, $context);
 
@@ -78,6 +81,8 @@ class SmartyRenderer implements RendererInterface
      */
     public function exists(string $template): bool
     {
+        // Normalize template name before checking
+        $template = $this->normalizeTemplateName($template);
         return $this->smarty->templateExists($template);
     }
 
@@ -217,5 +222,21 @@ class SmartyRenderer implements RendererInterface
             $path = $params['path'] ?? '';
             return '/' . ltrim($path, '/');
         });
+    }
+
+    /**
+     * Normalize template name by converting .twig to .tpl extension
+     *
+     * This allows Smarty renderer to use the same theme configuration as Twig renderer
+     * while automatically loading the .tpl versions of templates
+     */
+    private function normalizeTemplateName(string $template): string
+    {
+        // If template ends with .twig, replace it with .tpl
+        if (str_ends_with($template, '.twig')) {
+            return substr($template, 0, -5) . '.tpl';
+        }
+
+        return $template;
     }
 }
