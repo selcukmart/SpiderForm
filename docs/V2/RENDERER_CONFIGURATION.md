@@ -13,19 +13,28 @@ This guide explains how to properly configure renderers in SpiderForm V2 to avoi
 
 ## Common Issues
 
-### Error: "Unable to load template 'file:bootstrap3/form.twig'"
+### Error: "Unable to load template 'file:bootstrap3/form.tpl'"
 
-**Cause**: The renderer doesn't know where to find the template files.
+**Cause**: The renderer doesn't know where to find the template files, or is looking in the wrong directory.
 
-**Solution**: Configure the template directory path when instantiating the renderer.
+**Solution**: Configure the correct template directory path when instantiating the renderer.
+
+**Important**: As of v2.x, Twig and Smarty templates are separated:
+- Twig templates (`.twig`) are in: `src/V2/Theme/templates/twig/`
+- Smarty templates (`.tpl`) are in: `src/V2/Theme/templates/smarty/`
 
 ```php
 // ❌ WRONG - No template path specified
 $renderer = new SmartyRenderer();
 
-// ✅ CORRECT - Template path specified
+// ❌ WRONG - Old path (before template separation)
 $renderer = new SmartyRenderer(
     templateDir: __DIR__ . '/../../vendor/selcukmart/spider-form/src/V2/Theme/templates'
+);
+
+// ✅ CORRECT - Smarty template path (note: /smarty subdirectory)
+$renderer = new SmartyRenderer(
+    templateDir: __DIR__ . '/../../vendor/selcukmart/spider-form/src/V2/Theme/templates/smarty'
 );
 ```
 
@@ -46,15 +55,16 @@ composer require smarty/smarty
 ```php
 use SpiderForm\V2\Renderer\SmartyRenderer;
 
+// IMPORTANT: Point to the 'smarty' subdirectory for .tpl templates
 $renderer = new SmartyRenderer(
-    templateDir: '/path/to/spider-form/src/V2/Theme/templates',
+    templateDir: '/path/to/spider-form/src/V2/Theme/templates/smarty',
     compileDir: sys_get_temp_dir() . '/smarty_compile',  // Optional
     cacheDir: sys_get_temp_dir() . '/smarty_cache'       // Optional
 );
 ```
 
 **Parameters**:
-- `templateDir` (required): Path to the template directory
+- `templateDir` (required): Path to the Smarty template directory (`.tpl` files)
 - `compileDir` (optional): Directory for compiled templates (defaults to system temp)
 - `cacheDir` (optional): Directory for cached templates (defaults to system temp)
 
@@ -62,7 +72,7 @@ $renderer = new SmartyRenderer(
 
 ```php
 $renderer = new SmartyRenderer(
-    templateDir: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates'
+    templateDir: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates/smarty'
 );
 ```
 
@@ -70,7 +80,7 @@ $renderer = new SmartyRenderer(
 
 ```php
 $renderer = new SmartyRenderer(
-    templateDir: __DIR__ . '/src/V2/Theme/templates'
+    templateDir: __DIR__ . '/src/V2/Theme/templates/smarty'
 );
 ```
 
@@ -89,14 +99,15 @@ composer require twig/twig
 ```php
 use SpiderForm\V2\Renderer\TwigRenderer;
 
+// IMPORTANT: Point to the 'twig' subdirectory for .twig templates
 $renderer = new TwigRenderer(
-    templatePaths: '/path/to/spider-form/src/V2/Theme/templates',
+    templatePaths: '/path/to/spider-form/src/V2/Theme/templates/twig',
     cacheDir: sys_get_temp_dir() . '/form_generator_cache'  // Optional
 );
 ```
 
 **Parameters**:
-- `templatePaths` (required): Path(s) to template directories (string or array)
+- `templatePaths` (required): Path(s) to Twig template directories (`.twig` files, string or array)
 - `cacheDir` (optional): Directory for cached templates
 - `debug` (optional): Enable debug mode (default: false)
 - `autoReload` (optional): Auto-reload templates on change (default: true)
@@ -105,7 +116,7 @@ $renderer = new TwigRenderer(
 
 ```php
 $renderer = new TwigRenderer(
-    templatePaths: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates',
+    templatePaths: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates/twig',
     cacheDir: sys_get_temp_dir() . '/form_cache'
 );
 ```
@@ -170,12 +181,12 @@ SmartyException: Unable to load template 'file:bootstrap3/form.twig'
    ```php
    // ✅ CORRECT
    $renderer = new SmartyRenderer(
-       templateDir: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates'
+       templateDir: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates/smarty'
    );
 
    // ❌ WRONG - Relative paths may not work
    $renderer = new SmartyRenderer(
-       templateDir: '../vendor/selcukmart/spider-form/src/V2/Theme/templates'
+       templateDir: '../vendor/selcukmart/spider-form/src/V2/Theme/templates/smarty'
    );
    ```
 
@@ -208,7 +219,7 @@ if (!is_dir($cacheDir)) {
 }
 
 $renderer = new SmartyRenderer(
-    templateDir: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates',
+    templateDir: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates/smarty',
     compileDir: $compileDir,
     cacheDir: $cacheDir
 );
@@ -220,14 +231,21 @@ $renderer = new SmartyRenderer(
 
 **Symptom**: Templates render incorrectly or with errors
 
-**Solution**: Ensure all renderers use `.twig` templates. All themes (Bootstrap3, Bootstrap5, Tailwind) use Twig template syntax, even when using SmartyRenderer or BladeRenderer.
+**Solution**: Ensure you're using the correct template directory for your renderer:
 
 ```php
-// All these work with the same .twig templates
-$renderer = new TwigRenderer(...);      // Native Twig
-$renderer = new SmartyRenderer(...);    // Smarty with .twig templates
-$renderer = new BladeRenderer(...);     // Blade with .twig templates
+// TwigRenderer uses .twig templates from the twig/ subdirectory
+$renderer = new TwigRenderer(
+    templatePaths: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates/twig'
+);
+
+// SmartyRenderer uses .tpl templates from the smarty/ subdirectory
+$renderer = new SmartyRenderer(
+    templateDir: __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates/smarty'
+);
 ```
+
+**Note**: Themes reference templates with `.twig` extensions, but SmartyRenderer automatically converts these to `.tpl` when looking for files. This allows the same theme configuration to work with different renderers.
 
 ---
 
@@ -256,7 +274,7 @@ use SpiderForm\V2\Renderer\SmartyRenderer;
 use SpiderForm\V2\Theme\Bootstrap3Theme;
 
 // Configure paths
-$templateDir = __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates';
+$templateDir = __DIR__ . '/vendor/selcukmart/spider-form/src/V2/Theme/templates/smarty';
 $compileDir = sys_get_temp_dir() . '/smarty_compile';
 $cacheDir = sys_get_temp_dir() . '/smarty_cache';
 
