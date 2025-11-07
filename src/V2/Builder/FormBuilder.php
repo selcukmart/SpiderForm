@@ -1944,11 +1944,11 @@ class FormBuilder implements BuilderInterface
      *     ->addText('name')->add()
      *
      *     // Nested address form
-     *     ->addNestedForm('address', 'Address', function(FormBuilder $addressForm) {
+     *     ->addNestedForm('address', function(FormBuilder $addressForm) {
      *         $addressForm->addText('street', 'Street')->add();
      *         $addressForm->addText('city', 'City')->add();
      *         $addressForm->addText('zipcode', 'ZIP')->add();
-     *     })
+     *     }, 'Address')
      *
      *     ->buildForm();
      *
@@ -1956,12 +1956,12 @@ class FormBuilder implements BuilderInterface
      * ```
      *
      * @param string $name Nested form name
-     * @param string|null $label Nested form label
      * @param callable $builder Builder callback that receives FormBuilder for sub-form
+     * @param string|null $label Nested form label (optional)
      * @return self
      * @since 2.4.0
      */
-    public function addNestedForm(string $name, ?string $label = null, callable $builder): self
+    public function addNestedForm(string $name, callable $builder, ?string $label = null): self
     {
         // Store nested form configuration
         $this->nestedForms[$name] = [
@@ -1984,11 +1984,11 @@ class FormBuilder implements BuilderInterface
      *     ->addText('invoice_number')->add()
      *
      *     // Collection of line items
-     *     ->addCollection('items', 'Line Items', function(FormBuilder $itemForm) {
+     *     ->addCollection('items', function(FormBuilder $itemForm) {
      *         $itemForm->addText('product', 'Product')->add();
      *         $itemForm->addNumber('quantity', 'Quantity')->add();
      *         $itemForm->addNumber('price', 'Price')->add();
-     *     })
+     *     }, 'Line Items')
      *     ->allowAdd()
      *     ->allowDelete()
      *     ->min(1)
@@ -1998,14 +1998,14 @@ class FormBuilder implements BuilderInterface
      * ```
      *
      * @param string $name Collection name
-     * @param string|null $label Collection label
      * @param callable $prototypeBuilder Builder callback for each collection entry
+     * @param string|null $label Collection label (optional)
      * @return CollectionBuilder
      * @since 2.4.0
      */
-    public function addCollection(string $name, ?string $label = null, callable $prototypeBuilder): CollectionBuilder
+    public function addCollection(string $name, callable $prototypeBuilder, ?string $label = null): CollectionBuilder
     {
-        $collectionBuilder = new CollectionBuilder($this, $name, $label, $prototypeBuilder);
+        $collectionBuilder = new CollectionBuilder($this, $name, $prototypeBuilder, $label);
         $this->collections[$name] = $collectionBuilder;
         return $collectionBuilder;
     }
