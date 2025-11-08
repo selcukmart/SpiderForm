@@ -18,10 +18,10 @@ use SpiderForm\V2\Theme\Bootstrap5Theme;
 use SpiderForm\V2\Security\SecurityManager;
 
 // Initialize components
-$renderer = new TwigRenderer(
-    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
-    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
-);
+//$renderer = new TwigRenderer(
+//    templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+//    cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+//);
 $renderer = new SmartyRenderer();
 $theme = new Bootstrap5Theme();
 $security = new SecurityManager();

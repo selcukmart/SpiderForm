@@ -40,11 +40,15 @@ class BladeRenderer implements RendererInterface
     private string $cachePath;
 
     public function __construct(
-        string|array $templatePaths,
+        string|array $templatePaths=null,
         ?string $cachePath = null,
         ?Filesystem $filesystem = null,
         ?Dispatcher $events = null
     ) {
+        if($templatePaths === null) {
+            // Default to SpiderForm Blade templates directory
+            $templatePaths = dirname(__DIR__) . '/Theme/templates/blade';
+        }
         $this->filesystem = $filesystem ?? new Filesystem();
         $this->viewPaths = is_array($templatePaths) ? $templatePaths : [$templatePaths];
 
