@@ -26,11 +26,15 @@ class TwigRenderer implements RendererInterface
     private array $globals = [];
 
     public function __construct(
-        string|array $templatePaths,
+        string|array $templatePaths = null,
         ?string      $cacheDir = null,
         bool         $debug = false
     )
     {
+        if (empty($templatePaths)) {
+            // Get SpiderForm templates directory
+            $templatePaths = dirname(__DIR__) . '/Theme/templates';
+        }
         //twig
         $templatePaths .= '/twig';
         $paths = is_array($templatePaths) ? $templatePaths : [$templatePaths];
