@@ -28,10 +28,11 @@ class SmartyRenderer implements RendererInterface
 
     public function __construct(
         ?SmartyCompat $smarty = null,
-        ?string $templateDir = null,
-        ?string $compileDir = null,
-        ?string $cacheDir = null
-    ) {
+        ?string       $templateDir = null,
+        ?string       $compileDir = null,
+        ?string       $cacheDir = null
+    )
+    {
         $this->smarty = $smarty ?? new SmartyCompat();
 
         // Get SpiderForm templates directory
@@ -63,6 +64,7 @@ class SmartyRenderer implements RendererInterface
 
         // Disable caching by default
         $this->smarty->setCaching(SmartyCompat::CACHING_OFF);
+        $this->registerModifier('var_dump', fn($var) => var_dump($var));
 
         $this->registerCustomModifiers();
         $this->registerCustomFunctions();
@@ -232,7 +234,7 @@ class SmartyRenderer implements RendererInterface
                     $parts[] = sprintf(
                         '%s="%s"',
                         htmlspecialchars($key, ENT_QUOTES, 'UTF-8'),
-                        htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8')
+                        htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8')
                     );
                 }
             }

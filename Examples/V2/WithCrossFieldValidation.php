@@ -12,6 +12,8 @@
  * @since 2.7.0
  */
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use SpiderForm\V2\Builder\FormBuilder;
@@ -27,28 +29,27 @@ use SpiderForm\V2\Theme\Bootstrap5Theme;
 echo "<h2>Example 1: Password Confirmation</h2>\n\n";
 
 $passwordForm = FormBuilder::create('password_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+        templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+        cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+    ))
     ->setTheme(new Bootstrap5Theme())
-
     ->addPassword('password', 'Password')
-        ->required()
-        ->minLength(8)
-        ->add()
-
+    ->required()
+    ->minLength(8)
+    ->add()
     ->addPassword('password_confirm', 'Confirm Password')
-        ->required()
-        ->add()
+    ->required()
+    ->add()
 
     // Cross-field validation
-    ->addConstraint(new Callback(function(array $data, ExecutionContext $context) {
+    ->addConstraint(new Callback(function (array $data, ExecutionContext $context) {
         if (($data['password'] ?? '') !== ($data['password_confirm'] ?? '')) {
             $context->buildViolation('Passwords do not match')
-                    ->atPath('password_confirm')
-                    ->addViolation();
+                ->atPath('password_confirm')
+                ->addViolation();
         }
-    }))
-
-    ->buildForm();
+    }));
 
 // Simulate submission with mismatched passwords
 $testData1 = [
@@ -70,7 +71,7 @@ $testData2 = [
 $errors2 = $passwordForm->validateWithConstraints($testData2);
 echo "Test: Matching passwords\n";
 echo "Errors: " . (empty($errors2) ? 'None - Valid!' : json_encode($errors2)) . "\n\n";
-
+echo $passwordForm->build();
 // ============================================================================
 // EXAMPLE 2: Date Range Validation
 // ============================================================================
@@ -78,32 +79,32 @@ echo "Errors: " . (empty($errors2) ? 'None - Valid!' : json_encode($errors2)) . 
 echo "<h2>Example 2: Date Range Validation</h2>\n\n";
 
 $bookingForm = FormBuilder::create('booking_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+        templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+        cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+    ))
     ->setTheme(new Bootstrap5Theme())
-
     ->addDate('check_in', 'Check-in Date')
-        ->required()
-        ->add()
-
+    ->required()
+    ->add()
     ->addDate('check_out', 'Check-out Date')
-        ->required()
-        ->add()
-
+    ->required()
+    ->add()
     ->addNumber('guests', 'Number of Guests')
-        ->required()
-        ->min(1)
-        ->max(10)
-        ->add()
+    ->required()
+    ->min(1)
+    ->max(10)
+    ->add()
 
     // Date range validation
-    ->addConstraint(new Callback(function(array $data, ExecutionContext $context) {
+    ->addConstraint(new Callback(function (array $data, ExecutionContext $context) {
         $checkIn = strtotime($data['check_in'] ?? '');
         $checkOut = strtotime($data['check_out'] ?? '');
 
         if ($checkIn && $checkOut && $checkOut <= $checkIn) {
             $context->buildViolation('Check-out date must be after check-in date')
-                    ->atPath('check_out')
-                    ->addViolation();
+                ->atPath('check_out')
+                ->addViolation();
         }
 
         // Minimum stay validation
@@ -111,13 +112,11 @@ $bookingForm = FormBuilder::create('booking_form')
             $days = ($checkOut - $checkIn) / 86400;
             if ($days < 1) {
                 $context->buildViolation('Minimum stay is 1 night')
-                        ->atPath('check_out')
-                        ->addViolation();
+                    ->atPath('check_out')
+                    ->addViolation();
             }
         }
-    }))
-
-    ->buildForm();
+    }));
 
 // Test invalid date range
 $testBooking1 = [
@@ -137,35 +136,34 @@ echo "Errors: " . json_encode($errors3, JSON_PRETTY_PRINT) . "\n\n";
 echo "<h2>Example 3: Complex Business Rules</h2>\n\n";
 
 $orderForm = FormBuilder::create('order_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+        templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+        cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+    ))
     ->setTheme(new Bootstrap5Theme())
-
     ->addNumber('quantity', 'Quantity')
-        ->required()
-        ->min(1)
-        ->add()
-
+    ->required()
+    ->min(1)
+    ->add()
     ->addNumber('unit_price', 'Unit Price')
-        ->required()
-        ->min(0.01)
-        ->add()
-
+    ->required()
+    ->min(0.01)
+    ->add()
     ->addNumber('discount_percent', 'Discount %')
-        ->min(0)
-        ->max(100)
-        ->add()
-
+    ->min(0)
+    ->max(100)
+    ->add()
     ->addNumber('total', 'Total Amount')
-        ->required()
-        ->min(0)
-        ->add()
+    ->required()
+    ->min(0)
+    ->add()
 
     // Business rule: Total must match calculation
-    ->addConstraint(new Callback(function(array $data, ExecutionContext $context) {
-        $quantity = (float) ($data['quantity'] ?? 0);
-        $unitPrice = (float) ($data['unit_price'] ?? 0);
-        $discount = (float) ($data['discount_percent'] ?? 0);
-        $submittedTotal = (float) ($data['total'] ?? 0);
+    ->addConstraint(new Callback(function (array $data, ExecutionContext $context) {
+        $quantity = (float)($data['quantity'] ?? 0);
+        $unitPrice = (float)($data['unit_price'] ?? 0);
+        $discount = (float)($data['discount_percent'] ?? 0);
+        $submittedTotal = (float)($data['total'] ?? 0);
 
         $subtotal = $quantity * $unitPrice;
         $discountAmount = $subtotal * ($discount / 100);
@@ -173,14 +171,12 @@ $orderForm = FormBuilder::create('order_form')
 
         if (abs($expectedTotal - $submittedTotal) > 0.01) {
             $context->buildViolation('Total amount does not match calculation')
-                    ->atPath('total')
-                    ->setParameter('expected', number_format($expectedTotal, 2))
-                    ->setParameter('actual', number_format($submittedTotal, 2))
-                    ->addViolation();
+                ->atPath('total')
+                ->setParameter('expected', number_format($expectedTotal, 2))
+                ->setParameter('actual', number_format($submittedTotal, 2))
+                ->addViolation();
         }
-    }))
-
-    ->buildForm();
+    }));
 
 $testOrder = [
     'quantity' => 5,
@@ -192,7 +188,7 @@ $testOrder = [
 $errors4 = $orderForm->validateWithConstraints($testOrder);
 echo "Test: Invalid total calculation\n";
 echo "Errors: " . json_encode($errors4, JSON_PRETTY_PRINT) . "\n\n";
-
+echo $orderForm->build();
 // ============================================================================
 // EXAMPLE 4: Validation Groups
 // ============================================================================
@@ -200,44 +196,42 @@ echo "Errors: " . json_encode($errors4, JSON_PRETTY_PRINT) . "\n\n";
 echo "<h2>Example 4: Validation Groups</h2>\n\n";
 
 $userForm = FormBuilder::create('user_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+        templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+        cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+    ))
     ->setTheme(new Bootstrap5Theme())
-
     ->addText('username', 'Username')
-        ->required(['groups' => ['registration', 'profile']])
-        ->minLength(3, ['groups' => ['registration']])
-        ->add()
-
+    ->required()
+    ->minLength(3, ['groups' => ['registration']])
+    ->add()
     ->addEmail('email', 'Email')
-        ->required(['groups' => ['registration']])
-        ->add()
-
+    ->required()
+    ->add()
     ->addPassword('password', 'Password')
-        ->required(['groups' => ['registration', 'password_change']])
-        ->minLength(8, ['groups' => ['registration', 'password_change']])
-        ->add()
-
+    ->required()
+    ->minLength(8, ['groups' => ['registration', 'password_change']])
+    ->add()
     ->addPassword('current_password', 'Current Password')
-        ->required(['groups' => ['password_change']])
-        ->add()
-
+    ->required()
+    ->add()
     ->addText('bio', 'Biography')
-        ->maxLength(500, ['groups' => ['profile']])
-        ->add()
+    ->maxLength(500, ['groups' => ['profile']])
+    ->add()
 
     // Group-specific constraint
-    ->addConstraint(new Callback(function(array $data, ExecutionContext $context) {
+    ->addConstraint(new Callback(function (array $data, ExecutionContext $context) {
         // Only validate password match for password_change group
         if (isset($data['password']) && isset($data['current_password'])) {
             if ($data['password'] === $data['current_password']) {
                 $context->buildViolation('New password must be different from current password')
-                        ->atPath('password')
-                        ->addViolation();
+                    ->atPath('password')
+                    ->addViolation();
             }
         }
     }, ['password_change'])) // Only applies to password_change group
 
-    ->buildForm();
+;
 
 // Scenario 1: Registration (validate registration group)
 echo "Scenario 1: Registration Validation\n";
@@ -269,7 +263,7 @@ $passwordData = [
 
 $pwdErrors = $userForm->validateWithConstraints($passwordData, ['password_change']);
 echo "Password change errors: " . json_encode($pwdErrors, JSON_PRETTY_PRINT) . "\n\n";
-
+echo $userForm->build();
 // ============================================================================
 // EXAMPLE 5: Multiple Cross-Field Validations
 // ============================================================================
@@ -277,61 +271,58 @@ echo "Password change errors: " . json_encode($pwdErrors, JSON_PRETTY_PRINT) . "
 echo "<h2>Example 5: Multiple Cross-Field Validations</h2>\n\n";
 
 $paymentForm = FormBuilder::create('payment_form')
-    ->setRenderer(new TwigRenderer())
+    ->setRenderer(new TwigRenderer(
+        templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
+        cacheDir: sys_get_temp_dir() . '/form_generator_cache'
+    ))
     ->setTheme(new Bootstrap5Theme())
-
     ->addSelect('payment_method', 'Payment Method')
-        ->options(['card' => 'Credit Card', 'paypal' => 'PayPal', 'bank' => 'Bank Transfer'])
-        ->required()
-        ->add()
-
+    ->options(['card' => 'Credit Card', 'paypal' => 'PayPal', 'bank' => 'Bank Transfer'])
+    ->required()
+    ->add()
     ->addText('card_number', 'Card Number')
-        ->add()
-
+    ->add()
     ->addText('paypal_email', 'PayPal Email')
-        ->add()
-
+    ->add()
     ->addText('bank_account', 'Bank Account')
-        ->add()
+    ->add()
 
     // Validate: Card number required for card payment
-    ->addConstraint(new Callback(function(array $data, ExecutionContext $context) {
+    ->addConstraint(new Callback(function (array $data, ExecutionContext $context) {
         if (($data['payment_method'] ?? '') === 'card') {
             if (empty($data['card_number'])) {
                 $context->buildViolation('Card number is required for credit card payment')
-                        ->atPath('card_number')
-                        ->addViolation();
+                    ->atPath('card_number')
+                    ->addViolation();
             }
         }
     }))
 
     // Validate: PayPal email required for PayPal
-    ->addConstraint(new Callback(function(array $data, ExecutionContext $context) {
+    ->addConstraint(new Callback(function (array $data, ExecutionContext $context) {
         if (($data['payment_method'] ?? '') === 'paypal') {
             if (empty($data['paypal_email'])) {
                 $context->buildViolation('PayPal email is required')
-                        ->atPath('paypal_email')
-                        ->addViolation();
+                    ->atPath('paypal_email')
+                    ->addViolation();
             } elseif (!filter_var($data['paypal_email'], FILTER_VALIDATE_EMAIL)) {
                 $context->buildViolation('Invalid PayPal email address')
-                        ->atPath('paypal_email')
-                        ->addViolation();
+                    ->atPath('paypal_email')
+                    ->addViolation();
             }
         }
     }))
 
     // Validate: Bank account required for bank transfer
-    ->addConstraint(new Callback(function(array $data, ExecutionContext $context) {
+    ->addConstraint(new Callback(function (array $data, ExecutionContext $context) {
         if (($data['payment_method'] ?? '') === 'bank') {
             if (empty($data['bank_account'])) {
                 $context->buildViolation('Bank account is required for bank transfer')
-                        ->atPath('bank_account')
-                        ->addViolation();
+                    ->atPath('bank_account')
+                    ->addViolation();
             }
         }
-    }))
-
-    ->buildForm();
+    }));
 
 // Test: Card payment without card number
 $payment1 = ['payment_method' => 'card'];
@@ -344,7 +335,7 @@ $payment2 = ['payment_method' => 'paypal', 'paypal_email' => 'not-an-email'];
 $paymentErrors2 = $paymentForm->validateWithConstraints($payment2);
 echo "Test: PayPal with invalid email\n";
 echo "Errors: " . json_encode($paymentErrors2, JSON_PRETTY_PRINT) . "\n\n";
-
+echo $paymentForm->build();
 // ============================================================================
 // OUTPUT
 // ============================================================================

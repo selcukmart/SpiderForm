@@ -1,14 +1,18 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 /**
  * SpiderForm V2 - Basic Usage Example
  *
  * This example demonstrates the new Chain Pattern fluent interface
  */
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use SpiderForm\V2\Builder\FormBuilder;
+use SpiderForm\V2\Renderer\SmartyRenderer;
 use SpiderForm\V2\Renderer\TwigRenderer;
 use SpiderForm\V2\Theme\Bootstrap5Theme;
 use SpiderForm\V2\Security\SecurityManager;
@@ -18,7 +22,7 @@ $renderer = new TwigRenderer(
     templatePaths: __DIR__ . '/../../src/V2/Theme/templates',
     cacheDir: sys_get_temp_dir() . '/form_generator_cache'
 );
-
+$renderer = new SmartyRenderer();
 $theme = new Bootstrap5Theme();
 $security = new SecurityManager();
 

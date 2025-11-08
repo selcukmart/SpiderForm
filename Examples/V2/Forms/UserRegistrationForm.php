@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 namespace SpiderForm\Examples\V2\Forms;
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 use SpiderForm\V2\Form\AbstractFormType;
 use SpiderForm\V2\Builder\FormBuilder;
 
